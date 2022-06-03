@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@auth0/angular-jwt": "^5.0.2",
+    "@datorama/akita": "^7.1.1"
+  }
+}
