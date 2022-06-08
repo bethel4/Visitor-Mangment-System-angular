@@ -10,10 +10,15 @@ import { ClientFormEditComponent } from './client/ui/client-form/edit client/cli
 import { SecurityFormComponent} from './security/ui/security-form/addsecurity/security-form.component'
 import { CustomerFormEditComponent } from './customer/ui/customer-form/edit customer/customerEdit-form.component';
 import { SecurityFormEditComponent } from './security/ui/security-form/editsecurity/securityEdit-form.component';
+import {AdminComponent} from '../Admin/dashboard/admin.component'
 const routes: Routes = [
   {
     path: '',
     children: [
+      {
+        path: '',
+        component: AdminComponent,
+      },
       {
         path: 'clients',
         component: ClientComponent,

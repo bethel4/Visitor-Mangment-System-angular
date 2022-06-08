@@ -16,6 +16,13 @@ import {CustomerFormComponent} from './customer/ui/customer-form/addcustomer/cus
 import {CustomerFormEditComponent} from './customer/ui/customer-form/edit customer/customerEdit-form.component'
 import { SecurityFormComponent } from './security/ui/security-form/addsecurity/security-form.component';
 import {SecurityFormEditComponent} from './security/ui/security-form/editsecurity/securityEdit-form.component'
+import { ChartistModule } from 'ng-chartist';
+import { ChartsModule } from 'ng2-charts';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CountToModule } from 'angular-count-to';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -29,14 +36,24 @@ import {SecurityFormEditComponent} from './security/ui/security-form/editsecurit
     CustomerFormEditComponent,
     ClientFormComponent,
     SecurityFormEditComponent
+
   ],
   imports: [
     CommonModule,
+    ChartistModule,
+    ChartsModule,
+    NgApexchartsModule,
+    CarouselModule,
+    CKEditorModule,
+    CountToModule,
     SharedModule,
     AdminRoutingModule,
     NgxDatatableModule,
     NgbModule,
     NgSelectModule,
+    AgmCoreModule.forRoot({
+    
+    }),
   ],
 })
 export class AdminModule {}

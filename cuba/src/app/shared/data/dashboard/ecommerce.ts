@@ -75,7 +75,7 @@ export const todayTotalSale = {
 export const totalVisit = {
     series: [{
         name: 'Inflation',
-        data: [2.3, 5.1, 3.0, 9.1, 2.0, 4.6, 2.2, 9.3, 5.4, 4.8, 3.5, 5.2]
+        data: [2.3, 5.1, 3.0, 9.1, 2.0, 4.6, 2.2]
     }],
     chart: {
         height: 105,
@@ -109,7 +109,7 @@ export const totalVisit = {
         }
     },
     xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
         position: 'bottom',
 
         axisBorder: {
@@ -259,8 +259,7 @@ export const profit = {
         }
     },
     xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug',
-            'Sep', 'Oct', 'Nov', 'Dec'
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July'
         ],
         labels: {
             show: true

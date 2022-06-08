@@ -1,0 +1,75 @@
+<app-breadcrumb ></app-breadcrumb>
+<div class="container-fluid" style="padding-top:40px">
+    <div class="row size-column">
+        <div class="col-xl-7 box-col-12 xl-100">
+            <div class="row dash-chart">
+                <div class="col-xl-6 box-col-6 col-md-6">
+                    <div class="card o-hidden">
+                        <div class="card-header card-no-border">
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa-spin fa-cog"></i></li>
+                                </ul>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p><span class="f-w-500 font-roboto">Today Total sale</span><span
+                                            class="f-w-700 font-primary ml-2">89.21%</span></p>
+                                    <h4 class="f-w-500 mb-0 f-26">$<span class="counter">3000.56</span></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="profit-card">
+                                        <div id="spaline-chart">
+                                            <apx-chart [series]='todayTotalSale.series' [chart]='todayTotalSale.chart'
+                                                [dataLabels]='todayTotalSale.dataLabels'
+                                                [stroke]='todayTotalSale.stroke' [xaxis]='todayTotalSale.xaxis'
+                                                [yaxis]='todayTotalSale.yaxis' [tooltip]='todayTotalSale.tooltip'
+                                                [legend]='todayTotalSale.legend' [grid]='todayTotalSale.grid'
+                                                [fill]='todayTotalSale.fill' [colors]='todayTotalSale.colors'>
+                                            </apx-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 box-col-6 col-md-6">
+                    <div class="card o-hidden">
+                        <div class="card-header card-no-border">
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa-spin fa-cog"></i></li>
+                                </ul>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p><span class="f-w-500 font-roboto">Today Total visits</span><span
+                                            class="f-w-700 font-primary ml-2">35.00%</span></p>
+                                    <h4 class="f-w-500 mb-0 f-26 counter">9,050</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="monthly-visit">
+                                <div id="column-chart">
+                                    <apx-chart [series]='totalVisit.series' [chart]='totalVisit.chart'
+                                        [plotOptions]='totalVisit.plotOptions' [dataLabels]='totalVisit.dataLabels'
+                                        [xaxis]='totalVisit.xaxis' [yaxis]='totalVisit.yaxis' [grid]='totalVisit.grid'
+                                        [colors]='totalVisit.colors'></apx-chart>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+          
+            </div>
+        </div>
+      
+    </div>
+</div>
