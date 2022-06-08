@@ -9,9 +9,13 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ClientComponent } from './client/client.component';
 import { CustomerComponent } from './customer/container/customer.component';
 import { SecurityComponent } from './security/container/security.component';
-import { VisitorComponent } from './visitor/container/visitor.component';
-import { ClientFormComponent } from './client/ui/client-form/client-form.component';
-import {CustomerFormComponent} from './customer/ui/customer-form/customer-form.component'
+import { VisitorComponent } from './visitor/container/visitor.component'; 
+import { ClientFormComponent } from './client/ui/client-form/addclient/client-form.component';
+import { ClientFormEditComponent } from './client/ui/client-form/edit client/client-formedit.componen';
+import {CustomerFormComponent} from './customer/ui/customer-form/addcustomer/customer-form.component'
+import {CustomerFormEditComponent} from './customer/ui/customer-form/edit customer/customerEdit-form.component'
+import { SecurityFormComponent } from './security/ui/security-form/addsecurity/security-form.component';
+import {SecurityFormEditComponent} from './security/ui/security-form/editsecurity/securityEdit-form.component'
 @NgModule({
   declarations: [
     AdminComponent,
@@ -19,8 +23,12 @@ import {CustomerFormComponent} from './customer/ui/customer-form/customer-form.c
     VisitorComponent,
     ClientComponent,
     CustomerFormComponent,
+    ClientFormEditComponent,
     SecurityComponent,
+    SecurityFormComponent,
+    CustomerFormEditComponent,
     ClientFormComponent,
+    SecurityFormEditComponent
   ],
   imports: [
     CommonModule,

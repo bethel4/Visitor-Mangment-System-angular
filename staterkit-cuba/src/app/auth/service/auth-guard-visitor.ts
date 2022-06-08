@@ -19,7 +19,7 @@ export class AuthRoleVisitorGuard implements CanActivateChild {
     constructor(private query: SessionQuery, private router: Router) {}
       canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
           console.log(this.query.isRole())
-          if (this.query.isRole()!=='Visitor') {
+          if (this.query.isRole()==='Security') {
             console.log(this.query.isRole())
               return true;
             }

@@ -1,16 +1,35 @@
-<app-breadcrumb [title]="'Column'" [items]="['Tables', 'Data Tables']" [active_item]="'Column'"></app-breadcrumb>
+<app-breadcrumb ></app-breadcrumb>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">
-                    <h5>Filter Table</h5>
+                <div class="" style="width: 150px; padding-top: 30px; padding-left: 20px;">
+                  <a href="admin/addcustomer">  <button  class="btn btn-primary btn-block" 
+                    type="button"><span>Add New </span>
+                  </button></a>
                 </div>
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
                         (keyup)="updateFilter($event)" />
                     <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="ColumnMode.force"
-                        [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+                        [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="data">
+                        <ngx-datatable-column *ngFor="let col of columns" [name]="col.name"  [prop]="col.prop">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column  name="Edit" sortable="false" prop="id">
+                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                            <a    (click)="onSelect(row)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                          </ng-template>
+                       </ngx-datatable-column>
+         
+                    
+                    <ngx-datatable-column  name="Delete" sortable="false" prop="id">
+                      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <a   (click)="onDelete(row)">
+                          <i class="fa fa-times"></i></a>
+                      </ng-template>
+                   </ngx-datatable-column>
                     </ngx-datatable>
                 </div>
             </div>

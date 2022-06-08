@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Menu, NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
+import { SessionQuery } from 'src/app/auth/state/session.query';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,31 +24,88 @@ export class SidebarComponent {
   public rightArrowNone: boolean = false;
 
   constructor(private router: Router, public navServices: NavService,
+    private query: SessionQuery,
     public layout: LayoutService) {
-    this.navServices.items.subscribe(menuItems => {
-      this.menuItems = menuItems;
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          menuItems.filter(items => {
-            if (items.path === event.url) {
-              this.setNavActive(items);
-            }
-            if (!items.children) { return false; }
-            items.children.filter(subItems => {
-              if (subItems.path === event.url) {
-                this.setNavActive(subItems);
-              }
-              if (!subItems.children) { return false; }
-              subItems.children.filter(subSubItems => {
-                if (subSubItems.path === event.url) {
-                  this.setNavActive(subSubItems);
+      if(this.query.isRole()=='Security'){
+        this.navServices.itemsecurity.subscribe(menuItems => {
+          this.menuItems = menuItems;
+        
+          this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+              menuItems.filter(items => {
+                if (items.path === event.url) {
+                  this.setNavActive(items);
                 }
+                if (!items.children) { return false; }
+                items.children.filter(subItems => {
+                  if (subItems.path === event.url) {
+                    this.setNavActive(subItems);
+                  }
+                  if (!subItems.children) { return false; }
+                  subItems.children.filter(subSubItems => {
+                    if (subSubItems.path === event.url) {
+                      this.setNavActive(subSubItems);
+                    }
+                  });
+                });
               });
-            });
+            }
           });
-        }
-      });
-    });
+        });
+      }else if (this.query.isRole()=='Admin'||this.query.isRole()=='Super Admin') {
+        this.navServices.items.subscribe(menuItems => {
+          this.menuItems = menuItems;
+        
+          this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+              menuItems.filter(items => {
+                if (items.path === event.url) {
+                  this.setNavActive(items);
+                }
+                if (!items.children) { return false; }
+                items.children.filter(subItems => {
+                  if (subItems.path === event.url) {
+                    this.setNavActive(subItems);
+                  }
+                  if (!subItems.children) { return false; }
+                  subItems.children.filter(subSubItems => {
+                    if (subSubItems.path === event.url) {
+                      this.setNavActive(subSubItems);
+                    }
+                  });
+                });
+              });
+            }
+          });
+        });
+      }else if(this.query.isRole()=='Customer'){
+        this.navServices.itemCustomer.subscribe(menuItems => {
+          this.menuItems = menuItems;
+        
+          this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+              menuItems.filter(items => {
+                if (items.path === event.url) {
+                  this.setNavActive(items);
+                }
+                if (!items.children) { return false; }
+                items.children.filter(subItems => {
+                  if (subItems.path === event.url) {
+                    this.setNavActive(subItems);
+                  }
+                  if (!subItems.children) { return false; }
+                  subItems.children.filter(subSubItems => {
+                    if (subSubItems.path === event.url) {
+                      this.setNavActive(subSubItems);
+                    }
+                  });
+                });
+              });
+            }
+          });
+        });
+      }
+ 
   }
 
   @HostListener('window:resize', ['$event'])

@@ -44,7 +44,7 @@ export class CustomerService {
     );
     
   }
-  update(id:string, data:any): Observable<any> {
+  update( data:any): Observable<any> {
     const url = `${environment.apiUrl}/edit_customer.php`;
     return this.http.put(url, data)
       .pipe(

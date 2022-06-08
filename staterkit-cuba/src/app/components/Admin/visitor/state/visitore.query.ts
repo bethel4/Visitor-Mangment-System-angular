@@ -5,7 +5,7 @@ import { VisitorState, VisitorStore } from './visitior.store';
 
 @Injectable({ providedIn: 'root' })
 export class VisitorQuery extends QueryEntity<VisitorState> {
-  constructor(protected override store: VisitorStore) {
+  constructor(protected  store: VisitorStore) {
     super(store);
 
   }

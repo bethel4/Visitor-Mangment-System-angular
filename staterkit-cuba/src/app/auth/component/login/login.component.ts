@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { SessionQuery } from "../../state/session.query";
 import { SessionService } from '../../state/session.service';
 @Component({
   selector: "app-login",
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public toster: ToastrService,
     private service: SessionService,
-    private router: Router
+    private router: Router,
+    private query:SessionQuery
   ) {
 
   }
@@ -37,7 +39,16 @@ export class LoginComponent implements OnInit {
     const { contact_number, password } = this.loginForm.value;
     this.service.login(contact_number, password).subscribe((res: any) => {
       if (res.status == 1) {
-        this.router.navigate(["/admin"]);
+        if(this.query.isRole()=='Admin'||this.query.isRole()=='Super Admin'){
+          this.router.navigate(["/admin"]);
+        }
+        else if(this.query.isRole()=='Security'){
+          this.router.navigate(["/security"]);
+        }
+        else if(this.query.isRole()=='Customer'){
+          this.router.navigate(["/customer"]);
+        }
+      
       } else {
         this.toster.error(res.message);
         this.service.logout()

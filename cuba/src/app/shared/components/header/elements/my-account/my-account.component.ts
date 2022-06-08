@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionQuery } from 'src/app/auth/state/session.query';
 import { AuthService } from '../../../../services/firebase/auth.service';
 
 @Component({
@@ -8,9 +9,12 @@ import { AuthService } from '../../../../services/firebase/auth.service';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService,
+              ) 
+               { }
 
   ngOnInit() {
+    console.log()
   }
 
 }

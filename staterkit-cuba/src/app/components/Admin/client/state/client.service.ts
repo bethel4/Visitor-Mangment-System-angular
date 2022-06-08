@@ -49,7 +49,7 @@ options = { headers: this.headers };
     );
     
   }
-  update(id:string, data:any): Observable<any> {
+  update( data:any): Observable<any> {
     const url = `${environment.apiUrl}/edit_client.php`;
     return this.http.put(url, data)
       .pipe(
@@ -71,7 +71,7 @@ options = { headers: this.headers };
         tap((result: any) => {
           if (result.status==1) {
             // this.store.remove(id);
-            this.get().subscribe();
+            
           } else {
            console.log('Error deleting')
           }

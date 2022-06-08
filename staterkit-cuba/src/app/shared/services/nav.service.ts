@@ -89,13 +89,7 @@ export class NavService implements OnDestroy {
 			
 		]
 	},
-	               {
-					title: 'Users', icon: 'users', type: 'sub', active: false, children: [
-						{ path: 'admin/users', title: 'Users', type: 'link' },
-						{ path: 'admin/user', title: 'Add New User' , type: 'link' },
-						
-					]
-				    },
+	             
 				
 			{ 
 				title: 'customers', icon: 'users', type: 'sub', active: false, children: [
@@ -114,7 +108,7 @@ export class NavService implements OnDestroy {
 			{ 
 				title: 'Visitors', icon: 'users', type: 'sub', active: false, children: [
 					{ path: 'admin/visitors', title: 'Visitor', type: 'link' },
-					{ path: 'admin/addvisitors', title: 'Add New Visitor' , type: 'link' },
+					
 					
 				]		
 			},
@@ -124,6 +118,38 @@ export class NavService implements OnDestroy {
 			
 		
 	];
+	MENUITEMSSECURIY: Menu[] = [
+
+			{ 
+				title: 'security', icon: 'users', type: 'sub', active: false, children: [
+					{ path: 'security/visitors', title: 'MyVisitors', type: 'link' },
+					{ path: 'security/addRquest', title: 'Add New Request' , type: 'link' },
+					
+				]		
+			},
+		
+				
+			
+			
+			
+		
+	];
+	MENUITEMSCUSTOMER: Menu[] = [
+
+		{ 
+			title: 'Customer', icon: 'users', type: 'sub', active: false, children: [
+				{ path: 'customer/visitors', title: 'visitors', type: 'link' },
+				{ path: 'customer/report', title: 'My Report' , type: 'link' },
+				
+			]		
+		},
+	
+			
+		
+		
+		
+	
+];
 
 	MEGAMENUITEMS: Menu[] = [
 	
@@ -174,6 +200,8 @@ export class NavService implements OnDestroy {
 
 	// Array
 	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
+	itemsecurity = new BehaviorSubject<Menu[]>(this.MENUITEMSSECURIY);
+	itemCustomer = new BehaviorSubject<Menu[]>(this.MENUITEMSCUSTOMER);
 	megaItems = new BehaviorSubject<Menu[]>(this.MEGAMENUITEMS);
 	levelmenuitems = new BehaviorSubject<Menu[]>(this.LEVELMENUITEMS);
 
