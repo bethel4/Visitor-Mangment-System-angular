@@ -1,14 +1,8 @@
 import * as moment from "moment";
-
+import {AdminService} from "../../dashboard/state/admin.service"
 let primary = localStorage.getItem('primary_color') || '#7366ff';
 let secondary = localStorage.getItem('secondary_color') || '#f73164';
-let days=[]
-var startdate = moment();
-for(let i=0;i<= 7;i++){
-   startdate = startdate.subtract(i, "days");
-  days.push(startdate.format("ddd"))
-  startdate = moment();
-}
+
 export const todayTotalSale = {
     series: [{
         name: 'series1',
@@ -80,98 +74,7 @@ export const todayTotalSale = {
     colors: [primary, secondary, secondary],
 };
 
-export const totalVisit = {
-    series: [{
-        name: 'Inflation',
-        data: [2.3, 5.1, 3.0, 9.1, 2.0, 4.6, 2.2,2.5,2.5]
-    }],
-    chart: {
-        height: 105,
-        type: 'bar',
-        stacked: true,
-        toolbar: {
-            show: false
-        },
-    },
-    plotOptions: {
-        bar: {
-            dataLabels: {
-                position: 'top', // top, center, bottom
-            },
 
-            columnWidth: '20%',
-            startingShape: 'rounded',
-            endingShape: 'rounded'
-        }
-    },
-    dataLabels: {
-        enabled: false,
-
-        formatter: function (val) {
-            return val + "%";
-        },
-        offsetY: -10,
-        style: {
-            fontSize: '12px',
-            colors: [primary]
-        }
-    },
-    xaxis: {
-        categories:days,
-        position: 'bottom',
-
-        axisBorder: {
-            show: false
-        },
-        axisTicks: {
-            show: false
-        },
-        crosshairs: {
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    colorFrom: '#7366ff',
-                    colorTo: '#c481ec',
-                    stops: [0, 100],
-                    opacityFrom: 0.4,
-                    opacityTo: 0.5,
-                }
-            }
-        },
-        tooltip: {
-            enabled: true,
-        },
-        labels: {
-            show: false
-        }
-
-    },
-    yaxis: {
-        axisBorder: {
-            show: false
-        },
-        axisTicks: {
-            show: false,
-        },
-        labels: {
-            show: false,
-            formatter: function (val) {
-                return val + "%";
-            }
-        }
-
-    },
-    grid: {
-        show: false,
-        padding: {
-            top: -35,
-            right: -45,
-            bottom: -20,
-            left: -10
-        },
-    },
-    colors: [primary],
-};
 
 export const smallBarCharts = {
 	type: 'Bar',

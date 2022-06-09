@@ -50,7 +50,7 @@ export class ClientFormEditComponent implements OnInit {
           status = 'Inactive';
         }
         datas.push({
-          roll: data.data[i].id,
+          id: data.data[i].id,
           name: data.data[i].name,
           status: status,
           address: data.data[i].address,
@@ -58,9 +58,9 @@ export class ClientFormEditComponent implements OnInit {
           email: data.data[i].email
         });
       }
-      this.row=datas.filter(data => data.roll==this.selectedID)
+      this.row=datas.filter(data => data.id==this.selectedID)
       this.data = datas;
-      console.log(this.data)
+      console.log(this.row)
     });
    
 

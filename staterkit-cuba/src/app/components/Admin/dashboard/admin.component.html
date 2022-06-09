@@ -1,7 +1,7 @@
 <app-breadcrumb ></app-breadcrumb>
 <div class="container-fluid" style="padding-top:40px">
-    <div class="row size-column">
-        <div class="col-xl-7 box-col-12 xl-100">
+    <div class="row size-column" style="width:2200px;height:2000px; padding-left:55px;">
+        <div class="col-xl-7 box-col-12 xl-100" >
             <div class="row dash-chart">
                 <div class="col-xl-6 box-col-6 col-md-6">
                     <div class="card o-hidden">
@@ -13,9 +13,9 @@
                             </div>
                             <div class="media">
                                 <div class="media-body">
-                                    <p><span class="f-w-500 font-roboto">Today Total sale</span><span
-                                            class="f-w-700 font-primary ml-2">89.21%</span></p>
-                                    <h4 class="f-w-500 mb-0 f-26">$<span class="counter">3000.56</span></h4>
+                                    <p><span class="f-w-500 font-roboto">Weeks Total visit</span><span
+                                            class="f-w-700 font-primary ml-2">{{sumWeeks}}</span></p>
+                                    <h4 class="f-w-500 mb-0 f-26"><span class="counter"></span></h4>
                                 </div>
                             </div>
                         </div>
@@ -48,9 +48,9 @@
                             </div>
                             <div class="media">
                                 <div class="media-body">
-                                    <p><span class="f-w-500 font-roboto">Today Total visits</span><span
-                                            class="f-w-700 font-primary ml-2">35.00%</span></p>
-                                    <h4 class="f-w-500 mb-0 f-26 counter">9,050</h4>
+                                    <p><span class="f-w-500 font-roboto">This Week visits</span><span
+                                            class="f-w-700 font-primary ml-2">{{sum}}</span></p>
+                                    <h4 class="f-w-500 mb-0 f-26 counter"></h4>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +61,82 @@
                                         [plotOptions]='totalVisit.plotOptions' [dataLabels]='totalVisit.dataLabels'
                                         [xaxis]='totalVisit.xaxis' [yaxis]='totalVisit.yaxis' [grid]='totalVisit.grid'
                                         [colors]='totalVisit.colors'></apx-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 xl-100 chart_data_left box-col-12" >
+                <div class="card" style="width:1200px">
+                    <div class="card-body p-0">
+                        <div class="row m-0 chart-main">
+                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
+                                <div class="media align-items-center">
+                                    <div class="hospital-small-chart">
+                                        <div class="small-bar">
+                                            <div class="small-chart">
+                                                <i class="icon-bg"
+                data-feather="user" style="color: #7366ff"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="right-chart-content">
+                                            <h4>{{total[0].client}}</h4><span>CLINTS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
+                                <div class="media align-items-center">
+                                    <div class="hospital-small-chart">
+                                        <div class="small-bar">
+                                            <div class="small-chart1">
+                                                <i class="icon-bg"
+                                                data-feather="user" style="color: #7366ff"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="right-chart-content">
+                                            <h4>{{total[0].customer}}</h4><span>CUSTOMERS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6" style="padding-left: 250px;">
+                                <div class="media align-items-center">
+                                    <div class="hospital-small-chart">
+                                        <div class="small-bar">
+                                            <div class="small-chart2">
+                                                <i class="icon-bg"
+                                                data-feather="user" style="color: #7366ff"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="right-chart-content">
+                                            <h4>{{total[0].security}}</h4><span>SECURITIES</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
+                                <div class="media border-none align-items-center">
+                                    <div class="hospital-small-chart">
+                                        <div class="small-bar">
+                                            <div class="small-chart3">
+                                                <i class="icon-bg"
+                                                data-feather="user" style="color: #7366ff"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="right-chart-content">
+                                            <h4>{{total[0].visitors}}</h4><span>VISITIORS</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -10,43 +10,58 @@
           <label class="col-sm-3 col-form-label" for="inputEmail3">Full Name</label>
           <div class="col-sm-9">
             <input class="form-control" id="" type="text" placeholder="Full Name" formControlName="name"
-              [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid) }" />
-              <div class="invalid-feedback"
-                        *ngIf="(isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid)">
-                        <div *ngIf="form.controls.name.errors.required"><h5 style="color:red">Name is required</h5></div>
-                        <div *ngIf="form.controls.name.errors.pattern"><h5 style="color:red">Only Alphabets with space
-                          between 2 to
-                          20
-                          characters</h5></div>
+              [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid) }" 
+              [(ngModel)]="row[0].name"
+              />
+            <div class="invalid-feedback"
+              *ngIf="(isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid)">
+              <div *ngIf="form.controls.name.errors.required">
+                <h5 style="color:red">Name is required</h5>
+              </div>
+              <div *ngIf="form.controls.name.errors.pattern">
+                <h5 style="color:red">Only Alphabets with space
+                  between 2 to
+                  20
+                  characters</h5>
+              </div>
 
-                    </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputEmail3">Email</label>
           <div class="col-sm-9">
             <input class="form-control" id="inputEmail3" type="email" placeholder="Email" formControlName="email"
-            [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.email.errors) || (!form.controls.email.pristine && form.controls.email.invalid) }">
+              [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.email.errors) || (!form.controls.email.pristine && form.controls.email.invalid) }"
+              [(ngModel)]="row[0].email"
+              >
             <div class="invalid-feedback"
-            *ngIf="(isFormSubmitted && form.controls.email.errors) || (!form.controls.email.pristine && form.controls.email.invalid)">
-            <div *ngIf="form.controls.email.errors.required"><h5 style="color:red">Email is required</h5></div>
-            <div *ngIf="form.controls.email.errors.pattern"><h5 style="color:red">Enter valid emai</h5></div>
+              *ngIf="(isFormSubmitted && form.controls.email.errors) || (!form.controls.email.pristine && form.controls.email.invalid)">
+              <div *ngIf="form.controls.email.errors.required">
+                <h5 style="color:red">Email is required</h5>
+              </div>
+              <div *ngIf="form.controls.email.errors.pattern">
+                <h5 style="color:red">Enter valid emai</h5>
+              </div>
 
-        </div>
+            </div>
           </div>
         </div>
-       
+
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputPassword3">Address</label>
           <div class="col-sm-9">
-            <input  class="form-control" id="url" type="text" placeholder="Address" formControlName="address"
-            [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid) }"
-            >
+            <input class="form-control" id="url" type="text" placeholder="Address" formControlName="address"
+              [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid) }"
+              [(ngModel)]="row[0].address"
+              >
             <div class="invalid-feedback"
-                        *ngIf="(isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid)">
-                        <div *ngIf="form.controls.address.errors.required"><h5 style="color:red">Address is required</h5></div>
+              *ngIf="(isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid)">
+              <div *ngIf="form.controls.address.errors.required">
+                <h5 style="color:red">Address is required</h5>
+              </div>
 
-                    </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
