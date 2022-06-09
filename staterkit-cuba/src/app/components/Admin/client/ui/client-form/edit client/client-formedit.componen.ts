@@ -75,7 +75,7 @@ export class ClientFormEditComponent implements OnInit {
         this.toster.error(res.message);
       }
     });
-    setInterval(()=>{this.router.navigate(['client'])},3000)
+    setInterval(()=>{this.router.navigate(['admin/client'])},3000)
   }
   onCancel() {
     this.form.reset();
