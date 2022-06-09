@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerQuery} from '../../../state/customer.query'
 import { CustomerService} from '../../../state/customer.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-customerEdit-form',
   templateUrl: './customerEdit-form.component.html',
@@ -22,7 +22,8 @@ export class CustomerFormEditComponent implements OnInit {
     private service: CustomerService,
     public toster: ToastrService,
     private query: CustomerQuery,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public router: Router
   ) {
     const PAT_NAME = "^[a-zA-Z ]{2,20}$";
     const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
@@ -74,6 +75,7 @@ export class CustomerFormEditComponent implements OnInit {
         this.toster.error(res.message);
       }
     });
+    setInterval(()=>{this.router.navigate(['admin/customers'])},3000)
   }
   onCancel() {
     this.form.reset();

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -29,7 +29,8 @@ export class ClientFormComponent implements OnInit {
     private service: ClientService,
     public toster: ToastrService,
     private query: ClientQuery,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     const PAT_NAME = "^[a-zA-Z ]{2,20}$";
     const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
@@ -96,6 +97,7 @@ export class ClientFormComponent implements OnInit {
         this.toster.error(res.message);
       }
     });
+    setInterval(()=>{this.router.navigate(['client'])},3000)
   }
   onCancel() {
     this.form.reset();

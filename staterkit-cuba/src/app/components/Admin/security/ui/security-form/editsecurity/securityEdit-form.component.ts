@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { ClientService } from '../../../../client/state/client.service';
 import { SecurityService } from '../../../state/security.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-securityEdit-form',
   templateUrl: './securityEdit-form.component.html',
@@ -21,7 +21,8 @@ export class SecurityFormEditComponent implements OnInit {
      private serviceClint: ClientService,
      private service:SecurityService,
      public toster: ToastrService,
-     public route: ActivatedRoute
+     public route: ActivatedRoute,
+     public router: Router
     
    ) {
     const PAT_NAME = "^[a-zA-Z ]{2,20}$";
@@ -81,6 +82,7 @@ export class SecurityFormEditComponent implements OnInit {
         this.toster.error(res.message);
       }
     });
+    setInterval(()=>{this.router.navigate(['admin/security'])},3000)
   }
   onCancel() {
     this.form.reset();

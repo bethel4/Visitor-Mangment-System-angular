@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ClientService } from 'src/app/components/Admin/client/state/client.service';
@@ -19,6 +20,7 @@ export class CustomerFormComponent implements OnInit {
     private serviceClint: ClientService,
     private service:CustomerService,
     public toster: ToastrService,
+    public router: Router,
    
   ) {
     const PAT_NAME = "^[a-zA-Z ]{2,20}$";
@@ -69,6 +71,7 @@ export class CustomerFormComponent implements OnInit {
     this.service.add(this.form.value).subscribe((res:any)=>{
       if (res.status == 1) {
         this.toster.success(res.message);
+       // setInterval(()=>{this.router.navigate(['admin/customer'])},5000)
       } else {
         this.toster.error(res.message);
       }
