@@ -17,15 +17,17 @@ data:any
   temp = [];
 
   columns = [
-    { name: 'id' },
-    { prop: 'visitor' },
-    { name: 'Address' },
-    { name: 'Timein ' },
-    { name: 'Timeout ' },
-    { name: 'reason ' },
-    {name:'customer'},
-    { name: 'ApprovalStatus' },
-    {name: 'ApprovalTime'}
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    {name:'customer_name',label:'Customer Name'},
+    { name:'security_name',label:'Security Name'},
+    { name: 'Timein', label:'Timein'},
+    { name: 'Timeout' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    {name: 'ApprovalTime', label:'ApprovalTime'}
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -64,21 +66,22 @@ data:any
   ngOnInit(): void {
     let datas=[]
     this.service.get().subscribe((data) => {
-    console.log(data.data.length)
+    console.log(data.data)
     if(data.status ===1){
       
       for (let i = 0; i < data.data.length; i++) {
-   
+  
      datas.push({
           id: data.data[i].id,
           visitor: data.data[i].visitor   ,
-         // telephone:data.data[i].contact_number,
-          approvalStatus:data.data[i].approval_status,
-          customer:data.data[i].customer_name,  
-            address: data.data[i].address,
+          contact_number: data.data[i].contact_number,
+          address: data.data[i].address,
+          reason:data.data[i].reason,
+          customer_name:data.data[i].customer_name, 
+          security_name: data.data[i].security_name,
           timein:data.data[i].created,
          timeout: data.data[i].timeout,
-          reason:data.data[i].reason,
+         approval_status:data.data[i].approval_status,
           approvalTime: data.data[i].approval_time,
         });
       }

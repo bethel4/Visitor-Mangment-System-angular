@@ -48,6 +48,7 @@
     "angular2_photoswipe": "^8.0.1",
     "angular2-knob": "^1.1.15",
     "angular2-multiselect-dropdown": "^4.6.3",
+    "angular2-qrcode": "^2.0.3",
     "angularx-flatpickr": "^6.3.1",
     "animate.css": "^4.1.0",
     "apexcharts": "^3.19.3",

@@ -2,22 +2,22 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
-
+import { SessionQuery } from 'src/app/auth/state/session.query';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   public elem: any;
-  public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
-
-  constructor(public layout: LayoutService,
-    public navServices: NavService, 
+  public dark: boolean =
+  this.layout.config.settings.layout_version == 'dark-only' ? true : false;
+  hide = false;
+  constructor(
+    public layout: LayoutService,
+    public navServices: NavService,
     @Inject(DOCUMENT) private document: any
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.elem = document.documentElement;
@@ -25,13 +25,15 @@ export class HeaderComponent implements OnInit {
 
   sidebarToggle() {
     this.navServices.collapseSidebar = !this.navServices.collapseSidebar;
-    this.navServices.megaMenu  = false;
+    this.navServices.megaMenu = false;
     this.navServices.levelMenu = false;
   }
 
   layoutToggle() {
     this.dark = !this.dark;
-    this.layout.config.settings.layout_version = this.dark ? 'dark-only' : 'light';
+    this.layout.config.settings.layout_version = this.dark
+      ? 'dark-only'
+      : 'light';
   }
 
   searchToggle() {
@@ -72,6 +74,4 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-
-
 }

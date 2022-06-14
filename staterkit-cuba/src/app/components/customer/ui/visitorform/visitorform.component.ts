@@ -18,8 +18,7 @@ export class VisitorFormComponent implements OnInit {
   clients: any;
   customers: any;
   data: any[];
-  isFormSubmitted = false
-
+  isFormSubmitted =false
   constructor(
     private fb: FormBuilder,
     private service: VistiorService,
@@ -31,7 +30,7 @@ export class VisitorFormComponent implements OnInit {
     const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
 
     this.form = this.fb.group({
-    
+      id: null,
       name: [, [Validators.required, Validators.pattern(PAT_NAME)]],
       contact_number: [
         '',
@@ -45,8 +44,9 @@ export class VisitorFormComponent implements OnInit {
       address: [, [Validators.required]],
       status: '1',
       reason: [, [Validators.required]],
+      appointment_date:[,[Validators.required]],
+      entry_status:[, [Validators.required]],
       visitor_role: [, Validators.required],
-      customer_id: [, Validators.required],
     });
    
    
@@ -55,7 +55,7 @@ export class VisitorFormComponent implements OnInit {
   ngOnInit(): void {
     let datas=[]
     this.serviceCustomer.get().subscribe((data) => {
-    console.log(data.data.length)
+  
     if(data.status ===1){
       for (let i = 0; i < data.data.length; i++) {
      datas.push({
@@ -71,17 +71,18 @@ export class VisitorFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isFormSubmitted = true
     console.log(this.form.value)
-   this.isFormSubmitted = true
-    this.service.add(this.form.value).subscribe((res: any)=>{
+    
+    this.service.customerRequest(this.form.value).subscribe((res: any)=>{
       if (res.status) {
         this.toster.success(res.message);
-        setInterval(()=>{this.router.navigate(['security'])},3000)
+        setInterval(()=>{this.router.navigate(['customer/visitors'])},3000)
       } else {
         this.toster.error(res.message);
       }
     })
-   
+  
     
   }
 

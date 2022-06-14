@@ -10,7 +10,24 @@
         </div>
         <div class="ProfileCard-details">
           <div class="ProfileCard-realName">
-            <a [routerLink]="menuItem?.path" class="realname" (click)="removeFix()">{{menuItem?.title}}</a>
+            <a  class="realname" (click)="removeFix()"> S.No: {{menuItem?.id}}</a>
+          
+          </div>
+          <div class="ProfileCard-realName">
+            <a  class="realname" (click)="removeFix()">Name: {{menuItem?.visitor}}</a>
+          </div>
+          <div class="ProfileCard-realName">
+            <a  class="realname" (click)="removeFix()">Mobile: {{menuItem?.contact_number}}</a>
+          </div>
+          <div class="ProfileCard-realName">
+            <a  class="realname" (click)="removeFix()">Adress: {{menuItem?.address}}</a>
+          </div>
+          <div class="ProfileCard-realName">
+            <a  class="realname" (click)="removeFix()">Status: {{menuItem?.approval_status}}</a>
+           
+          </div>
+          <div class="ProfileCard-realName">
+            <a  class="realname" (click)="removeFix()">Customer: {{menuItem?.customer_name}}</a>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { ClientService } from '../client/state/client.service';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-client',
@@ -15,18 +16,20 @@ export class ClientComponent implements OnInit {
   //client$: Observable<any> = this.query.selectClient();
   rows = [];
   public company = [];
- 
-  data:any;
+
+  data: any;
   temp = [];
 
-  columns = [
-    { name: 'id' },
-    { prop: 'name' },
-    { prp: 'Telephone' },
-    { name: 'Address' },
-    { name: 'Created ' },
-    { name: 'Status' },
+  cols = [
+    { name: 'id', label: 'S.NO' },
+    { name: 'name', label: 'Name' },
+    { name: 'email', label: 'Email' },
+    { name: 'address', label: 'Adress' },
+    { name: 'contact_number', label: 'Mobile' },
+    { name: 'created', label: 'Created' },
+    { name: 'status', label: 'Status' },
   ];
+
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   ColumnMode = ColumnMode;
@@ -34,20 +37,18 @@ export class ClientComponent implements OnInit {
   constructor(
     private service: ClientService,
     private query: ClientQuery,
-    private router: Router
+    private router: Router,
+    private toaster:ToastrService
   ) {
-    
     this.company = companyDB.data;
     // cache our list
     this.temp = [...this.company];
 
     // push our inital complete list
-      this.rows = this.company;
-    
+    this.rows = this.company;
   }
 
   updateFilter(event) {
-  
     const val = event.target.value.toLowerCase();
     console.log(val);
     // filter our data
@@ -60,65 +61,50 @@ export class ClientComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
-  ngOnInit(): void {
-    let datas=[]
+  
+  onGet(){
+    let datas = [];
     this.service.get().subscribe((data) => {
-    console.log(data.data.length)
-    if(data.status ===1){
-      for (let i = 0; i < data.data.length; i++) {
-        let status;
-        if (data.data[i].status == 1) {
-          status = 'Active';
-        } else if(data.data[i].status ==0){
-          status = 'Inactive';
+      if (data.status === 1) {
+        for (let i = 0; i < data.data.length; i++) {
+          let status;
+          if (data.data[i].status == 1) {
+            status = 'Active';
+          } else if (data.data[i].status == 0) {
+            status = 'Inactive';
+          }
+          datas.push({
+            id: data.data[i].id,
+            name: data.data[i].name,
+            contact_number: data.data[i].contact_number,
+            status: status,
+            address: data.data[i].address,
+            created: data.data[i].created,
+            email: data.data[i].email,
+          });
         }
-     datas.push({
-          id: data.data[i].id,
-          name: data.data[i].name,
-          telephone:data.data[i].contact_number,
-          status: status,
-          address: data.data[i].address,
-          created:data.data[i].created
-        });
+         this.data = datas;
       }
-    this.data=datas
-
-    }
-   
     });
-   
+  }
+  ngOnInit(): void {
+   this.onGet()
   }
   onDelete(event: any) {
     console.log(event);
-          const selectedId = event.roll;
-          this.service.delete(selectedId).subscribe();
-          let datas=[]
-    this.service.get().subscribe((data) => {
-    
-      for (let i = 0; i < data.data.length; i++) {
-        let status;
-        if (data.data[i].status == 1) {
-          status = 'Active';
-        } else {
-          status = 'Inactive';
-        }
-     datas.push({
-          roll: data.data[i].id,
-          name: data.data[i].name,
-          telephone:data.data[i].contact_number,
-          status: status,
-          address: data.data[i].address,
-          created:data.data[i].created
-        });
+    const selectedId = event.id;
+    this.service.delete(selectedId).subscribe(res=>{
+      if(res.status){
+        this.toaster.success(res.message);
+        this.onGet()
+      }else{
+        this.toaster.error(res.message);
       }
-    this.data=datas
-
     });
-
-}
-  onSelect(row) {
-    console.log(row.id)
- this.router.navigate(['admin/editclient',row.id]);
+    
   }
-  
+  onSelect(row) {
+    console.log(row);
+    this.router.navigate(['admin/editclient', row.id]);
+  }
 }

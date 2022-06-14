@@ -76,18 +76,31 @@
           </div>
        
       </div>
-        <div class="form-group row">
-          <label class="col-sm-3 col-form-label">Customer</label>
-          <div class="col-sm-9" >
-                  
-                  <select   class="form-control digits" id="exampleFormControlSelect9"  formControlName="customer_id" placeholder="select customer" >
-                      <option *ngFor="let customer of data" value="{{customer.id}}">{{customer.name}}</option>
-                      
-                  </select>
-             
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Date and time</label>
+        <div class="col-sm-9">
+            <input class="form-control digits" id="example-datetime-local-input"
+                type="datetime-local" value="2019-01-19T18:45:00" formControlName="appointment_date">
+        </div>
+    </div>
+      <div class="form-group row mb-0">
+        <label class="col-sm-3 col-form-label pb-0">Enter the permises</label>
+        <div class="col-sm-9">
+          <div class="form-group m-checkbox-inline mb-0">
+            <div class="radio radio-primary ml-2 lg-4">
+              <input id="radio44" type="radio" value="1" checked="" formControlName="entry_status">
+              <label for="radio44">Yes</label>
+            </div>
+            <div class="radio radio-primary ml-2">
+              <input id="radio55" type="radio"  value="0" checked="" formControlName="entry_status">
+              <label for="radio44">No</label>
+            </div> 
           </div>
+        </div>
       </div>
+    
       </form>
+     
     </div>
     <div class="card-footer" style=" padding-left:50px;">
       <button class="btn btn-primary" type="button" style="width: 100px; height: 30px;" (click)=onSubmit() placement="top"
