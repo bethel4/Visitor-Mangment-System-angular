@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {VisitorFormComponent} from '../security/ui/visitorform/visitorform.component'
 import {VisitorsComponent} from '../security/container/myVisitor/visitor.component'
+import { VisitiorProfileComponent } from './container/visitor-detail/visitor-profile.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +20,6 @@ import {VisitorsComponent} from '../security/container/myVisitor/visitor.compone
     
     
   ],
-  declarations: [SecurityComponent,VisitorFormComponent,VisitorsComponent]
+  declarations: [SecurityComponent,VisitorFormComponent,VisitiorProfileComponent,VisitorsComponent]
 })
 export class SecurityeModule { }

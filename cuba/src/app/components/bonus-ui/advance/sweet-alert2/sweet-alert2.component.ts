@@ -44,7 +44,7 @@ export class SweetAlert2Component implements OnInit {
   // A warning
   warning() {
     Swal.fire({
-      type: 'warning',
+      type:  'warning',
       title: 'Warning',
       text: 'You clicked the button!',
       showConfirmButton: true,
@@ -197,30 +197,30 @@ export class SweetAlert2Component implements OnInit {
   }
 
   // A message with auto close timer
-  autoClose() {
-    let timerInterval
-    Swal.fire({
-      title: 'Auto close alert!',
-      html: 'I will close in <strong></strong> seconds.',
-      timer: 2000,
-      onBeforeOpen: () => {
-        Swal.showLoading()
-        timerInterval = setInterval(() => {
-          Swal.getContent().querySelector('strong')
-            .textContent = Swal.getTimerLeft()
-        }, 100)
-      },
-      onClose: () => {
-        clearInterval(timerInterval)
-      }
-    }).then((result) => {
-      if (
-        // Read more about handling dismissals
-        result.dismiss === Swal.DismissReason.timer
-      ) {
-      }
-    })
-  }
+    autoClose() {
+      let timerInterval
+      Swal.fire({
+        title: 'Auto close alert!',
+        html: 'I will close in <strong></strong> seconds.',
+        timer: 2000,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            Swal.getContent().querySelector('strong')
+              .textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        onClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.timer
+        ) {
+        }
+      })
+    }
 
   // A Ajax request example
   withAjax() {

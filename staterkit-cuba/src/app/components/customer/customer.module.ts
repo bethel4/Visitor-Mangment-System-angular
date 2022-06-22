@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { VisitorsComponent } from '../customer/container/myVisitor/visitor.component';
 import { VisitorFormComponent } from './ui/visitorform/visitorform.component';
+import { VisitiorProfileComponent } from '../customer/container/visitor-detail/visitor-profile.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { VisitorFormComponent } from './ui/visitorform/visitorform.component';
    
     NgSelectModule,
   ],
-  declarations: [CustomerComponent,VisitorsComponent, VisitorFormComponent,]
+  declarations: [CustomerComponent,VisitorsComponent, VisitorFormComponent,VisitiorProfileComponent]
 })
 export class CustomerModule { }

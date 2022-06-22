@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SecurityComponent } from '../../components/security/container/security.component';
 import { VisitorsComponent } from './container/myVisitor/visitor.component';
 import { VisitorFormComponent } from './ui/visitorform/visitorform.component';
+import { VisitiorProfileComponent } from './container/visitor-detail/visitor-profile.component';
 
 
 
@@ -23,6 +24,10 @@ const routes: Routes = [
   },{
     path:'addRquest',
     component: VisitorFormComponent
+  },
+  {
+path: 'visitor_detail/:id',
+component: VisitiorProfileComponent
   }
   ]
   }

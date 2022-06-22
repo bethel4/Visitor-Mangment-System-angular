@@ -4,6 +4,7 @@ import { VistiorService } from '../../../Admin/visitor/state/vistior.service';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -20,7 +21,7 @@ export class CustomerComponent implements OnInit {
   temp = [];
   interval: number;
 
-  constructor(private service: VistiorService, private query: CustomerQuery, public toster: ToastrService,) {
+  constructor(private service: VistiorService, private query: CustomerQuery, public toster: ToastrService,public router:Router) {
     //  this.company = companyDB.data;
     // cache our list
     this.temp = [...this.company];
@@ -111,6 +112,7 @@ export class CustomerComponent implements OnInit {
     
   }
   onReject(data: any) {
+    console.log('lll');
     let value = {
       approval_status: 'rejected',
       id: data.id,
@@ -124,5 +126,9 @@ export class CustomerComponent implements OnInit {
         this.toster.error(res.message);
       }
     });
+  }
+  onView(row){
+    console.log(row.id);
+    this.router.navigate(['customer/visitor_detail',row.id])
   }
 }

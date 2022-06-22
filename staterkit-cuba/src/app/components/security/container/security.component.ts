@@ -23,6 +23,7 @@ export class SecurityComponent implements OnInit {
     { name: 'address', label:'Address'},
     { name: 'reason', label:'Reason'},
     { name:'contact_number', label: 'Mobile'},
+    {name:'customer_name',label: 'Customer Name'},
     { name: 'timein', label:'Timein'},
     { name: 'timeout' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
@@ -68,12 +69,13 @@ export class SecurityComponent implements OnInit {
             visitor: data.data[i].visitor,
              contact_number:data.data[i].contact_number,
             approval_status: data.data[i].approval_status,
-            customer: data.data[i].customer_name,
+            customer_name: data.data[i].customer_name,
             address: data.data[i].address,
             timein: data.data[i].time_in,
             timeout: data.data[i].time_out,
             reason: data.data[i].reason,
             approval_time: data.data[i].approval_time,
+            created: data.data[i].created,
           });
         }
         this.data = datas;
@@ -102,5 +104,9 @@ export class SecurityComponent implements OnInit {
     console.log('sada');
     this.service.updateTime(data).subscribe();
     this.getRequest();
+  }
+  onView(row){
+    console.log(row);
+    this.router.navigate(['security/visitor_detail',row.id])
   }
 }

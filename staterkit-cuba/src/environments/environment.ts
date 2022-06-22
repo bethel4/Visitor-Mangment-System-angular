@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost/visting-management-system/visting-management-system/api",
+  imageUrl:"http://localhost/visting-management-system/visting-management-system",
   sessionKey: 'vm-session'
 };
 

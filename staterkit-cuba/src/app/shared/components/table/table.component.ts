@@ -16,6 +16,7 @@ export class TableComponent implements OnInit {
   @Output() onapprove = new EventEmitter<any>();
   @Output() onreject = new EventEmitter<any>();
   @Output() checkout = new EventEmitter<any>();
+  @Output() view = new EventEmitter<any>();
   hide = false;
   buttonHide = true;
   check=true;
@@ -42,6 +43,7 @@ export class TableComponent implements OnInit {
     this.onapprove.emit(data);
   }
   onReject(data: any) {
+    console.log(data);
     this.onreject.emit(data);
   }
   onDelete(item: any) {
@@ -49,5 +51,8 @@ export class TableComponent implements OnInit {
   }
   onCheckOut(item: any) {
     this.checkout.emit(item);
+  }
+  onView(item: any) {
+    this.view.emit(item);
   }
 }

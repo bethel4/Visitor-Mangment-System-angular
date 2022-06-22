@@ -143,4 +143,8 @@ console.log('sada')
       }
     });
   }
+  onView(row){
+    console.log(row);
+    this.router.navigate(['customer/visitor_detail',row.id])
+  }
 }

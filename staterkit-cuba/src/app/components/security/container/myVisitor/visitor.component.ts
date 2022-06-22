@@ -22,6 +22,7 @@ data:any
   cols = [
     { name: 'id', label:'S.NO'},
     { name: 'visitor', label:'Visitor'},
+    //{ name: 'email', label:'Email'},
     { name: 'address', label:'Address'},
     { name: 'reason', label:'Reason'},
     { name:'contact_number', label: 'Mobile'},
@@ -60,7 +61,8 @@ getRequest(){
       for (let i = 0; i < data.data.length; i++) {
      datas.push({
           id: data.data[i].id,
-          visitor: data.data[i].visitor   ,
+          visitor: data.data[i].visitor,
+          email: data.data[i].email,
           contact_number:data.data[i].contact_number,
           approval_status:data.data[i].approval_status,
           customer_name:data.data[i].customer_name,  
@@ -122,6 +124,7 @@ getRequest(){
         status:0
       }  
     }
+    
   
     this.service.updateTime(data).subscribe(res=>{
       if(res.status){
@@ -134,4 +137,8 @@ getRequest(){
   
   }
   
+  onView(row){
+    console.log(row);
+    this.router.navigate(['security/visitor_detail',row.id])
+  }
 }
