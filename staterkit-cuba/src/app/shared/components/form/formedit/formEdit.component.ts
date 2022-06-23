@@ -19,9 +19,7 @@ export class FormComponentEdit implements OnInit {
   @Input() user: any;
   @Input() title: any;
   form: FormGroup;
-  displayMessage: { [key: string]: string } = {};
   data: any[]
-  checkbox=true
   isFormSubmitted = false
  role=this.query.isRole()
   PAT_NAME = "^[a-zA-Z ]{2,20}$";
@@ -38,20 +36,33 @@ export class FormComponentEdit implements OnInit {
               ) {
   const PAT_NAME = "^[a-zA-Z ]{2,20}$";
   const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
-                this.form = this.fb.group({
-                  id: this.selectedID,
-                  name: [, [Validators.required,  Validators.pattern(PAT_NAME)]],
-                  address: [, [Validators.required]],
-                  status: '1',
-                  email: [, [Validators.required,  Validators.pattern(PAT_EMAIL)]],
-                });
-            
+               if(this.user=='client')
+{
+  this.form = this.fb.group({
+    id: this.selectedID,
+    name: [, [Validators.required,  Validators.pattern(PAT_NAME)]],
+    address: [, [Validators.required]],
+    status: '1',
+    email: [, [Validators.required,  Validators.pattern(PAT_EMAIL)]],
+    //client_id:[, [Validators.required]]
+  });  
+} 
+else{
+  this.form = this.fb.group({
+    id: this.selectedID,
+    name: [, [Validators.required,  Validators.pattern(PAT_NAME)]],
+    address: [, [Validators.required]],
+    status: '1',
+    email: [, [Validators.required,  Validators.pattern(PAT_EMAIL)]],
+    client_id:[, [Validators.required]]
+  });
+}           
   }
 
   ngOnInit(): void {
     let datas=[]
-  
-    if(this.user=='customer'){
+ 
+    if(this.user=='customer'||this.user=='security'){
       this.serviceCustomer.get().subscribe((data) => {
         for (let i = 0; i < data.data.length; i++) {
           let status;
@@ -75,6 +86,7 @@ export class FormComponentEdit implements OnInit {
         
       }); 
     }else if(this.user=='client'){
+      this.hide=false;
       this.serviceClint.get().subscribe((data) => {
         if (data.status === 1) {
           for (let i = 0; i < data.data.length; i++) {
@@ -94,6 +106,7 @@ export class FormComponentEdit implements OnInit {
               email: data.data[i].email,
             });
           }
+          this.row=datas.filter(data => data.id==this.selectedID)
            this.data = datas;
         }
       });
@@ -104,8 +117,20 @@ export class FormComponentEdit implements OnInit {
   }
 
   onSubmit() {
-   
+    
+   if(this.user=='client'){
+     let value={
+       id:this.selectedID,
+       name:this.form.value.name,
+       email:this.form.value.email,
+       status:this.form.value.status,
+      address:this.form.value.address
+     }
+     this.formSubmit.emit(value);
+   }else{
     this.formSubmit.emit(this.form.value);
+   }
+  
  
    
   }

@@ -5,8 +5,8 @@
 // apiUrl: 'http://localhost:/Vmsbackend/api',
 export const environment = {
   production: false,
-  apiUrl: "http://localhost/visting-management-system/visting-management-system/api",
-  imageUrl:"http://localhost/visting-management-system/visting-management-system",
+  apiUrl: "http://3.14.69.179/vbackend/api/",
+  imageUrl:"http://3.14.69.179/vbackend",
   sessionKey: 'vm-session'
 };
 

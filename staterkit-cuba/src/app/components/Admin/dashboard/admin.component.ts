@@ -39,26 +39,19 @@ for(let i=0;i<= 7;i++){
 }
 
     this.service.get().subscribe((res) => {
-      console.log(res)
+      
       this.total=res.total
       this.data=res.daily_report[0]
-     
-      for (let index = 0; index < 7; index++) {
-          console.log('ll')
+      for (let index = 0; index < 7; index++) {   
      this.value[index]=this.data["day_"+index]
-     console.log(this.data["day_"+index])
         this.sum=this.sum + parseInt(this.value[index])
-       
-        console.log(typeof(this.sum),this.sum)
       }
       this.data= res.weekly_report
-     console.log(this.data)
       for (let index = 0; index <3; index++) {
         this.valueWeeks[index]=this.data[index]['week_'+index].total
         this.weekdata[index]=this.data[index]['week_'+index].day
            this.sumWeeks=this.sumWeeks+parseInt(this.valueWeeks[index])
          }
-         console.log( this.weekdata)
       this. totalVisit = {
         series: [{
             name: 'Visitor',

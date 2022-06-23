@@ -27,7 +27,7 @@ export class SecurityComponent implements OnInit {
     { name: 'timein', label:'Timein'},
     { name: 'timeout' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
-    { name: 'approval_time', label:'Approval Time'},
+    { name: 'approved_time', label:'Approval Time'},
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -74,7 +74,7 @@ export class SecurityComponent implements OnInit {
             timein: data.data[i].time_in,
             timeout: data.data[i].time_out,
             reason: data.data[i].reason,
-            approval_time: data.data[i].approval_time,
+            approved_time: data.data[i].approved_time,
             created: data.data[i].created,
           });
         }
@@ -93,17 +93,44 @@ export class SecurityComponent implements OnInit {
      }
    }
   onCheckOut(event: any): void {
-    let datas = [];
     console.log(event);
     var date = moment().format('YYYY-MM-DD HH:mm:ss');
     const selectedId = event.id;
     let data = {
       id: selectedId,
-      exitTime: date,
+      time: date,
+      status:0
     };
-    console.log('sada');
-    this.service.updateTime(data).subscribe();
-    this.getRequest();
+    
+    this.service.updateTime(data).subscribe(result => {
+      if(result.status){
+        this.getRequest();
+        this.toster.success(result.message);
+      }else{
+        this.toster.error(result.message);
+      }
+    });
+   
+  }
+  onCheckIn(event: any): void {
+    console.log(event);
+    var date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const selectedId = event.id;
+    let data = {
+      id: selectedId,
+      time: date,
+      status:1
+    };
+    
+    this.service.updateTime(data).subscribe(result => {
+      if(result.status){
+        this.getRequest();
+        this.toster.success(result.message);
+      }else{
+        this.toster.error(result.message);
+      }
+    });
+   
   }
   onView(row){
     console.log(row);

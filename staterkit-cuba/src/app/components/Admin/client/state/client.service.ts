@@ -55,7 +55,7 @@ options = { headers: this.headers };
       .pipe(
         tap((result: any) => {
           if (result.status==1) {
-            this.store.update(result.data[0].id, result.data[0]);
+            this.store.update(result.data.id, result.data);
           } else {
            console.log('error has occured')
           }

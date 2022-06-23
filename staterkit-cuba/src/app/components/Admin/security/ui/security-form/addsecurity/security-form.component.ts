@@ -35,7 +35,7 @@ export class SecurityFormComponent implements OnInit {
      this.service.add(formValue).subscribe((res:any)=>{
        if (res.status == 1) {
          this.toster.success(res.message);
-         setInterval(()=>{this.router.navigate(['admin/security'])},3000)
+         this.router.navigate(['admin/security'])
        } else {
          this.toster.error(res.message);
        }

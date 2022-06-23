@@ -18,12 +18,13 @@
       </td>
      
       <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="buttonHide">
-        <a ngbTooltip = "approve"> <i class="fa fa-thumbs-o-up" style="color:#7366ff;" (click)="onApprove(row)"></i></a>
-        <a ngbTooltip ="reject" ><i class="fa fa-thumbs-o-down" style="color:#7366ff;  padding-left:20px"    (click)="onReject(row)"></i></a>
+        <a ngbTooltip = "approve"> <i class="fa fa-thumbs-o-up" [hidden]="row.time_in!=null" style="color:#7366ff;" (click)="onApprove(row)"></i></a>
+        <a ngbTooltip ="reject" ><i class="fa fa-thumbs-o-down" style="color:#7366ff;  padding-left:20px"  [hidden]="row.time_in!=null"  (click)="onReject(row)"></i></a>
         <a ngbTooltip="view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(row)"></i></a>
       </td>
       <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="check">
-        <a ngbTooltip ="checkout" > <i class="fa fa-check" style="color:#7366ff;" (click)="onCheckOut(row)"></i></a>
+        <a ngbTooltip ="checkout" > <i class="fa fa-arrow-right" [hidden]="row.timein==null" style="color:#7366ff;" (click)="onCheckOut(row)"></i></a>
+        <a ngbTooltip ="checkin" > <i class="fa fa-arrow-left" style="color:#7366ff; padding-left:20px" (click)="onCheckIn(row)"></i></a>
         <a ngbTooltip = "view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(row)"></i></a>
       </td>
     </tr>

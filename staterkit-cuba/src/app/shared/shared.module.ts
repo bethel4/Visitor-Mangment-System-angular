@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +28,7 @@ import { BookmarkComponent } from './components/header/elements/bookmark/bookmar
 import { CartComponent } from './components/header/elements/cart/cart.component';
 import { MessageBoxComponent } from './components/header/elements/message-box/message-box.component';
 import { MyAccountComponent } from './components/header/elements/my-account/my-account.component';
-import {FormComponent} from './components/form/form.component'
+import {FormComponent} from './components/form/addForm/form.component'
 import { FormComponentEdit } from '../../app/shared/components/form/formedit/formEdit.component'
 import {VisitiorDetailsComponent} from './components/visitor-details/visitor-detail.component'
 // Directives
@@ -80,7 +80,8 @@ import { NavService } from './services/nav.service';
   ],
   providers: [
     NavService,
-    LayoutService
+    LayoutService,
+    DatePipe
   ],
   exports: [
     NgbModule,

@@ -35,7 +35,7 @@ title='Add Customer';
     this.service.add(formVlaue).subscribe((res:any)=>{
       if (res.status == 1) {
         this.toster.success(res.message);
-        setInterval(()=>{this.router.navigate(['admin/customer'])},3000)
+        this.router.navigate(['admin/customers'])
       } else {
         this.toster.error(res.message);
       }

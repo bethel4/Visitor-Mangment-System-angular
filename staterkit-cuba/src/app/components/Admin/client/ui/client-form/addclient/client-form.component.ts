@@ -69,6 +69,7 @@ export class ClientFormComponent implements OnInit {
     this.service.add(data).subscribe((res: any) => {
       if (res.status == 1) {
         this.toster.success(res.message);
+        this.router.navigate(['admin/clients'])
       } else {
         this.toster.error(res.message);
       }
