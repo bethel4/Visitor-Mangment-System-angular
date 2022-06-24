@@ -1,7 +1,7 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { SessionQuery } from 'src/app/auth/state/session.query';
-import { Column } from '../../components/table/model/column.model';
+import { Column } from './model/column.model';
 
 @Component({
   selector: 'app-table',

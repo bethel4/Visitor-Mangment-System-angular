@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { companyDB } from '../../../shared/tables/company';
-import { ClientQuery } from '../client/state/client.query';
-import { ClientService } from '../client/state/client.service';
+import { ClientQuery } from './state/client.query';
+import { ClientService } from './state/client.service';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';

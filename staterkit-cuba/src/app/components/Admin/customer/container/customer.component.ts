@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { companyDB } from '../../../..//shared/tables/company';
+import { companyDB } from '../../../../shared/tables/company';
 import { CustomerService } from '../state/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerQuery } from '../state/customer.query';

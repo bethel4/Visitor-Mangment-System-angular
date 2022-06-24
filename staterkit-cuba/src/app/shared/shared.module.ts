@@ -29,7 +29,7 @@ import { CartComponent } from './components/header/elements/cart/cart.component'
 import { MessageBoxComponent } from './components/header/elements/message-box/message-box.component';
 import { MyAccountComponent } from './components/header/elements/my-account/my-account.component';
 import {FormComponent} from './components/form/addForm/form.component'
-import { FormComponentEdit } from '../../app/shared/components/form/formedit/formEdit.component'
+import { FormComponentEdit } from './components/form/formedit/formEdit.component'
 import {VisitiorDetailsComponent} from './components/visitor-details/visitor-detail.component'
 // Directives
 import { DisableKeyPressDirective } from './directives/disable-key-press.directive';

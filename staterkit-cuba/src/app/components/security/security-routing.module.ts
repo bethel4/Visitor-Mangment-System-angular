@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SecurityComponent } from '../../components/security/container/security.component';
+import { SecurityComponent } from './container/security.component';
 import { VisitorsComponent } from './container/myVisitor/visitor.component';
 import { VisitorFormComponent } from './ui/visitorform/visitorform.component';
 import { VisitiorProfileComponent } from './container/visitor-detail/visitor-profile.component';

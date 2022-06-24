@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { ClientService } from '../../../../client/state/client.service';
+import { ClientService } from '../../../state/client.service';
 import { ClientQuery } from '../../../state/client.query';
 
 @Component({

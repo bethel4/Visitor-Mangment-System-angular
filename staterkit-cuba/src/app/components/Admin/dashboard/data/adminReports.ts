@@ -1,5 +1,5 @@
 import * as moment from "moment";
-import {AdminService} from "../../dashboard/state/admin.service"
+import {AdminService} from "../state/admin.service"
 let primary = localStorage.getItem('primary_color') || '#7366ff';
 let secondary = localStorage.getItem('secondary_color') || '#f73164';
 

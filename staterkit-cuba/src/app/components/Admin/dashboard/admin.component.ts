@@ -2,8 +2,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { companyDB } from '../../../shared/tables/company';
-import * as chartData from '../dashboard/data/adminReports';
-import { AdminService } from '../dashboard/state/admin.service';
+import * as chartData from './data/adminReports';
+import { AdminService } from './state/admin.service';
 let primary = localStorage.getItem('primary_color') ||'skyblue';
 let secondary = localStorage.getItem('secondary_color')||'#a927f9';
 let teriary = localStorage.getItem('secondary_color')||'#a26cf8';

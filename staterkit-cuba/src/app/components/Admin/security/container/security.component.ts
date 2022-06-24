@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { companyDB } from '../../../../shared/tables/company';
 import { SecurityService } from '../state/security.service';
-import { SecurityQuery } from '../../security/state/security.query';
+import { SecurityQuery } from '../state/security.query';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
