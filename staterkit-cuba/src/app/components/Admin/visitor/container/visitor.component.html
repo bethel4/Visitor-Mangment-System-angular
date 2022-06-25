@@ -6,10 +6,11 @@
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
                         (keyup)="updateFilter($event)" />
-                    <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="ColumnMode.force"
-                        [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="data">
-                        
-                    </ngx-datatable>
+                        <app-table
+                        [user_data]="data"
+                        [columns]="columns"
+                        >
+                        </app-table>
                 </div>
             </div>
         </div>

@@ -9,29 +9,13 @@
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
                         (keyup)="updateFilter($event)" />
-                    <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="ColumnMode.force"
-                        [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="data">
-                        <ngx-datatable-column *ngFor="let col of columns" [name]="col.name"  [prop]="col.prop">
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="Approve" sortable="false" prop="id">
-                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                <button
-                                    [ngClass]="row.approvalStatus!='waiting' ? 'btn btn-outline-primary disabled' : 'btn btn-outline-primary btn-xs'"
-                                    [disabled]="row.approvalStatus!='waiting'" (click)="onApprove(row)">
-                                    Approve
-                                </button>
-                            </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="Reject" sortable="false" prop="id">
-                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                <button
-                                    [ngClass]="row.approvalStatus!='waiting' ? 'btn btn-outline-primary disabled' : 'btn btn-outline-primary btn-xs'"
-                                    (click)="onReject(row)" [disabled]="row.approvalStatus!='waiting'">
-                                    Reject
-                                </button>
-                            </ng-template>
-                        </ngx-datatable-column>
-                    </ngx-datatable>
+                        <app-table
+                        [user_data]="data"
+                        [columns]="columns"
+                        (onapprove)="onApprove($event)"
+                        (onReject)="onReject($event)"
+                        >
+                        </app-table>
                 </div>
             </div>
         </div>

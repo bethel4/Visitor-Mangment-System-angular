@@ -18,18 +18,17 @@ export class SecurityComponent implements OnInit {
   data:any;
   temp = [];
 
-  columns = [
-    { name: 'id' },
-    { prop: 'name' },
-    { name: 'Telephone' },
-    { name: 'Address' },
-    { name: 'Created ' },
-    {name:'client'},
-    { name: 'Status' },
+  cols = [
+    { name: 'id', label: 'S.NO' },
+    { name: 'name', label: 'Name' },
+    { name: 'email', label: 'Email' },
+    { name: 'address', label: 'Adress' },
+    { name: 'contact_number', label: 'Mobile' },
+    { name: 'clientName', label: 'Client Name' },
+    { name: 'created', label: 'Created' },
+    { name: 'status', label: 'Status' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
-
-  ColumnMode = ColumnMode;
 
   constructor(
     private service: SecurityService,
@@ -78,10 +77,11 @@ export class SecurityComponent implements OnInit {
      datas.push({
           id: data.data[i].id,
           name: data.data[i].name,
-          telephone:data.data[i].contact_number,
+          contact_number:data.data[i].contact_number,
           status: status,
-          client:data.data[i].client_name,
+          clientName:data.data[i].client_name,
           address: data.data[i].address,
+          email:data.data[i].email,
           created:data.data[i].created,
         });
       }

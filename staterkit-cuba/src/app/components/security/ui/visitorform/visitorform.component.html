@@ -9,21 +9,73 @@
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputEmail3">Full Name</label>
           <div class="col-sm-9">
-            <input class="form-control" id="" type="text" placeholder="Full Name" formControlName="name"  />
+            <input class="form-control" id="" type="text" placeholder="Full Name" formControlName="name"
+              [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid) }" />
+              <div class="invalid-feedback"
+                        *ngIf="(isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid)">
+                        <div *ngIf="form.controls.name.errors.required"><h5 style="color:red">Name is required</h5></div>
+                        <div *ngIf="form.controls.name.errors.pattern"><h5 style="color:red">Only Alphabets with space
+                          between 2 to
+                          20
+                          characters</h5></div>
+
+                    </div>
+          </div>
+        </div>
+        <div class="form-group row" >
+          <label class="col-sm-3 col-form-label" for="inputPassword3">Contact Number</label>
+          <div class="col-sm-9">
+            <input class="form-control" id="inputnumber" type="number" placeholder="Contact"
+              formControlName="contact_number" [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.contact_number.errors) || (!form.controls.contact_number.pristine && form.controls.contact_number.invalid) }" />
+              <div class="invalid-feedback"
+              *ngIf="(isFormSubmitted && form.controls.contact_number.errors) || (!form.controls.contact_number.pristine && form.controls.contact_number.invalid)">
+              <div *ngIf="form.controls.contact_number.errors.required"><h5 style="color:red">telephone is required</h5></div>
+              <div *ngIf="form.controls.contact_number.errors.pattern"><h5 style="color:red">enter 10 digit number only</h5></div>
+          </div>
+
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputPassword3">Address</label>
           <div class="col-sm-9">
-            <input class="form-control" id="url" type="text" placeholder="Address" formControlName="address" >
+            <input  class="form-control" id="url" type="text" placeholder="Address" formControlName="address"
+            [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid) }"
+            >
+            <div class="invalid-feedback"
+                        *ngIf="(isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid)">
+                        <div *ngIf="form.controls.address.errors.required"><h5 style="color:red">Address is required</h5></div>
+
+                    </div>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-3 col-form-label" for="inputPassword3">Reason</label>
+          <label class="col-sm-3 col-form-label" for="">Reason</label>
           <div class="col-sm-9">
-            <input class="form-control" id="url" type="text" placeholder="Reason" formControlName="reason" >
+            <input  class="form-control" id="url" type="text" placeholder="reason" formControlName="reason"
+            [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.reason.errors) || (isFormSubmitted && !form.controls.reason.pristine && form.controls.reason.invalid) }"
+            >
+            <div class="invalid-feedback"
+                        *ngIf="( isFormSubmitted && form.controls.reason.errors) || (isFormSubmitted && !form.controls.reason.pristine && form.controls.reason.invalid)">
+                        <div *ngIf="form.controls.reason.errors.required"><h5 style="color:red">reason is required</h5></div>
+
+                    </div>
           </div>
         </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Visitors Role</label>
+          <div class="col-sm-9" >
+                  
+                  <select   class="form-control digits" id="exampleFormControlSelect9"  formControlName="visitor_role" placeholder="select role" >
+                      <option  value="cab">cab</option>
+                      <option  value="delviery">delviery</option>
+                      <option  value="guest">guest</option>
+                      <option value="parcels">parcels</option>
+                      <option  value="others">others</option>
+                  </select>
+             
+          </div>
+       
+      </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Customer</label>
           <div class="col-sm-9" >

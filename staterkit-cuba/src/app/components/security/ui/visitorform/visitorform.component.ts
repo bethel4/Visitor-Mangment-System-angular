@@ -18,6 +18,8 @@ export class VisitorFormComponent implements OnInit {
   clients: any;
   customers: any;
   data: any[];
+  isFormSubmitted = false
+
   constructor(
     private fb: FormBuilder,
     private service: VistiorService,
@@ -25,11 +27,25 @@ export class VisitorFormComponent implements OnInit {
     public toster: ToastrService,
     public router: Router
   ) {
+    const PAT_NAME = "^[a-zA-Z ]{2,20}$";
+    const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
+
     this.form = this.fb.group({
-      id: null,
-      name:[,  [Validators.required,Validators.pattern(/^[a-zA-Z]*$/)]],
+    
+      name: [, [Validators.required, Validators.pattern(PAT_NAME)]],
+      contact_number: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+          ),
+        ],
+      ],
       address: [, [Validators.required]],
-      reason: [, [Validators.required, Validators.email]],
+      status: '1',
+      reason: [, [Validators.required]],
+      visitor_role: [, Validators.required],
       customer_id: [, Validators.required],
     });
    
@@ -56,15 +72,16 @@ export class VisitorFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value)
-    
+   this.isFormSubmitted = true
     this.service.add(this.form.value).subscribe((res: any)=>{
       if (res.status) {
         this.toster.success(res.message);
+        setInterval(()=>{this.router.navigate(['security'])},3000)
       } else {
         this.toster.error(res.message);
       }
     })
-    setInterval(()=>{this.router.navigate(['security'])},3000)
+   
     
   }
 

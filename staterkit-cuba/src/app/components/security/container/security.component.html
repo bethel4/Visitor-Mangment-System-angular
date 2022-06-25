@@ -1,5 +1,5 @@
 <app-breadcrumb ></app-breadcrumb>
-<div class="container-fluid">
+<div class="container-fluid" >
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -9,18 +9,12 @@
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
                         (keyup)="updateFilter($event)" />
-                    <ngx-datatable #table class='bootstrap' [columns]="columns" [columnMode]="ColumnMode.force"
-                        [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="data">
-                        <ngx-datatable-column *ngFor="let col of columns" [name]="col.name"  [prop]="col.prop">
-                        </ngx-datatable-column>
-                        <ngx-datatable-column  name="Checkout" sortable="false" prop="id">
-                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                            <button  class="" [ngClass]="row.approvalStatus!='approved'||row.timeout!=null ? 'btn btn-outline-primary disabled' : 'btn btn-outline-primary btn-xs'"  [disabled]="row.approvalStatus!='approved'||row.timeout!=null" (click)="onCheckOut(row)">
-                                <i class="fa fa-check"></i>
-                            </button>
-                          </ng-template>
-                       </ngx-datatable-column>
-                    </ngx-datatable>
+                        <app-table
+                        [user_data]="data"
+                        [columns]="cols"
+                        (checkout)="onCheckOut($event)"
+                        >
+                        </app-table>
                 </div>
             </div>
         </div>

@@ -65,6 +65,26 @@ export class VistiorService {
     );
     
   }
+  customerRequest(data: any): Observable<any[]|null|undefined> {
+    console.log(data);
+    const url = `${environment.apiUrl}/pre_approval.php`;
+    return this.http.post(url, data).pipe(
+      tap(
+        (result: any) => {
+          if (result.status==1) {
+            this.visitorStore.add(result.data);
+          } else {
+            console.log('error has occured')
+          }
+        },
+        (error) => {
+         console.log(error.message)
+        }
+      )
+    );
+    
+  }
+
   update(id:string, data:any): Observable<any> {
     const url = `${environment.apiUrl}/edit_visitor.php`;
     return this.http.put(url, data)

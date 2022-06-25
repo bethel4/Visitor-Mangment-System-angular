@@ -1,10 +1,12 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { companyDB } from '../../../shared/tables/company';
 import * as chartData from '../dashboard/data/adminReports';
 import { AdminService } from '../dashboard/state/admin.service';
-let primary = localStorage.getItem('primary_color') || '#7366ff';
-let secondary = localStorage.getItem('secondary_color') || '#f73164';
+let primary = localStorage.getItem('primary_color') ||'skyblue';
+let secondary = localStorage.getItem('secondary_color')||'#a927f9';
+let teriary = localStorage.getItem('secondary_color')||'#a26cf8';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -18,14 +20,15 @@ export class AdminComponent implements OnInit {
   public lat_m1: number = 20.593683;
   public lng_m1: number = 78.962883;
   public zoom_m1: number = 4;
-  days = [];
   constructor(private service: AdminService) {}
   data = [];
   value=[]
   sum=0
+  days = [];
   valueWeeks=[]
   sumWeeks=0;
   total:any
+  weekdata=[]
   ngOnInit(): void {
     let days=[]
 var startdate = moment();
@@ -44,12 +47,14 @@ for(let i=0;i<= 7;i++){
      this.value[index]=this.data["day_"+index]
         this.sum=this.sum+Number(this.value[index])
       }
-      this.data= res.weekly_report[0]
-      for (let index = 1; index <=3; index++) {
-        this.valueWeeks[index-1]=this.data["week_"+index]
-           this.sumWeeks=this.sumWeeks+Number(this.valueWeeks[index-1])
+      this.data= res.weekly_report
+     console.log(this.data)
+      for (let index = 0; index <3; index++) {
+        this.valueWeeks[index]=this.data[index]['week_'+index].total
+        this.weekdata[index]=this.data[index]['week_'+index].day
+           this.sumWeeks=this.sumWeeks+Number(this.valueWeeks[index])
          }
-         
+         console.log( this.weekdata)
       this. totalVisit = {
         series: [{
             name: 'Visitor',
@@ -83,7 +88,7 @@ for(let i=0;i<= 7;i++){
             offsetY: -10,
             style: {
                 fontSize: '12px',
-                colors: [primary]
+                colors: [secondary]
             }
         },
         xaxis: {
@@ -140,20 +145,20 @@ for(let i=0;i<= 7;i++){
                 left: -10
             },
         },
-        colors: [primary],
+        colors: ['#7366ff'],
     }; 
   this.todayTotalSale = {
       series: [{
           name: 'Week1',
-          data: this.valueWeeks
+data:[ 0, this.valueWeeks[1], this.valueWeeks[0]]
   
       }, {
           name: ' Week2',
-          data:this.valueWeeks
+          data:[ 0, this.valueWeeks[1],0]
   
       }, {
           name: 'Week3',
-          data: this.valueWeeks
+          data: [this.valueWeeks[2],this.valueWeeks[1],0]
   
       }],
       chart: {
@@ -172,7 +177,7 @@ for(let i=0;i<= 7;i++){
       },
       xaxis: {
           type: 'datetime',
-          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z"]
+          categories: this.weekdata.reverse()
   
       },
       yaxis: {
@@ -210,9 +215,9 @@ for(let i=0;i<= 7;i++){
           },
           colors: [primary, primary, primary],
       },
-      colors: [primary, secondary, secondary],
+      colors: [primary, secondary, teriary],
   };
-  
+
     })
   }
 

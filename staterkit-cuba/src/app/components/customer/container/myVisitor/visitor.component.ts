@@ -20,15 +20,16 @@ data:any
   temp = [];
 
   columns = [
-    { name: 'roll' },
-    { prop: 'visitor' },
-    { name: 'Address' },
-    { name: 'Timein ' },
-    { name: 'Timeout' },
-    { name: 'reason ' },
-    {name:'customer'},
-    { name: 'ApprovalStatus' },
-    {name: 'ApprovalTime'}
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    { name:'security_name',label:'Security Name'},
+    { name: 'Timein', label:'Timein'},
+    { name: 'Timeout' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    {name: 'approved_time', label:'Approval Time'}
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -65,31 +66,35 @@ data:any
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
-  ngOnInit(): void {
-    let datas=[]
+  get() {
+    let datas = [];
     this.service.get().subscribe((data) => {
-    console.log(data)
-    if(data.status){
-      console.log('kkk')
-      for (let i = 0; i < data.data.length; i++) {
-     datas.push({
-          roll: data.data[i].id,
-          visitor: data.data[i].visitor   ,
-         // telephone:data.data[i].contact_number,
-          approvalStatus:data.data[i].approval_status,
-          customer:data.data[i].customer_name,  
+      console.log(data);
+      if (data.status) {
+        console.log('kkk');
+        for (let i = 0; i < data.data.length; i++) {
+          datas.push({
+            id: data.data[i].id,
+            visitor: data.data[i].visitor,
+            contact_number:data.data[i].contact_number,
             address: data.data[i].address,
-          timein:data.data[i].time_in,
-          timeout: data.data[i].time_out,
-          reason:data.data[i].reason,
-          approvalTime: data.data[i].approval_time,
-        });
+            reason: data.data[i].reason,
+            customer_name: data.data[i].customer_name,
+            security_name: data.data[i].security_name,
+            timein: data.data[i].time_in,
+            timeout: data.data[i].time_out,
+            approval_status: data.data[i].approval_status,
+            approved_time: data.data[i].approved_time,
+          });
+        }
+        return this.data = datas;
+      } else {
+        return this.data = [];
       }
-    this.data=datas
-
-    }
     });
-   console.log(this.data);
+  }
+  ngOnInit(): void {
+this.get()
   }
 
 
@@ -97,52 +102,45 @@ data:any
     let datas=[]
     console.log(event);
     var date = moment().format('YYYY-MM-DD HH:mm:ss');
-    const selectedId = event.roll;
+    const selectedId = event.id;
     let data = {
       id: selectedId,
       exitTime: date,
     };
 console.log('sada')
     this.service.updateTime(data).subscribe();
-    this.service.getRequest().subscribe((data) => {
-      console.log(data)
-      if(data.status){
-        console.log('kkk')
-        for (let i = 0; i < data.data.length; i++) {
-       datas.push({
-            roll: data.data[i].id,
-            visitor: data.data[i].visitor   ,
-           // telephone:data.data[i].contact_number,
-            approvalStatus:data.data[i].approval_status,
-            customer:data.data[i].customer_name,  
-              address: data.data[i].address,
-            timein:data.data[i].time_in,
-            timeout: data.data[i].time_out,
-            reason:data.data[i].reason,
-            approvalTime: data.data[i].approval_time,
-          });
-        }
-      this.data=datas
-  
+    this.get()
+  }
+  onApprove(data: any) {
+    console.log(data.id);
+    let value = {
+      approval_status: 'approved',
+      id: data.id,
+      approve_time: moment().format('YYYY-MM-DD HH:mm:ss'),
+    };
+    this.service.requestStatus(value).subscribe(res=>{
+      if (res.status == 1) {
+        this.toster.success(res.message);
+        this.get();
+      } else {
+        this.toster.error(res.message);
       }
-      });
-  }
-  onApprove(data:any) {
-    console.log(data);
-    let value={
-      approval_status:"Approved",
-      id:data.roll,
-      approve_time:moment().format('YYYY-MM-DD HH:mm:ss')
-    }
-    this.service.requestStatus(value).subscribe()
-  }
-  onReject(data:any) {
+    });
     
-    let value={
-      approval_status:"Rejected",
-      id:data.roll,
-      approve_time:moment().format('YYYY-MM-DD HH:mm:ss')
-    }
-    this.service.requestStatus(value).subscribe()
+  }
+  onReject(data: any) {
+    let value = {
+      approval_status: 'rejected',
+      id: data.id,
+      approve_time: moment().format('YYYY-MM-DD HH:mm:ss'),
+    };
+    this.service.requestStatus(value).subscribe(res=>{
+      if (res.status == 1) {
+        this.toster.error(res.message);
+        this.get();
+      } else {
+        this.toster.error(res.message);
+      }
+    });
   }
 }

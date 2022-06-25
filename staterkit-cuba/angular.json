@@ -84,7 +84,7 @@
               "apexcharts/dist/apexcharts.min.js",
               "calendar-utils/date-adapters/date-fns"
             ],
-            "outputPath": "dist/cuba",
+            "outputPath": "dist/VMS",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

@@ -32,8 +32,8 @@ export class ClientFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    const PAT_NAME = "^[a-zA-Z ]{2,20}$";
-    const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
+      const PAT_NAME = "^[a-zA-Z ]{2,20}$";
+      const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
 
     this.form = this.fb.group({
       id: null,

@@ -19,16 +19,17 @@ export class VisitorsComponent implements OnInit {
 data:any
   temp = [];
 
-  columns = [
-    { name: 'id' },
-    { prop: 'visitor' },
-    { name: 'Address' },
-    { name: 'Timein ' },
-    { name: 'Timeout' },
-    { name: 'reason ' },
-    {name:'customer'},
-    { name: 'ApprovalStatus' },
-    {name: 'ApprovalTime'}
+  cols = [
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    { name:'contact_number', label: 'Mobile'},
+    {name:'customer_name',label:'Customer Name'},
+    { name: 'timein', label:'Timein'},
+    { name: 'timeout' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    { name: 'approval_time', label:'Approval Time'},
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -60,14 +61,14 @@ getRequest(){
      datas.push({
           id: data.data[i].id,
           visitor: data.data[i].visitor   ,
-         // telephone:data.data[i].contact_number,
-          approvalStatus:data.data[i].approval_status,
-          customer:data.data[i].customer_name,  
+          contact_number:data.data[i].contact_number,
+          approval_status:data.data[i].approval_status,
+          customer_name:data.data[i].customer_name,  
             address: data.data[i].address,
           timein:data.data[i].time_in,
           timeout: data.data[i].time_out,
           reason:data.data[i].reason,
-          approvalTime: data.data[i].approval_time,
+          approval_time: data.data[i].approval_time,
         });
       }
     this.data=datas
