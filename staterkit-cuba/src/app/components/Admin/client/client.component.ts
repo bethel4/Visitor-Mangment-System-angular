@@ -110,7 +110,7 @@ export class ClientComponent implements OnInit {
     console.log(row);
     this.router.navigate(['SuperAdmin/editclient', row.id]);
   }
-  refreshCountries() {
+  refreshCountries() {  
     console.log(this.data)
     this.data.map((data, i) => ({id: i + 1, ...data}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
