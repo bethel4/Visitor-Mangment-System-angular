@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { companyDB } from '../../../..//shared/tables/company';
+import { companyDB } from '../../../../shared/tables/company';
 import { CustomerService } from '../state/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerQuery } from '../state/customer.query';
@@ -16,12 +16,12 @@ import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 export class CustomerComponent implements OnInit {
   rows = [];
   public company = [];
-
+  page = 1;
+  pageSize = 3;
   data: any;
   temp = [];
 
   cols = [
-    { name: 'id', label: 'S.NO' },
     { name: 'name', label: 'Name' },
     { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
@@ -31,6 +31,7 @@ export class CustomerComponent implements OnInit {
     { name: 'status', label: 'Status' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  collectionSize: any;
 
   constructor(
     private service: CustomerService,
@@ -83,11 +84,17 @@ export class CustomerComponent implements OnInit {
           });
         }
       this.data = datas;
+      this.collectionSize=this.data.length;
       }
     });
   }
   ngOnInit(): void {
     this.onGet();
+  }
+  refreshCountries() {
+    console.log(this.data)
+    this.data.map((data, i) => ({id: i + 1, ...data}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   onDelete(event: any) {
     console.log(event);
@@ -103,6 +110,6 @@ export class CustomerComponent implements OnInit {
   }
   onSelect(row) {
     console.log(row.id);
-    this.router.navigate(['admin/editcustomer', row.id]);
+    this.router.navigate(['SuperAdmin/editcustomer', row.id]);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { companyDB } from '../../../../shared/tables/company';
 import { SecurityService } from '../state/security.service';
-import { SecurityQuery } from '../../security/state/security.query';
+import { SecurityQuery } from '../state/security.query';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,12 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 export class SecurityComponent implements OnInit {
   rows = [];
   public company = [];
- 
+  page = 1;
+  pageSize = 3;
   data:any;
   temp = [];
 
   cols = [
-    { name: 'id', label: 'S.NO' },
     { name: 'name', label: 'Name' },
     { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
@@ -29,6 +29,7 @@ export class SecurityComponent implements OnInit {
     { name: 'status', label: 'Status' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  collectionSize: any;
 
   constructor(
     private service: SecurityService,
@@ -86,13 +87,18 @@ export class SecurityComponent implements OnInit {
         });
       }
     this.data=datas
-
+    this.collectionSize=this.data.length
     }
    
     });
   }
   ngOnInit(): void {
    this.onGet()
+  }
+  refreshCountries() {
+    console.log(this.data)
+    this.data.map((data, i) => ({id: i + 1, ...data}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   onDelete(event: any) {
     console.log(event);
@@ -110,7 +116,7 @@ export class SecurityComponent implements OnInit {
 }
   onSelect(row) {
     console.log(row.id)
- this.router.navigate(['admin/editsecurity',row.id]);
+ this.router.navigate(['SuperAdmin/editsecurity',row.id]);
   }
   
 }

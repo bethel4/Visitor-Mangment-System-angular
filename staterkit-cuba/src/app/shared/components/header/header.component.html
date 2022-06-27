@@ -12,16 +12,24 @@
       <div class="toggle-sidebar" (click)="sidebarToggle()">
         <app-feather-icons [icon]="'grid'" class="status_toggle middle"></app-feather-icons>
       </div>
+     <div class="row">
+      <!-- <p  class="h txt-primary">VMS</p> -->
+      <div class="left-header col horizontal-wrapper pl-0">
+        <app-mega-menu></app-mega-menu>
+      </div>
+     </div>
     </div>
     <div class="left-header col horizontal-wrapper pl-0">
      
     </div>
     <div class="nav-right col-8 pull-right right-header p-0">
       <ul class="nav-menus">
-        
-        <li>
+        <li class="language-nav" (click)="languageToggle()">
+          <app-languages></app-languages>
+        </li>
+        <li >
           <span class="header-search" (click)="searchToggle()">
-            <app-feather-icons [icon]="'search'"></app-feather-icons>
+            <app-feather-icons  [icon]="'search'"></app-feather-icons>
           </span>
         </li>
         <li class="onhover-dropdown">

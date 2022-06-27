@@ -19,8 +19,8 @@ import { AppComponent } from './app.component';
 import { TapToTopComponent } from './shared/components/tap-to-top/tap-to-top.component';
 import { LoginComponent } from './auth/component/login/login.component';
 import { AuthInterceptor } from './auth/service/auth-interceptor';
-
-
+import {ResetPasswordComponent} from './auth/component/reset-password/reset-password.component'
+import {ForgetPasswordComponent} from './auth/component/forget-password/forget-password.component'
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -29,7 +29,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     TapToTopComponent,
-    LoginComponent
+    LoginComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

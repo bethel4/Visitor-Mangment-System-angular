@@ -1,7 +1,7 @@
 import { state } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { SecurityState,SecurityStore } from '../state/security.store';
+import { SecurityState,SecurityStore } from './security.store';
 
 @Injectable({ providedIn: 'root' })
 export class SecurityQuery extends QueryEntity<SecurityState> {

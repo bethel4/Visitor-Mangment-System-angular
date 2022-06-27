@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="edit-profile">
+    <div class="row" style="padding-top: 50px;">
+
+      <div class="col-xl-8 xl-100">
+        <form class="card" [formGroup]="form">
+          <div class="card-header">
+            <h3 class="card-title mb-0">Edit Profile</h3>
+            <div class="card-options"><a class="card-options-collapse" href="javascript:void(0)"
+                data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove"
+                href="javascript:void(0)" data-toggle="card-remove"><i class="fe fe-x"></i></a></div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <input class="form-control" [(ngModel)]="data.name"type="text" placeholder="First Name" onlyAlphabets formControlName="name">
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Email address</label>
+                  <input class="form-control" type="email" placeholder="Email" [(ngModel)]="data.email" formControlName="email">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Address</label>
+                  <input class="form-control" type="text" placeholder="Home Address" [(ngModel)]="data.address" formControlName="address">
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Mobile</label>
+                  <input class="form-control" type="text" placeholder="Home Address" [(ngModel)]="data.contact_number" formControlName="contact_number">
+                </div>
+              </div>
+
+
+             
+
+            </div>
+          </div>
+          <div class="card-footer text-left">
+            <button class="btn btn-success btn-sm" type="button" (click)="stepsAlert()" >Change Password
+            </button>&nbsp;
+            <button class="btn btn-primary" type="submit" (click)="onSubmit()">Update Profile</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

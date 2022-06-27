@@ -7,8 +7,12 @@ export const content: Routes = [
     path: 'security',
     loadChildren: () => import('../../components/security/security.module').then(m => m.SecurityeModule),canActivateChild: [AuthRoleVisitorGuard]
   },
+  // {
+  //   path: 'user',
+  //   loadChildren: () => import('../../components/Account/user.module').then(m => m.UserModule),canActivateChild: [AuthRoleVisitorGuard]
+  // },
   {
-    path: 'admin',
+    path: 'SuperAdmin',
     loadChildren: () => import('../../components/Admin/admin.module').then(m => m.AdminModule),canActivateChild: [AuthRoleSuperAdminGuard]
   },
   {

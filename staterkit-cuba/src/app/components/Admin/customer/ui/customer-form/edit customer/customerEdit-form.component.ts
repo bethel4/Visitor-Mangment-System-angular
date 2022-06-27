@@ -71,11 +71,11 @@ export class CustomerFormEditComponent implements OnInit {
     this.service.update(this.form.value).subscribe((res: any) => {
       if (res.status == 1) {
         this.toster.success(res.message);
+        this.router.navigate(['SuperAdmin/customers'])
       } else {
         this.toster.error(res.message);
       }
     });
-    setInterval(()=>{this.router.navigate(['admin/customers'])},3000)
   }
   onCancel() {
     this.form.reset();

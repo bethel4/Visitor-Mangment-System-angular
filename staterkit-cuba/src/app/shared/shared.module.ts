@@ -1,9 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragulaModule } from 'ng2-dragula';
+import { WebcamModule } from 'ngx-webcam';
+import {NgxPrintModule} from 'ngx-print';
+  
 import { TranslateModule } from '@ngx-translate/core';
 // Components
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
@@ -25,6 +28,11 @@ import { BookmarkComponent } from './components/header/elements/bookmark/bookmar
 import { CartComponent } from './components/header/elements/cart/cart.component';
 import { MessageBoxComponent } from './components/header/elements/message-box/message-box.component';
 import { MyAccountComponent } from './components/header/elements/my-account/my-account.component';
+import {FormComponent} from './components/form/addForm/form.component'
+import { FormComponentEdit } from './components/form/formedit/formEdit.component'
+import {EditProfileComponent} from './components/Account/components/ui/edit-profile/edit-profile.component'
+import {ProfileComponent} from './components/Account/components/container/user-profile/user-profile.component'
+import {VisitiorDetailsComponent} from './components/visitor-details/visitor-detail.component'
 // Directives
 import { DisableKeyPressDirective } from './directives/disable-key-press.directive';
 import { OnlyAlphabetsDirective } from './directives/only-alphabets.directive';
@@ -38,6 +46,7 @@ import { NavService } from './services/nav.service';
   declarations: [
     HeaderComponent,
     FooterComponent,
+    FormComponentEdit,
     SidebarComponent,
     ContentComponent,
     BreadcrumbComponent,
@@ -55,8 +64,12 @@ import { NavService } from './services/nav.service';
     BookmarkComponent,
     CartComponent,
     MessageBoxComponent,
+    FormComponent,
     MyAccountComponent,
-    TableComponent
+    TableComponent,
+    VisitiorDetailsComponent,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     CommonModule,
@@ -65,19 +78,28 @@ import { NavService } from './services/nav.service';
     ReactiveFormsModule,
     NgbModule,
     DragulaModule.forRoot(),
-    TranslateModule
+    TranslateModule,
+    WebcamModule,
+    NgxPrintModule
   ],
   providers: [
     NavService,
-    LayoutService
+    LayoutService,
+    DatePipe
   ],
   exports: [
     NgbModule,
     FormsModule,
+    WebcamModule,
     ReactiveFormsModule,
     TranslateModule,
     TableComponent,
     LoaderComponent,
+    ProfileComponent,
+    FormComponentEdit,
+    VisitiorDetailsComponent,
+    NgxPrintModule,
+    FormComponent,
     BreadcrumbComponent,
     FeatherIconsComponent,
     DisableKeyPressDirective,

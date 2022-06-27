@@ -1,0 +1,50 @@
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color:#802BB1
+}
+
+.profile-button {
+    background: #181c32;
+    box-shadow: none;
+    border: none
+}
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    padding-top:50px ;
+    margin-bottom: 10px; /* Added */
+    width: 550px;
+}
+.labels{
+    font-size: 20px; 
+    font-weight: 70px;
+}
+.profile-button:hover {
+    background: #181c32;
+}
+
+.profile-button:focus {
+    background: #181c32;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #181c32;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #181c32;
+    cursor: pointer
+}
+.button{
+    height: 50px;
+    margin: 35px 0
+  }
+
+.labels {
+    font-size: 11px
+}
+

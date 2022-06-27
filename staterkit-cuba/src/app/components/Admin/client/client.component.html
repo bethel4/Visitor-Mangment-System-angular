@@ -1,20 +1,23 @@
 <app-breadcrumb ></app-breadcrumb>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 50px;">
     <div class="row">
+      <h2>Clients</h2>
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card" style="box-shadow: 100px;">
                 <div class="" style="width: 150px; padding-top: 30px; padding-left: 20px;">
-                  <a href="admin/addclient">  <button  class="btn btn-primary btn-block" 
+                  <a routerLink="/SuperAdmin/addclient">  <button  class="btn btn-primary btn-block" 
                     type="button"><span>Add New</span>
                   </button></a>
                 </div>
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
-                        (keyup)="updateFilter($event)" />
+                        (keyup)="updateFilter($event)" style="float: right;" />
                     <app-table
                     [user_data]="data"
                     [columns]="cols"
+                    [collectionSize]="collectionSize"
                     (onedit)="onSelect($event)"
+                    (refreshcountries)=refreshCountries()
                     (ondelete)="onDelete($event)">
                     </app-table>
                   </div>

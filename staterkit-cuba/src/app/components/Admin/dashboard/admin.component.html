@@ -1,6 +1,6 @@
-<app-breadcrumb ></app-breadcrumb>
-<div class="container-fluid" style="padding-top:40px">
-    <div class="row size-column" style="width:2200px;height:2000px; padding-left:55px;">
+<!-- <app-breadcrumb [title]="'Default'"  ></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row size-column" >
         <div class="col-xl-7 box-col-12 xl-100" >
             <div class="row dash-chart">
                 <div class="col-xl-6 box-col-6 col-md-6">
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="col-xl-9 xl-100 chart_data_left box-col-12" >
-                <div class="card" style="width:1200px">
+                <div class="card" >
                     <div class="card-body p-0">
                         <div class="row m-0 chart-main">
                             <div class="col-xl-3 col-md-6 col-sm-6 p-0 box-col-6">
@@ -139,11 +139,245 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-      
+        <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+            <div class="card o-hidden">
+                <div class="card-body">
+        <div class="media">
+            <div class="media-body">
+                <p class="f-w-500 font-roboto">Today Stock value<span
+                        class="badge pill-badge-primary ml-3">Hot</span></p>
+                <div class="progress-box">
+                    <h4 class="f-w-500 mb-0 f-26">$<span class="counter">9000.04</span></h4>
+                    <div
+                        class="progress sm-progress-bar progress-animate app-right d-flex justify-content-end">
+                        <div class="progress-gradient-primary" role="progressbar" style="width: 35%"
+                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span
+                                class="font-primary">88%</span><span class="animate-circle"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                </div>
+                </div>    
+                <div class="col-xl-4 xl-50 appointment-sec box-col-6">
+                    <div class="row">
+                        <div class="col-xl-12 appointment">
+                            <div class="card">
+                                <div class="card-header card-no-border">
+                                    <div class="header-top">
+                                        <h5 class="m-0">appointment</h5>
+                                        <div class="card-header-right-icon">
+                                            <select class="button btn btn-primary">
+                                                <option>Today</option>
+                                                <option>Tomorrow</option>
+                                                <option>Yesterday</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="appointment-table table-responsive">
+                                        <table class="table table-bordernone">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                         <img class="img-fluid img-40 rounded-circle mb-3" src="assets/images/appointment/app-ent.jpg" alt="Image description"> 
+                                                        <div class="status-circle bg-primary"></div>
+                                                    </td>
+                                                    <td class="img-content-box">
+                                                        <span class="d-block">Venter Loren</span>
+                                                        <span class="font-roboto">Now</span>
+                                                    </td>
+                                                    <td>
+                                                        <p class="m-0 font-primary">28 Sept</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <div class="button btn btn-primary">Done
+                                                            <i class="fa fa-check-circle ml-2"></i>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img class="img-fluid img-40 rounded-circle" src="assets/images/appointment/app-ent.jpg" alt="Image description"> 
+                                                        <div class="status-circle bg-primary"></div>
+                                                    </td>
+                                                    <td class="img-content-box">
+                                                        <span class="d-block">John Loren</span>
+                                                        <span class="font-roboto">11:00</span>
+                                                    </td>
+                                                    <td>
+                                                        <p class="m-0 font-primary">22 Sept</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <div class="button btn btn-danger">Pending
+                                                            <i class="fa fa-check-circle ml-2"></i>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>    
     </div>
+
+</div> -->
+
+
+<h3  style = "padding-top:15px" class="f-w-500 font-roboto">Dashboard</h3>                               
+<div class="row" style="padding-top:15px">
+    <div class="col-sm-6 col-xl-3 col-lg-6" *ngIf="role=='Super Admin'">
+        <div class="card o-hidden">
+          <div class="b-r-4 card-body">
+            <div class="media static-top-widget">
+              <div class="align-self-center text-center">
+                <app-feather-icons [icon]="'user-plus'"></app-feather-icons>
+              </div>
+              <div class="media-body"><span class="m-0">Total</span>
+                <h4 class="mb-0 counter" >{{total[0].visitors}} Visitors</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    <div class="col-sm-6 col-xl-3 col-lg-6" *ngIf="role!='Super Admin'">
+        <div class="card o-hidden">
+          <div class="b-r-4 card-body">
+            <div class="media static-top-widget">
+              <div class="align-self-center text-center">
+                <app-feather-icons [icon]="'user-plus'"></app-feather-icons>
+              </div>
+              <div class="media-body"><span class="m-0">Total</span>
+                <h4 class="mb-0 counter" >{{total[0].visitors}} Visitors</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3 col-lg-6">
+        <div class="card o-hidden">
+          <div class=" b-r-4 card-body">
+            <div class="media static-top-widget">
+              <div class="align-self-center text-center">
+                <app-feather-icons [icon]="'user-plus'"></app-feather-icons>
+              </div>
+              <div class="media-body"><span class="m-0">Total</span>
+                <h4 class="mb-0 counter" >{{total[0].client}} Clients</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3 col-lg-6">
+        <div class="card o-hidden">
+          <div class=" b-r-4 card-body">
+            <div class="media static-top-widget">
+              <div class="align-self-center text-center">
+                <app-feather-icons [icon]="'user-plus'"></app-feather-icons>
+              </div>
+              <div class="media-body"><span class="m-0"> Total</span>
+                <h4 class="mb-0 counter" >{{total[0].customer}} Customer</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3 col-lg-6">
+        <div class="card o-hidden">
+          <div class=" b-r-4 card-body">
+            <div class="media static-top-widget">
+              <div class="align-self-center text-center">
+                <app-feather-icons [icon]="'user-plus'"></app-feather-icons>
+              </div>
+              <div class="media-body"><span class="m-0">Total</span>
+                <h4 class="mb-0 counter" >{{total[0].security}} Securities</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+   
+</div>
+<div class="row">
+    <div class="col-xl-6 box-col-6 col-md-6">
+        <div class="card o-hidden">
+            <div class="card-header card-no-border">
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <li><i class="fa fa-spin fa-cog"></i></li>
+                    </ul>
+                </div>
+                <div class="media">
+                    <div class="media-body">
+                        <p><span class="f-w-500 font-roboto">This Week visits</span><span
+                                class="f-w-700 font-primary ml-2">{{sum}}</span></p>
+                        <h4 class="f-w-500 mb-0 f-26 counter"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="monthly-visit">
+                    <div id="column-chart">
+                        <apx-chart [series]='totalVisit.series' [chart]='totalVisit.chart'
+                            [plotOptions]='totalVisit.plotOptions' [dataLabels]='totalVisit.dataLabels'
+                            [xaxis]='totalVisit.xaxis' [yaxis]='totalVisit.yaxis' [grid]='totalVisit.grid'
+                            [colors]='totalVisit.colors'></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+            <div class="col-xl-6 box-col-6 col-md-6">
+                <div class="card o-hidden">
+
+                    <div class="card-header card-no-border">
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="fa fa-spin fa-cog"></i></li>
+                            </ul>
+                        </div>
+                        <div class="media">
+                            <div class="media-body">
+                                <p><span class="f-w-500 font-roboto">Weeks Total visit</span><span
+                                        class="f-w-700 font-primary ml-2">{{sumWeeks}}</span></p>
+                                <h4 class="f-w-500 mb-0 f-26"><span class="counter"></span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="profit-card">
+                                    <div id="spaline-chart">
+                                        <apx-chart [series]='todayTotalSale.series' [chart]='todayTotalSale.chart'
+                                            [dataLabels]='todayTotalSale.dataLabels'
+                                            [stroke]='todayTotalSale.stroke' [xaxis]='todayTotalSale.xaxis'
+                                            [yaxis]='todayTotalSale.yaxis' [tooltip]='todayTotalSale.tooltip'
+                                            [legend]='todayTotalSale.legend' [grid]='todayTotalSale.grid'
+                                            [fill]='todayTotalSale.fill' [colors]='todayTotalSale.colors'>
+                                        </apx-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             
+        
+</div>
+</div>
 </div>

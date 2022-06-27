@@ -4,6 +4,7 @@ import { VistiorService } from '../../../Admin/visitor/state/vistior.service';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -16,11 +17,13 @@ export class CustomerComponent implements OnInit {
   data: any[];
   rows = [];
   public company = [];
-
+  page = 1;
+  pageSize = 3;
   temp = [];
   interval: number;
+  collectionSize: number;
 
-  constructor(private service: VistiorService, private query: CustomerQuery, public toster: ToastrService,) {
+  constructor(private service: VistiorService, private query: CustomerQuery, public toster: ToastrService,public router:Router) {
     //  this.company = companyDB.data;
     // cache our list
     this.temp = [...this.company];
@@ -43,15 +46,13 @@ export class CustomerComponent implements OnInit {
     this.table.offset = 0;
   }
   columns = [
-    { name: 'id', label:'S.NO'},
     { name: 'visitor', label:'Visitor'},
-    { name:'contact_number',label:'Mobile'},
-    { name: 'address', label:'Address'},
-    { name: 'reason', label:'Reason'},
-     {name:'customer_name',label:'Customer Name'},
-    { name:'security_name',label:'Security Name'},
-    { name: 'timein', label:'Timein'},
-    { name: 'timeout' ,label:'Timeout'},
+    // { name:'contact_number',label:'Mobile'},
+    // { name: 'address', label:'Address'},
+    // { name: 'reason', label:'Reason'},
+    { name:'security_name',label:'Security'},
+    { name: 'time_in', label:'Timein'},
+    { name: 'time_out' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
     {name: 'ApprovalTime', label:'ApprovalTime'}
   ];
@@ -70,12 +71,13 @@ export class CustomerComponent implements OnInit {
             reason: data.data[i].reason,
             customer_name: data.data[i].customer_name,
             security_name: data.data[i].security_name,
-            timein: data.data[i].time_in,
-            timeout: data.data[i].time_out,
+            time_in: data.data[i].time_in,
+            time_out: data.data[i].time_out,
             approval_status: data.data[i].approval_status,
             approvalTime: data.data[i].approval_time,
           });
         }
+        this.collectionSize= datas.length
         return this.data = datas;
       } else {
         return this.data = [];
@@ -92,7 +94,11 @@ export class CustomerComponent implements OnInit {
        clearInterval(this.interval);
      }
    }
- 
+   refreshCountries() {
+    console.log(this.data)
+    this.data.map((data, i) => ({id: i + 1, ...data}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
   onApprove(data: any) {
     console.log(data.id);
     let value = {
@@ -110,6 +116,7 @@ export class CustomerComponent implements OnInit {
     });
     
   }
+  
   onReject(data: any) {
     let value = {
       approval_status: 'rejected',
@@ -118,11 +125,15 @@ export class CustomerComponent implements OnInit {
     };
     this.service.requestStatus(value).subscribe(res=>{
       if (res.status == 1) {
-        this.toster.error(res.message);
+        this.toster.success(res.message);
         this.getRequest();
       } else {
         this.toster.error(res.message);
       }
     });
+  }
+  onView(row){
+    console.log(row.id);
+    this.router.navigate(['customer/visitor_detail',row.id])
   }
 }

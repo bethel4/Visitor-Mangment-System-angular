@@ -1,9 +1,10 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
+import { SessionQuery } from 'src/app/auth/state/session.query';
 import { companyDB } from '../../../shared/tables/company';
-import * as chartData from '../dashboard/data/adminReports';
-import { AdminService } from '../dashboard/state/admin.service';
+import * as chartData from './data/adminReports';
+import { AdminService } from './state/admin.service';
 let primary = localStorage.getItem('primary_color') ||'skyblue';
 let secondary = localStorage.getItem('secondary_color')||'#a927f9';
 let teriary = localStorage.getItem('secondary_color')||'#a26cf8';
@@ -20,16 +21,19 @@ export class AdminComponent implements OnInit {
   public lat_m1: number = 20.593683;
   public lng_m1: number = 78.962883;
   public zoom_m1: number = 4;
-  constructor(private service: AdminService) {}
+  constructor(private service: AdminService,private query:SessionQuery) {}
+  role= this.query.isRole()
   data = [];
   value=[]
-  sum=0
+  sum:number = 0;
   days = [];
   valueWeeks=[]
   sumWeeks=0;
   total:any
   weekdata=[]
   ngOnInit(): void {
+   
+  
     let days=[]
 var startdate = moment();
 for(let i=0;i<= 7;i++){
@@ -39,22 +43,19 @@ for(let i=0;i<= 7;i++){
 }
 
     this.service.get().subscribe((res) => {
-      console.log(res)
+      
       this.total=res.total
       this.data=res.daily_report[0]
-     
-      for (let index = 0; index < 7; index++) {
+      for (let index = 0; index < 7; index++) {   
      this.value[index]=this.data["day_"+index]
-        this.sum=this.sum+Number(this.value[index])
+        this.sum=this.sum + parseInt(this.value[index])
       }
       this.data= res.weekly_report
-     console.log(this.data)
       for (let index = 0; index <3; index++) {
         this.valueWeeks[index]=this.data[index]['week_'+index].total
         this.weekdata[index]=this.data[index]['week_'+index].day
-           this.sumWeeks=this.sumWeeks+Number(this.valueWeeks[index])
+           this.sumWeeks=this.sumWeeks+parseInt(this.valueWeeks[index])
          }
-         console.log( this.weekdata)
       this. totalVisit = {
         series: [{
             name: 'Visitor',
@@ -162,7 +163,7 @@ data:[ 0, this.valueWeeks[1], this.valueWeeks[0]]
   
       }],
       chart: {
-          height: 150,
+          height: 100,
           type: 'area',
           toolbar: {
               show: false
@@ -218,7 +219,10 @@ data:[ 0, this.valueWeeks[1], this.valueWeeks[0]]
       colors: [primary, secondary, teriary],
   };
 
+
     })
   }
+
+
 
 }

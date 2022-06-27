@@ -18,22 +18,24 @@ export class VisitorsComponent implements OnInit {
   public company = [];
 data:any
   temp = [];
-
+  page = 1;
+  pageSize = 3;
   columns = [
-    { name: 'id', label:'S.NO'},
     { name: 'visitor', label:'Visitor'},
-    { name:'contact_number',label:'Mobile'},
-    { name: 'address', label:'Address'},
-    { name: 'reason', label:'Reason'},
-    { name:'security_name',label:'Security Name'},
-    { name: 'Timein', label:'Timein'},
-    { name: 'Timeout' ,label:'Timeout'},
+    // { name:'contact_number',label:'Mobile'},
+    // { name: 'address', label:'Address'},
+    // { name: 'reason', label:'Reason'},
+    { name:'security_name',label:'Security'},
+    { name: 'time_in', label:'Timein'},
+    { name: 'time_out' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
-    {name: 'approved_time', label:'Approval Time'}
+    {name: 'approved_time', label:'ApprovalTime'}
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   ColumnMode = ColumnMode;
+  interval: number;
+  collectionSize: any;
 
   constructor(
     private service: VistiorService,
@@ -51,7 +53,11 @@ data:any
     
   }
 
- 
+  refreshCountries() {
+    console.log(this.data)
+    this.data.map((data, i) => ({id: i + 1, ...data}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
   updateFilter(event) {
   
     const val = event.target.value.toLowerCase();
@@ -81,12 +87,13 @@ data:any
             reason: data.data[i].reason,
             customer_name: data.data[i].customer_name,
             security_name: data.data[i].security_name,
-            timein: data.data[i].time_in,
-            timeout: data.data[i].time_out,
+            time_in: data.data[i].time_in,
+            time_out: data.data[i].time_out,
             approval_status: data.data[i].approval_status,
             approved_time: data.data[i].approved_time,
           });
         }
+        this.collectionSize= datas.length
         return this.data = datas;
       } else {
         return this.data = [];
@@ -95,8 +102,13 @@ data:any
   }
   ngOnInit(): void {
 this.get()
+this.interval = setInterval(() => { this.get() }, 5000);
   }
-
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
 
   onCheckOut(event: any): void {
     let datas=[]
@@ -142,5 +154,9 @@ console.log('sada')
         this.toster.error(res.message);
       }
     });
+  }
+  onView(row){
+    console.log(row);
+    this.router.navigate(['customer/visitor_detail',row.id])
   }
 }

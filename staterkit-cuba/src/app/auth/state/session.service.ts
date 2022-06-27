@@ -23,7 +23,36 @@ options = { headers: this.headers };
         this.store.login(res)
       }));
   }
-
+forgetPassword(email:object){
+  const url = `${environment.apiUrl}/reset_password.php`;
+  return this.http.post(url, email)
+  .pipe(
+    tap((result: any) => {
+      if (result.status==1) {
+        // this.store.update(result.data.id, result.data);
+      } else {
+       console.log('error has occured')
+      }
+    }, error => {
+      console.log(error.message)
+    })
+  );
+}
+resPassword(password: object){
+  const url = `${environment.apiUrl}/reset_password.php`;
+  return this.http.post(url, password)
+  .pipe(
+    tap((result: any) => {
+      if (result.status==1) {
+        // this.store.update(result.data.id, result.data);
+      } else {
+       console.log('error has occured')
+      }
+    }, error => {
+      console.log(error.message)
+    })
+  );
+}
   logout() {
     this.store.logout();
   }

@@ -1,4 +1,5 @@
 <app-breadcrumb></app-breadcrumb>
+<div style="padding-top:30px"></div>
 <div class="col-sm-12">
   <div class="card">
     <div class="card-header">
@@ -8,7 +9,7 @@
       <form class="theme-form" [formGroup]="form">
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputEmail3">Full Name</label>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
             <input class="form-control" id="" type="text" placeholder="Full Name" formControlName="name"
               [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.name.errors) || (!form.controls.name.pristine && form.controls.name.invalid) }" 
               [(ngModel)]="row[0].name"
@@ -30,7 +31,7 @@
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputEmail3">Email</label>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
             <input class="form-control" id="inputEmail3" type="email" placeholder="Email" formControlName="email"
               [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.email.errors) || (!form.controls.email.pristine && form.controls.email.invalid) }"
               [(ngModel)]="row[0].email"
@@ -50,7 +51,7 @@
 
         <div class="form-group row">
           <label class="col-sm-3 col-form-label" for="inputPassword3">Address</label>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
             <input class="form-control" id="url" type="text" placeholder="Address" formControlName="address"
               [ngClass]="{ 'is-invalid': (isFormSubmitted && form.controls.address.errors) || (!form.controls.address.pristine && form.controls.address.invalid) }"
               [(ngModel)]="row[0].address"
@@ -66,7 +67,7 @@
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Status</label>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
 
             <select class="form-control digits" id="exampleFormControlSelect9" [(ngModel)]="row[0].status"formControlName="status">
               <option value="1" >Active</option>
@@ -78,7 +79,7 @@
       </form>
     </div>
     <div class="card-footer" style=" padding-left:50px;">
-      <button class="btn btn-primary" type="button" [disabled]="!form.valid" style="width: 100px; height: 30px;"
+      <button class="btn btn-primary" type="button" [disabled]="!form.valid" style="width: 110px; height: 30px;"
         (click)=onSubmit() placement="top" ngbTooltip="submit">Submit</button>&nbsp;
       <button class="btn btn-warning" type="button" placement="top" style=" width: 100px; height: 30px;"
         ngbTooltip="reset" (click)="onCancel()">Reset</button>

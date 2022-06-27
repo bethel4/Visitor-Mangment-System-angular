@@ -29,6 +29,7 @@ export class VistiorService {
         })
       );
   }
+
   getRequest(): Observable<any> {
     const url = `${environment.apiUrl}/get_requests.php`;
     return this.http.get<any>(url)
@@ -47,7 +48,7 @@ export class VistiorService {
 
 
   add(data: any): Observable<any[]|null|undefined> {
-    console.log(data);
+  
     const url = `${environment.apiUrl}/req_visit.php`;
     return this.http.post(url, data).pipe(
       tap(
@@ -84,7 +85,25 @@ export class VistiorService {
     );
     
   }
-
+  addPhoto(data: any): Observable<any[]|null|undefined> {
+  
+    const url = `${environment.apiUrl}/capture_phpto.php`;
+    return this.http.put(url, data).pipe(
+      tap(
+        (result: any) => {
+          if (result.status==1) {
+            this.visitorStore.add(result.data);
+          } else {
+            console.log('error has occured')
+          }
+        },
+        (error) => {
+         console.log(error.message)
+        }
+      )
+    );
+    
+  }
   update(id:string, data:any): Observable<any> {
     const url = `${environment.apiUrl}/edit_visitor.php`;
     return this.http.put(url, data)
@@ -166,3 +185,4 @@ export class VistiorService {
       );
   }
 }
+

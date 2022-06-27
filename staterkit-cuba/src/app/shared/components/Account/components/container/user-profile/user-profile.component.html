@@ -1,0 +1,61 @@
+<div style="padding-top: 50px;">
+  <div class="row">
+    <div class="card">
+      <div class=" custom-card">
+        <div class="card-header"><p style="font-size:20px; text-align:center">User Profile</p></div>
+        <div class="card-profile"><img class="rounded-circle" src="https://angular.pixelstrap.com/cuba/assets/images/avtar/11.jpg" alt=""></div>
+        <ul class="card-social">
+         
+          <li><button class="btn btn-success btn-xs" type="button"  (click)="openXl(content)" placement="top" ngbTooltip="takephote">capture
+          </button></li>&nbsp;
+                </ul>
+        <div class="text-center profile-details">
+          <h4>{{data.name}}</h4>
+          <h6>{{data.role}}</h6>
+        </div>
+        <div class="card-footer row">
+          <div class="col-4 col-sm-4">
+            <h6>Address</h6>
+            <h6 class="counter">{{data.address}}</h6>
+          </div>
+          <div class="col-4 col-sm-4">
+            <h6>Email</h6>
+            <h6>{{data.email}}</h6>
+          </div>
+          <div class="col-4 col-sm-4">
+            <h6>Mobile</h6>
+            <h6>{{data.contact_number}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <!-- <div class="modal-header">
+   
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div> -->
+  <div class="modal-body justify-content center">
+    <div class="">
+      <button type="button" class="close" (click)="modal.close('Close click')" aria-label="Close">×</button> 
+   
+    </div>
+  
+    <div *ngIf="hide" class="pl-5">
+      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+
+    </div>
+    <div *ngIf="!hide" class="pl-5">
+      <img [src]="webcamImage" />
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!hide" type="button" class="btn btn-outline-dark" (click)="retakePicture()">Retake</button>
+    <button *ngIf="!hide" type="button" class="btn btn-outline-dark" (click)="saveImage(webcamImage)"  (click)="modal.close('Close click')">save</button>
+    <button *ngIf="hide" type="button" class="btn btn-outline-dark" (click)="takePicture()" >Take Picture</button>
+  </div>
+</ng-template>
+

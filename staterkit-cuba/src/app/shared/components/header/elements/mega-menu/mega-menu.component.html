@@ -1,48 +1,5 @@
 <ul class="horizontal-menu">
-  <li class="mega-menu">
-    <a href="javascript:void(0)" class="nav-link" [class.active]="navServices.megaMenu" (click)="megaMenuToggle()">
-      <app-feather-icons [icon]="'layers'"></app-feather-icons>
-      <span>Bonus Ui</span>
-    </a>
-    <div class="mega-menu-container nav-submenu menu-to-be-close" [class]="navServices.megaMenu ? 'd-block' : 'd-none'">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col mega-box mobile-title d-none">
-            <h5>Mega menu</h5>
-            <app-feather-icons [icon]="'x'" (click)="megaMenuToggle()"></app-feather-icons>
-          </div>
-          <div class="col mega-box" *ngFor="let megaItem of megaItems">
-            <div class="link-section icon" (click)="toggletNavActive(megaItem)">
-              <div [class.active]="megaItem.active && navServices.megaMenuColapse">
-                <h6>{{megaItem.title}}</h6>
-              </div>
-              <ul [class.d-none]="!megaItem.active && navServices.megaMenuColapse" *ngIf="megaItem.children">
-                <li *ngFor="let childrenMegaItem of megaItem.children">
-                  <!-- Link -->
-                  <a [routerLink]="!childrenMegaItem.type ? null : [childrenMegaItem.path]"
-                    *ngIf="childrenMegaItem.type === 'link'" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    {{childrenMegaItem.title}}
-                  </a>
-                  <!-- External Link -->
-                  <a href="{{ !childrenMegaItem.type ? null : childrenMegaItem.path }}"
-                    *ngIf="childrenMegaItem.type === 'extLink'" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    {{childrenMegaItem.title}}
-                  </a>
-                  <!-- External Tab Link -->
-                  <a href="{{ !childrenMegaItem.type ? null : childrenMegaItem.path }}" target="_blank"
-                    *ngIf="childrenMegaItem.type === 'extTabLink'">
-                    {{childrenMegaItem.title}}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </li>
+
   <li class="level-menu">
     <a class="nav-link" href="javascript:void(0)" [class.active]="navServices.levelMenu" (click)="levelMenuToggle()">
       <app-feather-icons [icon]="'inbox'"></app-feather-icons>

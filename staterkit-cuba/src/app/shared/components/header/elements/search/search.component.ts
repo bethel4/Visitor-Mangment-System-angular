@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionQuery } from 'src/app/auth/state/session.query';
+import { VistiorService } from 'src/app/components/Admin/visitor/state/vistior.service';
 import { NavService, Menu } from '../../../../services/nav.service';
 
 @Component({
@@ -8,18 +10,27 @@ import { NavService, Menu } from '../../../../services/nav.service';
 })
 export class SearchComponent implements OnInit {
 
-  public menuItems: Menu[];
-  public items: Menu[];
+  public menuItems: any[];
+  public items: any[];
 
   public searchResult: boolean = false;
   public searchResultEmpty: boolean = false;
   public text: string;
 
-  constructor(public navServices: NavService) {
-    this.navServices.items.subscribe(menuItems => this.items = menuItems);
+  constructor(public navServices: NavService ,private service:VistiorService,private query: SessionQuery,) {
+    if(this.query.isRole()=='Customer'){
+      this.service.get().subscribe(menuItems =>  this.items = menuItems.data);
+    }else if(this.query.isRole()=='Security'){
+      this.service.get().subscribe(menuItems => this.items = menuItems.data);
+    }else if(this.query.isRole()=='Admin'||this.query.isRole()=='Super Admin'){
+      this.service.get().subscribe(menuItems => this.items = menuItems.data);
+    }
+   // this.navServices.items.subscribe(menuItems => this.items = menuItems);
   }
 
   ngOnInit() {
+    this.service.get().subscribe(menuItems => {console.log(menuItems.data)});
+
   }
 
   searchToggle() {
@@ -32,28 +43,18 @@ export class SearchComponent implements OnInit {
     let items = [];
     term = term.toLowerCase();
     this.items.filter(menuItems => {
-      if (!menuItems?.title) return false
-      if (menuItems.title.toLowerCase().includes(term) && menuItems.type === 'link') {
+      if (!menuItems?.visitor||!menuItems.id) return false
+      if (menuItems.visitor.toLowerCase().includes(term)||menuItems.contact_number.includes(term)) {
+
         items.push(menuItems);
+        console.log(items)
       }
-      if (!menuItems.children) return false
-      menuItems.children.filter(subItems => {
-        if (subItems.title.toLowerCase().includes(term) && subItems.type === 'link') {
-          subItems.icon = menuItems.icon
-          items.push(subItems);
-        }
-        if (!subItems.children) return false
-        subItems.children.filter(suSubItems => {
-          if (suSubItems.title.toLowerCase().includes(term)) {
-            suSubItems.icon = menuItems.icon
-            items.push(suSubItems);
-          }
-        })
-      })
+      
       this.checkSearchResultEmpty(items)
       this.menuItems = items
     });
   }
+
 
   checkSearchResultEmpty(items) {
     if (!items.length)

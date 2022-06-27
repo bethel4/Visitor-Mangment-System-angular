@@ -22,11 +22,13 @@ export class SidebarComponent {
   public width: any = window.innerWidth;
   public leftArrowNone: boolean = true;
   public rightArrowNone: boolean = false;
+  route: string;
 
   constructor(private router: Router, public navServices: NavService,
     private query: SessionQuery,
     public layout: LayoutService) {
       if(this.query.isRole()=='Security'){
+        this.route='/security'
         this.navServices.itemsecurity.subscribe(menuItems => {
           this.menuItems = menuItems;
         
@@ -53,6 +55,7 @@ export class SidebarComponent {
           });
         });
       }else if (this.query.isRole()=='Admin'||this.query.isRole()=='Super Admin') {
+        this.route='/SuperAdmin'
         this.navServices.items.subscribe(menuItems => {
           this.menuItems = menuItems;
         
@@ -79,6 +82,7 @@ export class SidebarComponent {
           });
         });
       }else if(this.query.isRole()=='Customer'){
+        this.route='/customer'
         this.navServices.itemCustomer.subscribe(menuItems => {
           this.menuItems = menuItems;
         

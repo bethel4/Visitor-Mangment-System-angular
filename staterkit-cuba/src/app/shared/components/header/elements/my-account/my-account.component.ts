@@ -11,8 +11,19 @@ import { SessionService } from 'src/app/auth/state/session.service';
 export class MyAccountComponent implements OnInit {
   constructor(private service: SessionService, private  query :SessionQuery, private router: Router) {}
 name:any;
-role
+route
+role= this.query.isRole()
   ngOnInit() {
+    
+    if(this.role=='admin'||this.role=='Super Admin'){
+      this.route='admin/user'
+    }
+    if(this.role=='Customer'){
+      this.route='customer/user'
+    }
+    if(this.role=='Security'){
+      this.route='security/user'
+    }
   this.query.selectAll().subscribe(data=>{
       this.name=data.data.name;
       this.role=data.data.role;

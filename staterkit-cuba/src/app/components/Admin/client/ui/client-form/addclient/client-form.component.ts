@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { ClientService } from '../../../../client/state/client.service';
+import { ClientService } from '../../../state/client.service';
 import { ClientQuery } from '../../../state/client.query';
 
 @Component({
@@ -14,16 +14,13 @@ import { ClientQuery } from '../../../state/client.query';
 })
 export class ClientFormComponent implements OnInit {
   clients$: Observable<any> = this.service.get();
-  @Output() formSubmit = new EventEmitter<any>();
-  @Output() formClose = new EventEmitter<void>();
   form: FormGroup;
-  hide = true;
-  disable = true;
   row:any 
-  title: string;
+  title='Add Client';
   clients: any[];
-  data: any;
-  isFormSubmitted = false;
+  user='client'
+  data: any[];
+ 
   constructor(
     private fb: FormBuilder,
     private service: ClientService,
@@ -32,27 +29,7 @@ export class ClientFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-      const PAT_NAME = "^[a-zA-Z ]{2,20}$";
-      const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
-
-    this.form = this.fb.group({
-      id: null,
-      name: [, [Validators.required, Validators.pattern(PAT_NAME)]],
-      contact_number: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
-          ),
-        ],
-      ],
-      created: moment().format('YYYY-MM-DD HH:mm:ss'),
-      address: [, [Validators.required]],
-      status: '1',
-      email: [, [Validators.required,  Validators.pattern(PAT_EMAIL)]],
-      password: [, [Validators.required, Validators.minLength(6)]],
-    });
+    
   }
 
   ngOnInit(): void {
@@ -87,17 +64,17 @@ export class ClientFormComponent implements OnInit {
   onGet(){
     
   }
-  onSubmit() {
-    this.isFormSubmitted = true;
-
-    this.service.add(this.form.value).subscribe((res: any) => {
+  onSubmit(data) {
+ console.log(data)
+    this.service.add(data).subscribe((res: any) => {
       if (res.status == 1) {
         this.toster.success(res.message);
+        this.router.navigate(['SuperAdmin/clients'])
       } else {
         this.toster.error(res.message);
       }
     });
-    setInterval(()=>{this.router.navigate(['client'])},3000)
+  //  setInterval(()=>{this.router.navigate(['client'])},3000)
   }
   onCancel() {
     this.form.reset();

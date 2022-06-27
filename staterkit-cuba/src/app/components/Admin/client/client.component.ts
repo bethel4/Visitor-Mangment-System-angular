@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { companyDB } from '../../../shared/tables/company';
-import { ClientQuery } from '../client/state/client.query';
-import { ClientService } from '../client/state/client.service';
+import { ClientQuery } from './state/client.query';
+import { ClientService } from './state/client.service';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -14,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ClientComponent implements OnInit {
   //client$: Observable<any> = this.query.selectClient();
+  page = 1;
+  pageSize = 3;
   rows = [];
   public company = [];
 
@@ -21,7 +23,6 @@ export class ClientComponent implements OnInit {
   temp = [];
 
   cols = [
-    { name: 'id', label: 'S.NO' },
     { name: 'name', label: 'Name' },
     { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
@@ -33,6 +34,7 @@ export class ClientComponent implements OnInit {
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   ColumnMode = ColumnMode;
+  collectionSize: any;
 
   constructor(
     private service: ClientService,
@@ -61,6 +63,7 @@ export class ClientComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
+  
   onGet(){
     let datas = [];
     this.service.get().subscribe((data) => {
@@ -83,6 +86,7 @@ export class ClientComponent implements OnInit {
           });
         }
          this.data = datas;
+         this.collectionSize= this.data.length;
       }
     });
   }
@@ -104,6 +108,11 @@ export class ClientComponent implements OnInit {
   }
   onSelect(row) {
     console.log(row);
-    this.router.navigate(['admin/editclient', row.id]);
+    this.router.navigate(['SuperAdmin/editclient', row.id]);
+  }
+  refreshCountries() {
+    console.log(this.data)
+    this.data.map((data, i) => ({id: i + 1, ...data}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 }

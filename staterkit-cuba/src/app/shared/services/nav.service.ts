@@ -82,10 +82,11 @@ export class NavService implements OnDestroy {
 	}
 
 	MENUITEMS: Menu[] = [
-		{
+		{ path: 'SuperAdmin', title: ' Dashboard' , icon:'home', type: 'link' },
+			{
 			title: 'Clients', icon: 'users', type: 'sub', active: false, children: [
-			{ path: 'admin/clients', title: ' Client' , type: 'link' },
-			{ path: 'admin/addclient', title: 'Add New Client' , type: 'link' },
+			{ path: 'SuperAdmin/clients', title: ' Client' , type: 'link' },
+			{ path: 'SuperAdmin/addclient', title: 'Add New Client' , type: 'link' },
 			
 		]
 	},
@@ -93,33 +94,47 @@ export class NavService implements OnDestroy {
 				
 			{ 
 				title: 'customers', icon: 'users', type: 'sub', active: false, children: [
-					{ path: 'admin/customers', title: 'Customers', type: 'link' },
-					{ path: 'admin/addcustomer', title: 'Add New Customer' , type: 'link' },
+					{ path: 'SuperAdmin/customers', title: 'Customers', type: 'link' },
+					{ path: 'SuperAdmin/addcustomer', title: 'Add New Customer' , type: 'link' },
 					
 				]	
 			},
 			{ 
 				title: 'security', icon: 'users', type: 'sub', active: false, children: [
-					{ path: 'admin/security', title: 'Security', type: 'link' },
-					{ path: 'admin/addsecurity', title: 'Add New Security' , type: 'link' },
+					{ path: 'SuperAdmin/security', title: 'Security', type: 'link' },
+					{ path: 'SuperAdmin/addsecurity', title: 'Add New Security' , type: 'link' },
 					
 				]		
 			},
 			{ 
 				title: 'Visitors', icon: 'users', type: 'sub', active: false, children: [
-					{ path: 'admin/visitors', title: 'Visitor', type: 'link' },
+					{ path: 'SuperAdmin/visitors', title: 'Visitor', type: 'link' },
 					
 					
 				]		
 			},
 				
-			
+			{ 
+				title: 'Account', type: 'sub', icon:'user',active: true, children: [
+					{ path: 'SuperAdmin/user', title: 'View Account', type: 'link' },
+					
+					{ path: 'SuperAdmin/editprofile', title: 'Edit Account', type: 'link' },
+				]		
+			},
+		
+			//{ path: 'login', title: 'Logout',active: false, type: 'link' },
 			
 			
 		
 	];
 	MENUITEMSSECURIY: Menu[] = [
-
+		{
+			title: 'Dashboard', icon:'home', type: 'sub', active: false, children: [
+			{ path: 'security', title: ' Dashboard' , type: 'link' },
+			
+			 
+		]
+	},
 			{ 
 				title: 'security', icon: 'users', type: 'sub', active: false, children: [
 					{ path: 'security/visitors', title: 'MyVisitors', type: 'link' },
@@ -128,20 +143,33 @@ export class NavService implements OnDestroy {
 				]		
 			},
 		
-				
-			
-			
+			{ 
+				title: 'Account', type: 'sub', active: false, children: [
+					{ path: 'security/user', title: 'View Account', type: 'link' },
+					
+					{ path: 'security/editprofile', title: 'Edit Account', type: 'link' },
+				]		
+			},
 			
 		
+			//{ path: 'admin/visitors', title: 'Logout', type: 'link' },		
 	];
 	MENUITEMSCUSTOMER: Menu[] = [
-
+		{ path: 'customer', title: ' Dashboard' ,icon:'home', type: 'link' },
 		{ 
 			title: 'Customer', icon: 'users', type: 'sub', active: false, children: [
 				{ path: 'customer/visitors', title: 'visitors', type: 'link' },
 				{ path: 'customer/addvisitor', title: 'Add Visitor' , type: 'link' },
 				{ path: 'customer/report', title: 'My Report' , type: 'link' },
 				
+			]		
+		},
+	
+		{ 
+			title: 'Account', type: 'sub', active: false, children: [
+				{ path: 'customer/user', title: 'View Account', type: 'link' },
+				
+				{ path: 'customer/editprofile', title: 'Edit Account', type: 'link' },
 			]		
 		},
 	
@@ -184,20 +212,16 @@ export class NavService implements OnDestroy {
 	];
 
 	LEVELMENUITEMS: Menu[] = [
-		{
-			path: 'javascript:void(0);', title: 'File Manager', icon: 'git-pull-request', type: 'extLink'
-		},
+		{ path: 'javascript:void(0);', title: 'Forgot Password', type: 'extLink' },
+				{ path: 'javascript:void(0);', title: 'Reset Password', type: 'extLink' },
 		{
 			title: 'Users', icon: 'users', type: 'sub', active: false, children: [
-				{ path: 'javascript:void(0);', title: 'All Users', icon: 'users', type: 'extLink' },
+			
 				{ path: 'javascript:void(0);', title: 'User Profile', icon: 'users', type: 'extLink' },
 				{ path: 'javascript:void(0);', title: 'Edit Profile', icon: 'users', type: 'extLink' },
 			]
 		},
-		{ path: 'javascript:void(0);', title: 'Bookmarks', icon: 'heart', type: 'extLink' },
-		{ path: 'javascript:void(0);', title: 'Calender', icon: 'calendar', type: 'extLink' },
-		{ path: 'javascript:void(0);', title: 'Social App', icon: 'zap', type: 'extLink' }
-	];
+		];
 
 	// Array
 	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);

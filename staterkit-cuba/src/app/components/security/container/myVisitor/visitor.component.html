@@ -2,17 +2,20 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card" style="width: 1100px;">
                 <div class="card-header">
                     <h5>All Visitors</h5>
                 </div>
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
-                        (keyup)="updateFilter($event)" />
+                        (keyup)="updateFilter($event)"  style="float: right"/>
                         <app-table
                         [user_data]="data"
                         [columns]="cols"
                         (checkout)="onCheckOut($event)"
+                        (view)="onView($event)"
+                        [collectionSize]="collectionSize"
+                        (refreshcountries)=refreshCountries()
                         >
                         </app-table>
                 </div>

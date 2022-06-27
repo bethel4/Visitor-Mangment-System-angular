@@ -16,31 +16,31 @@ import { ToastrService } from 'ngx-toastr';
 export class SecurityComponent implements OnInit {
   someSubscription: any;
   data: any;
-
+  page = 1;
+  pageSize = 3;
   cols = [
-    { name: 'id', label:'S.NO'},
-    { name: 'visitor', label:'Visitor'},
-    { name: 'address', label:'Address'},
-    { name: 'reason', label:'Reason'},
-    { name:'contact_number', label: 'Mobile'},
-    { name: 'timein', label:'Timein'},
-    { name: 'timeout' ,label:'Timeout'},
-    { name: 'approval_status', label:'ApprovalStatus'},
-    { name: 'approval_time', label:'Approval Time'},
+    { name: 'visitor', label: 'Visitor' },
+    // { name: 'address', label:'Address'},
+    // { name: 'reason', label:'Reason'},
+    // { name:'contact_number', label: 'Mobile'},
+    { name: 'customer_name', label: 'Customer' },
+    { name: 'timein', label: 'Timein' },
+    { name: 'timeout', label: 'Timeout' },
+    { name: 'approval_status', label: 'ApprovalStatus' },
+    { name: 'approved_time', label: 'Approval Time' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   ColumnMode = ColumnMode;
   interval: number;
+  collectionSize: number;
 
   constructor(
     private service: VistiorService,
     private query: VisitorQuery,
     private router: Router,
     public toster: ToastrService
-  ) {
-    
-  }
+  ) {}
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
@@ -58,7 +58,7 @@ export class SecurityComponent implements OnInit {
 
   getRequest() {
     let datas = [];
-    this.service.getRequest().subscribe((data) => {
+    this.service.get().subscribe((data) => {
       console.log(data);
       if (data.status) {
         console.log('kkk');
@@ -66,41 +66,82 @@ export class SecurityComponent implements OnInit {
           datas.push({
             id: data.data[i].id,
             visitor: data.data[i].visitor,
-             contact_number:data.data[i].contact_number,
+            contact_number: data.data[i].contact_number,
             approval_status: data.data[i].approval_status,
-            customer: data.data[i].customer_name,
+            customer_name: data.data[i].customer_name,
             address: data.data[i].address,
             timein: data.data[i].time_in,
             timeout: data.data[i].time_out,
             reason: data.data[i].reason,
-            approval_time: data.data[i].approval_time,
+            approved_time: data.data[i].approved_time,
+            created: data.data[i].created,
           });
         }
         this.data = datas;
+        this.collectionSize = datas.length;
       }
     });
   }
   ngOnInit(): void {
     this.getRequest();
-    this.interval = setInterval(() => { this.getRequest(); }, 5000);
-   
-   }
-   ngOnDestroy() {
-     if (this.interval) {
-       clearInterval(this.interval);
-     }
-   }
+    this.interval = setInterval(() => {
+      this.getRequest();
+    }, 5000);
+  }
+  refreshCountries() {
+    console.log(this.data);
+    this.data
+      .map((data, i) => ({ id: i + 1, ...data }))
+      .slice(
+        (this.page - 1) * this.pageSize,
+        (this.page - 1) * this.pageSize + this.pageSize
+      );
+  }
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
   onCheckOut(event: any): void {
-    let datas = [];
     console.log(event);
     var date = moment().format('YYYY-MM-DD HH:mm:ss');
     const selectedId = event.id;
     let data = {
       id: selectedId,
-      exitTime: date,
+      time: date,
+      status: 0,
     };
-    console.log('sada');
-    this.service.updateTime(data).subscribe();
-    this.getRequest();
+
+    this.service.updateTime(data).subscribe((result) => {
+      if (result.status) {
+        this.getRequest();
+        this.toster.success(result.message);
+      } else {
+        this.toster.error(result.message);
+      }
+    });
+  }
+  onCheckIn(event: any): void {
+    console.log(event);
+    var date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const selectedId = event.id;
+    let data = {
+      id: selectedId,
+      time: date,
+      status: 1,
+    };
+
+    this.service.updateTime(data).subscribe((result) => {
+      if (result.status) {
+        this.getRequest();
+        this.toster.success(result.message);
+      } else {
+        this.toster.error(result.message);
+      }
+    });
+  }
+  onView(row) {
+    console.log(row);
+    this.router.navigate(['security/visitor_detail', row.id]);
   }
 }

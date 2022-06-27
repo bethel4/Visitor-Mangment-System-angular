@@ -321,7 +321,7 @@ class LoginComponent {
         this.service.login(contact_number, password).subscribe((res) => {
             if (res.status == 1) {
                 if (this.query.isRole() == 'Admin' || this.query.isRole() == 'Super Admin') {
-                    this.router.navigate(["/admin"]);
+                    this.router.navigate(["/SuperAdmin"]);
                 }
                 else if (this.query.isRole() == 'Security') {
                     this.router.navigate(["/security"]);

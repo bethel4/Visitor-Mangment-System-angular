@@ -22,7 +22,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CountToModule } from 'angular-count-to';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule } from '@agm/core'
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -48,6 +49,7 @@ import { AgmCoreModule } from '@agm/core';
     CountToModule,
     SharedModule,
     AdminRoutingModule,
+    RouterModule,
     NgxDatatableModule,
     NgbModule,
     NgSelectModule,
