@@ -6,9 +6,15 @@ import { CustomerRoutingModule } from './customer.routing.module'
 import { CustomerComponent } from './container/customer/customer.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+<<<<<<< HEAD
 import { VisitorsComponent } from './container/myVisitor/visitor.component'
 import { VisitorFormComponent } from './ui/visitorform/visitorform.component';
 import { VisitiorProfileComponent } from './container/visitor-detail/visitor-profile.component';
+=======
+import { VisitorsComponent } from '../customer/container/myVisitor/visitor.component';
+import { VisitorFormComponent } from './ui/visitorform/visitorform.component';
+import { VisitiorProfileComponent } from '../customer/container/visitor-detail/visitor-profile.component';
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
 
 @NgModule({
   imports: [

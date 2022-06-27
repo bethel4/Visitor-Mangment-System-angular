@@ -3,8 +3,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { SessionQuery } from 'src/app/auth/state/session.query';
 import { companyDB } from '../../../shared/tables/company';
+<<<<<<< HEAD
 import * as chartData from './data/adminReports';
 import { AdminService } from './state/admin.service';
+=======
+import * as chartData from '../dashboard/data/adminReports';
+import { AdminService } from '../dashboard/state/admin.service';
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
 let primary = localStorage.getItem('primary_color') ||'skyblue';
 let secondary = localStorage.getItem('secondary_color')||'#a927f9';
 let teriary = localStorage.getItem('secondary_color')||'#a26cf8';
@@ -21,8 +26,12 @@ export class AdminComponent implements OnInit {
   public lat_m1: number = 20.593683;
   public lng_m1: number = 78.962883;
   public zoom_m1: number = 4;
+<<<<<<< HEAD
   constructor(private service: AdminService,private query:SessionQuery) {}
   role= this.query.isRole()
+=======
+  constructor(private service: AdminService) {}
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   data = [];
   value=[]
   sum:number = 0;
@@ -46,16 +55,34 @@ for(let i=0;i<= 7;i++){
       
       this.total=res.total
       this.data=res.daily_report[0]
+<<<<<<< HEAD
       for (let index = 0; index < 7; index++) {   
      this.value[index]=this.data["day_"+index]
         this.sum=this.sum + parseInt(this.value[index])
       }
       this.data= res.weekly_report
+=======
+     
+      for (let index = 0; index < 7; index++) {
+          console.log('ll')
+     this.value[index]=this.data["day_"+index]
+     console.log(this.data["day_"+index])
+        this.sum=this.sum + parseInt(this.value[index])
+       
+        console.log(typeof(this.sum),this.sum)
+      }
+      this.data= res.weekly_report
+     console.log(this.data)
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
       for (let index = 0; index <3; index++) {
         this.valueWeeks[index]=this.data[index]['week_'+index].total
         this.weekdata[index]=this.data[index]['week_'+index].day
            this.sumWeeks=this.sumWeeks+parseInt(this.valueWeeks[index])
          }
+<<<<<<< HEAD
+=======
+         console.log( this.weekdata)
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
       this. totalVisit = {
         series: [{
             name: 'Visitor',
@@ -219,10 +246,16 @@ data:[ 0, this.valueWeeks[1], this.valueWeeks[0]]
       colors: [primary, secondary, teriary],
   };
 
+<<<<<<< HEAD
 
     })
   }
 
 
 
+=======
+    })
+  }
+
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
 }

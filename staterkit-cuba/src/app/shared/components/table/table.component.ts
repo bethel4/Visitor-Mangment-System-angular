@@ -1,6 +1,7 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { SessionQuery } from 'src/app/auth/state/session.query';
+<<<<<<< HEAD
 import { Column } from './model/column.model';
 const COUNTRIES: any[] = [
   {
@@ -82,12 +83,16 @@ const COUNTRIES: any[] = [
     population: 1409517397
   }
 ];
+=======
+import { Column } from '../../components/table/model/column.model';
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
+<<<<<<< HEAD
 
 export class TableComponent implements OnInit {
   @Input() user_data: any;
@@ -95,10 +100,17 @@ export class TableComponent implements OnInit {
   @Input() collectionSize:any
   @Output() onedit = new EventEmitter<any>();
   @Output() refreshcountries = new EventEmitter<any>();
+=======
+export class TableComponent implements OnInit {
+  @Input() user_data: any;
+  @Input() columns: Column[];
+  @Output() onedit = new EventEmitter<any>();
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   @Output() ondelete = new EventEmitter<any>();
   @Output() onapprove = new EventEmitter<any>();
   @Output() onreject = new EventEmitter<any>();
   @Output() checkout = new EventEmitter<any>();
+<<<<<<< HEAD
   @Output() checkin = new EventEmitter<any>();
   @Output() view = new EventEmitter<any>();
   
@@ -122,6 +134,16 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.user_data)
     if (this.columns[2].name == 'reason') {
+=======
+  @Output() view = new EventEmitter<any>();
+  hide = false;
+  buttonHide = true;
+  check=true;
+  constructor(private query: SessionQuery) {}
+
+  ngOnInit(): void {
+    if (this.columns[4].name == 'reason') {
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
       this.hide = true;
     }
     if (this.query.isRole() == 'Customer') {
@@ -141,7 +163,11 @@ export class TableComponent implements OnInit {
     this.onapprove.emit(data);
   }
   onReject(data: any) {
+<<<<<<< HEAD
    
+=======
+    console.log(data);
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
     this.onreject.emit(data);
   }
   onDelete(item: any) {
@@ -150,9 +176,12 @@ export class TableComponent implements OnInit {
   onCheckOut(item: any) {
     this.checkout.emit(item);
   }
+<<<<<<< HEAD
   onCheckIn(item: any) {
     this.checkin.emit(item);
   }
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   onView(item: any) {
     this.view.emit(item);
   }

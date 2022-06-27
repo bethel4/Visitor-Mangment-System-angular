@@ -21,6 +21,7 @@ data:any
   page = 1;
   pageSize = 3;
   columns = [
+<<<<<<< HEAD
     { name: 'visitor', label:'Visitor'},
     // { name:'contact_number',label:'Mobile'},
     // { name: 'address', label:'Address'},
@@ -30,6 +31,18 @@ data:any
     { name: 'time_out' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
     {name: 'approved_time', label:'ApprovalTime'}
+=======
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    { name:'security_name',label:'Security Name'},
+    { name: 'Timein', label:'Timein'},
+    { name: 'Timeout' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    {name: 'approved_time', label:'Approval Time'}
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -87,18 +100,32 @@ data:any
             reason: data.data[i].reason,
             customer_name: data.data[i].customer_name,
             security_name: data.data[i].security_name,
+<<<<<<< HEAD
             time_in: data.data[i].time_in,
             time_out: data.data[i].time_out,
+=======
+            timein: data.data[i].time_in,
+            timeout: data.data[i].time_out,
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
             approval_status: data.data[i].approval_status,
             approved_time: data.data[i].approved_time,
           });
         }
+<<<<<<< HEAD
         this.collectionSize= datas.length
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
         return this.data = datas;
       } else {
         return this.data = [];
       }
     });
+<<<<<<< HEAD
+=======
+  }
+  ngOnInit(): void {
+this.get()
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   }
   ngOnInit(): void {
 this.get()

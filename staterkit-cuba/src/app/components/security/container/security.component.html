@@ -8,14 +8,21 @@
                 </div>
                 <div class="card-body custom-datatable">
                     <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
+<<<<<<< HEAD
                         (keyup)="updateFilter($event)"  style="float: right"/>
+=======
+                        (keyup)="updateFilter($event)" />
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
                         <app-table
                         [user_data]="data"
                         [columns]="cols"
                         (checkout)="onCheckOut($event)"
+<<<<<<< HEAD
                         (checkin)="onCheckIn($event)"
                         [collectionSize]="collectionSize"
                         (refreshcountries)=refreshCountries()
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
                         (view)="onView($event)"
                         >
                         </app-table>

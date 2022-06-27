@@ -19,7 +19,13 @@ export class FormComponentEdit implements OnInit {
   @Input() user: any;
   @Input() title: any;
   form: FormGroup;
+<<<<<<< HEAD
   data: any[]
+=======
+  displayMessage: { [key: string]: string } = {};
+  data: any[]
+  checkbox=true
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   isFormSubmitted = false
  role=this.query.isRole()
   PAT_NAME = "^[a-zA-Z ]{2,20}$";
@@ -36,6 +42,7 @@ export class FormComponentEdit implements OnInit {
               ) {
   const PAT_NAME = "^[a-zA-Z ]{2,20}$";
   const PAT_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$";
+<<<<<<< HEAD
                if(this.user=='client')
 {
   this.form = this.fb.group({
@@ -57,12 +64,27 @@ else{
     client_id:[, [Validators.required]]
   });
 }           
+=======
+                this.form = this.fb.group({
+                  id: this.selectedID,
+                  name: [, [Validators.required,  Validators.pattern(PAT_NAME)]],
+                  address: [, [Validators.required]],
+                  status: '1',
+                  email: [, [Validators.required,  Validators.pattern(PAT_EMAIL)]],
+                });
+            
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   }
 
   ngOnInit(): void {
     let datas=[]
+<<<<<<< HEAD
  
     if(this.user=='customer'||this.user=='security'){
+=======
+  
+    if(this.user=='customer'){
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
       this.serviceCustomer.get().subscribe((data) => {
         for (let i = 0; i < data.data.length; i++) {
           let status;
@@ -86,7 +108,10 @@ else{
         
       }); 
     }else if(this.user=='client'){
+<<<<<<< HEAD
       this.hide=false;
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
       this.serviceClint.get().subscribe((data) => {
         if (data.status === 1) {
           for (let i = 0; i < data.data.length; i++) {
@@ -106,7 +131,10 @@ else{
               email: data.data[i].email,
             });
           }
+<<<<<<< HEAD
           this.row=datas.filter(data => data.id==this.selectedID)
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
            this.data = datas;
         }
       });
@@ -117,6 +145,7 @@ else{
   }
 
   onSubmit() {
+<<<<<<< HEAD
     
    if(this.user=='client'){
      let value={
@@ -131,6 +160,10 @@ else{
     this.formSubmit.emit(this.form.value);
    }
   
+=======
+   
+    this.formSubmit.emit(this.form.value);
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
  
    
   }

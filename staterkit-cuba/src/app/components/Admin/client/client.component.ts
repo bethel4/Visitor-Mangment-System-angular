@@ -23,6 +23,10 @@ export class ClientComponent implements OnInit {
   temp = [];
 
   cols = [
+<<<<<<< HEAD
+=======
+    { name: 'id', label: 'S.NO' },
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
     { name: 'name', label: 'Name' },
     { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
@@ -86,7 +90,10 @@ export class ClientComponent implements OnInit {
           });
         }
          this.data = datas;
+<<<<<<< HEAD
          this.collectionSize= this.data.length;
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
       }
     });
   }
@@ -108,11 +115,15 @@ export class ClientComponent implements OnInit {
   }
   onSelect(row) {
     console.log(row);
+<<<<<<< HEAD
     this.router.navigate(['SuperAdmin/editclient', row.id]);
   }
   refreshCountries() {
     console.log(this.data)
     this.data.map((data, i) => ({id: i + 1, ...data}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+=======
+    this.router.navigate(['admin/editclient', row.id]);
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   }
 }

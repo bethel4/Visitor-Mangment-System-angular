@@ -46,6 +46,7 @@ export class CustomerComponent implements OnInit {
     this.table.offset = 0;
   }
   columns = [
+<<<<<<< HEAD
     { name: 'visitor', label:'Visitor'},
     // { name:'contact_number',label:'Mobile'},
     // { name: 'address', label:'Address'},
@@ -53,6 +54,17 @@ export class CustomerComponent implements OnInit {
     { name:'security_name',label:'Security'},
     { name: 'time_in', label:'Timein'},
     { name: 'time_out' ,label:'Timeout'},
+=======
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+     {name:'customer_name',label:'Customer Name'},
+    { name:'security_name',label:'Security Name'},
+    { name: 'timein', label:'Timein'},
+    { name: 'timeout' ,label:'Timeout'},
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
     { name: 'approval_status', label:'ApprovalStatus'},
     {name: 'ApprovalTime', label:'ApprovalTime'}
   ];
@@ -71,8 +83,13 @@ export class CustomerComponent implements OnInit {
             reason: data.data[i].reason,
             customer_name: data.data[i].customer_name,
             security_name: data.data[i].security_name,
+<<<<<<< HEAD
             time_in: data.data[i].time_in,
             time_out: data.data[i].time_out,
+=======
+            timein: data.data[i].time_in,
+            timeout: data.data[i].time_out,
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
             approval_status: data.data[i].approval_status,
             approvalTime: data.data[i].approval_time,
           });
@@ -118,6 +135,7 @@ export class CustomerComponent implements OnInit {
   }
   
   onReject(data: any) {
+    console.log('lll');
     let value = {
       approval_status: 'rejected',
       id: data.id,

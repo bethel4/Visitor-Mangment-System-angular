@@ -20,6 +20,10 @@ export class SecurityComponent implements OnInit {
   temp = [];
 
   cols = [
+<<<<<<< HEAD
+=======
+    { name: 'id', label: 'S.NO' },
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
     { name: 'name', label: 'Name' },
     { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
@@ -29,7 +33,10 @@ export class SecurityComponent implements OnInit {
     { name: 'status', label: 'Status' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+<<<<<<< HEAD
   collectionSize: any;
+=======
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
 
   constructor(
     private service: SecurityService,

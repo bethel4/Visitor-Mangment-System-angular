@@ -84,7 +84,11 @@
               "apexcharts/dist/apexcharts.min.js",
               "calendar-utils/date-adapters/date-fns"
             ],
+<<<<<<< HEAD
             "outputPath": "dist/VMS",
+=======
+            "outputPath": "dist/vms",
+>>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
