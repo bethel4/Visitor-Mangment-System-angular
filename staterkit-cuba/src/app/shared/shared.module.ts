@@ -28,15 +28,8 @@ import { BookmarkComponent } from './components/header/elements/bookmark/bookmar
 import { CartComponent } from './components/header/elements/cart/cart.component';
 import { MessageBoxComponent } from './components/header/elements/message-box/message-box.component';
 import { MyAccountComponent } from './components/header/elements/my-account/my-account.component';
-<<<<<<< HEAD
-import {FormComponent} from './components/form/addForm/form.component'
-import { FormComponentEdit } from './components/form/formedit/formEdit.component'
-import {EditProfileComponent} from './components/Account/components/ui/edit-profile/edit-profile.component'
-import {ProfileComponent} from './components/Account/components/container/user-profile/user-profile.component'
-=======
 import {FormComponent} from './components/form/form.component'
 import { FormComponentEdit } from '../../app/shared/components/form/formedit/formEdit.component'
->>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
 import {VisitiorDetailsComponent} from './components/visitor-details/visitor-detail.component'
 // Directives
 import { DisableKeyPressDirective } from './directives/disable-key-press.directive';
@@ -72,13 +65,7 @@ import { NavService } from './services/nav.service';
     FormComponent,
     MyAccountComponent,
     TableComponent,
-<<<<<<< HEAD
-    VisitiorDetailsComponent,
-    ProfileComponent,
-    EditProfileComponent
-=======
     VisitiorDetailsComponent
->>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
   ],
   imports: [
     CommonModule,
@@ -104,10 +91,6 @@ import { NavService } from './services/nav.service';
     TranslateModule,
     TableComponent,
     LoaderComponent,
-<<<<<<< HEAD
-    ProfileComponent,
-=======
->>>>>>> 311272ad4dc7bb93a7ed4348ac26ab148663e9d4
     FormComponentEdit,
     VisitiorDetailsComponent,
     NgxPrintModule,
