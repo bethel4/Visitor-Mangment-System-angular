@@ -1,16 +1,14 @@
 <!-- Page Sidebar Start-->
 <div class="logo-wrapper" >
   <a routerLink="{{route}}">
-    <img src="assets/images/logo/logo-res.png" alt=""height="40"  />
+    <img src="assets/images/logo/logo-res.png" alt=""height="30"  />
 
   </a>
-  <div class="back-btn" (click)="sidebarToggle()">
+  <div class="back-btn" >
     <i class="fa fa-angle-left"></i>
   </div>
 
-  <div class="toggle-sidebar" (click)="sidebarToggle()">
-    <app-feather-icons [icon]="'grid'" class="status_toggle middle sidebar-toggle"></app-feather-icons>
-  </div>
+
 </div>
 <div class="logo-icon-wrapper">
   <a href="javascript:void(0)">
@@ -28,7 +26,7 @@
         <a href="javascript:void(0)">
           <img src="assets/images/logo/logo-res.jpg" alt="test"/>
         </a>
-        <div class="mobile-back text-right" (click)="sidebarToggle()">
+        <div class="mobile-back text-right" >
           <span>Back</span>
           <i class="fa fa-angle-right pl-2" aria-hidden="true"></i>
         </div>

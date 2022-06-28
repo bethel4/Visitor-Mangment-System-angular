@@ -21,10 +21,9 @@ export class SecurityComponent implements OnInit {
 
   cols = [
     { name: 'name', label: 'Name' },
-    { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
     { name: 'contact_number', label: 'Mobile' },
-    { name: 'clientName', label: 'Client Name' },
+    { name: 'clientName', label: ' Name' },
     { name: 'created', label: 'Created' },
     { name: 'status', label: 'Status' },
   ];

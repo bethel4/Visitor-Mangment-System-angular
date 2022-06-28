@@ -13,6 +13,7 @@ import { SecurityFormEditComponent } from './security/ui/security-form/editsecur
 import {AdminComponent} from './dashboard/admin.component'
 import { ProfileComponent } from 'src/app/shared/components/Account/components/container/user-profile/user-profile.component';
 import { EditProfileComponent } from 'src/app/shared/components/Account/components/ui/edit-profile/edit-profile.component';
+import { VisitiorProfileComponent } from '../security/container/visitor-detail/visitor-profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -68,7 +69,11 @@ const routes: Routes = [
       {
         path: 'editsecurity/:id',
         component: SecurityFormEditComponent,
-      }
+      },
+      {
+        path: 'visitor_detail/:id',
+        component: VisitiorProfileComponent
+          }
     ],
   },
 ];

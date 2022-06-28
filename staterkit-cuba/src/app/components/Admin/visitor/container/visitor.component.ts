@@ -18,12 +18,10 @@ export class VisitorComponent implements OnInit {
   data: any;
   temp = [];
 
-  columns = [
+  cols = [
     { name: 'visitor', label: 'Visitor' },
     { name: 'contact_number', label: 'Mobile' },
     { name: 'reason', label: 'Reason' },
-    { name: 'customer_name', label: 'Customer ' },
-    { name: 'security_name', label: 'Security' },
     { name: 'Timein', label: 'Timein' },
     { name: 'Timeout', label: 'Timeout' },
     { name: 'approval_status', label: 'ApprovalStatus' },
@@ -95,5 +93,9 @@ export class VisitorComponent implements OnInit {
         (this.page - 1) * this.pageSize,
         (this.page - 1) * this.pageSize + this.pageSize
       );
+  }
+  onView(row){
+    console.log(row.id);
+    this.router.navigate(['SuperAdmin/visitor_detail',row.id])
   }
 }

@@ -106,6 +106,7 @@ export class TableComponent implements OnInit {
   buttonHide = true;
   checkhide=false;
   check=true;
+  views: boolean= true;
   constructor(private query: SessionQuery) {}
   page = 1;
   pageSize = 3;
@@ -123,14 +124,17 @@ export class TableComponent implements OnInit {
     console.log(this.user_data)
     if (this.columns[2].name == 'reason') {
       this.hide = true;
+      this.views = false;
     }
     if (this.query.isRole() == 'Customer') {
       this.buttonHide = false;
       this.hide = true;
+      this.views=false;
     }
     if(this.query.isRole()=='Security'){
       this.check= false
       this.hide = true;
+      this.views=false;
     }
   }
 

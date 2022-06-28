@@ -62,7 +62,7 @@ for(let i=0;i<= 7;i++){
             data: this.value
         }],
         chart: {
-            height: 105,
+            height: 90,
             type: 'bar',
             stacked: true,
             toolbar: {
@@ -163,7 +163,7 @@ data:[ 0, this.valueWeeks[1], this.valueWeeks[0]]
   
       }],
       chart: {
-          height: 100,
+          height: 130,
           type: 'area',
           toolbar: {
               show: false

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, ViewEncapsulation, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Menu, NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
@@ -10,7 +10,7 @@ import { SessionQuery } from 'src/app/auth/state/session.query';
   styleUrls: ['./sidebar.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
   public iconSidebar;
   public menuItems: Menu[];
@@ -158,8 +158,10 @@ export class SidebarComponent {
     }
     item.active = !item.active;
   }
-
-
+ngOnInit()
+{
+  this.navServices.collapseSidebar = !this.navServices.collapseSidebar;
+}
   // For Horizontal Menu
   scrollToLeft() {
     if (this.margin >= -this.width) {

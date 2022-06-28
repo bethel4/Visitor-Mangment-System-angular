@@ -1,20 +1,22 @@
-<app-breadcrumb></app-breadcrumb>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 50px;">
     <div class="row">
-        <div style="padding-top:30px"><h2>List All Visitors</h2></div>
+     
+   
         <div class="col-sm-12">
-            <div class="card" style="width: 1050px;">
-                <div class="card-body custom-datatable">
-                    <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
-                        (keyup)="updateFilter($event)" style="float: right;" />
+            <div class="card shadow-lg  bg-body rounded" >
+            
+                <div class="card-body pt-2 ">
+                    <input type="text" class="filter-ngx form-control mb-3" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" style="float: right; width: 300px;" />
                         <app-table
                         [user_data]="data"
-                        [columns]="columns"
+                        [columns]="cols"
                         [collectionSize]="collectionSize"
                         (refreshcountries)=refreshCountries()
-                        >
+                        (view)="onView($event)"
+                       >
                         </app-table>
-                </div>
+                  </div>
             </div>
         </div>
     </div>

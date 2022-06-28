@@ -24,7 +24,6 @@ export class ClientComponent implements OnInit {
 
   cols = [
     { name: 'name', label: 'Name' },
-    { name: 'email', label: 'Email' },
     { name: 'address', label: 'Adress' },
     { name: 'contact_number', label: 'Mobile' },
     { name: 'created', label: 'Created' },
