@@ -35,7 +35,11 @@ title='Add Customer';
     this.service.add(formVlaue).subscribe((res:any)=>{
       if (res.status == 1) {
         this.toster.success(res.message);
+<<<<<<< HEAD
         this.router.navigate(['SuperAdmin/customers'])
+=======
+        this.router.navigate(['admin/customers'])
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
       } else {
         this.toster.error(res.message);
       }

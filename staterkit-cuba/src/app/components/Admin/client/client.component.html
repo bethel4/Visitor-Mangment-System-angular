@@ -8,6 +8,7 @@
         </button></a>
       </div>
         <div class="col-sm-12">
+<<<<<<< HEAD
             <div class="card shadow-lg  bg-body rounded" >
             
                 <div class="card-body pt-2 " style="width:1150">
@@ -75,9 +76,29 @@
                             <option [ngValue]="6">6 items per page</option>
                           </select>
                         </div>
+=======
+            <div class="card">
+                <div class="" style="width: 150px; padding-top: 30px; padding-left: 20px;">
+                  <a routerLink="/admin/addclient">  <button  class="btn btn-primary btn-block" 
+                    type="button"><span>Add New</span>
+                  </button></a>
+                </div>
+                <div class="card-body custom-datatable">
+                    <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" />
+                    <app-table
+                    [user_data]="data"
+                    [columns]="cols"
+                    (onedit)="onSelect($event)"
+                    (ondelete)="onDelete($event)">
+                    </app-table>
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
                   </div>
             </div>
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c

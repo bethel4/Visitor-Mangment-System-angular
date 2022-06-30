@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionQuery } from 'src/app/auth/state/session.query';
+<<<<<<< HEAD
+=======
+import { CustomerService } from 'src/app/components/Admin/customer/state/customer.service';
+import { SecurityService } from 'src/app/components/Admin/security/state/security.service';
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 import { VistiorService } from 'src/app/components/Admin/visitor/state/vistior.service';
 import { NavService, Menu } from '../../../../services/nav.service';
 
@@ -17,6 +22,7 @@ export class SearchComponent implements OnInit {
   public searchResultEmpty: boolean = false;
   public text: string;
 
+<<<<<<< HEAD
   constructor(public navServices: NavService ,private service:VistiorService,private query: SessionQuery,) {
     if(this.query.isRole()=='Customer'){
       this.service.get().subscribe(menuItems =>  this.items = menuItems.data);
@@ -26,11 +32,25 @@ export class SearchComponent implements OnInit {
       this.service.get().subscribe(menuItems => this.items = menuItems.data);
     }
    // this.navServices.items.subscribe(menuItems => this.items = menuItems);
+=======
+  constructor(public navServices: NavService,
+              private service:VistiorService,
+              private query: SessionQuery,) {
+                if(this.query.isRole()=='Customer'){
+                  this.service.get().subscribe(menuItems =>  this.items = menuItems.data);
+                }else if(this.query.isRole()=='Security'){
+                  this.service.get().subscribe(menuItems => this.items = menuItems.data);
+                }
+   
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   }
 
   ngOnInit() {
     this.service.get().subscribe(menuItems => {console.log(menuItems.data)});
+<<<<<<< HEAD
 
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   }
 
   searchToggle() {
@@ -44,7 +64,11 @@ export class SearchComponent implements OnInit {
     term = term.toLowerCase();
     this.items.filter(menuItems => {
       if (!menuItems?.visitor||!menuItems.id) return false
+<<<<<<< HEAD
       if (menuItems.visitor.toLowerCase().includes(term)||menuItems.contact_number.includes(term)) {
+=======
+      if (menuItems.visitor.toLowerCase().includes(term)||menuItems.id.includes(term)) {
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 
         items.push(menuItems);
         console.log(items)

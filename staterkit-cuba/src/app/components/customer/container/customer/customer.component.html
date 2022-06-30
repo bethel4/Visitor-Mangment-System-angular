@@ -1,5 +1,6 @@
 <div class="container-fluid" style="padding-top: 50px;">
     <div class="row">
+<<<<<<< HEAD
   
       <div class="pb-3" style=" padding-top: 30px; padding-left: 15px;">
         <a routerLink="/SuperAdmin/addcustomer"> <button class="btn btn-primary btn-block" type="button"><span>Create New Request</span>
@@ -64,6 +65,25 @@
                 <option [ngValue]="3">3 items per page</option>
                 <option [ngValue]="6">6 items per page</option>
               </select>
+=======
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Visitors on waiting</h5>
+                </div>
+                <div class="card-body custom-datatable">
+                    <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" />
+                        <app-table
+                        [user_data]="data"
+                        [columns]="columns"
+                        (onapprove)="onApprove($event)"
+                        (onreject)="onReject($event)"
+                        (view)="onView($event)"
+                        >
+                        </app-table>
+                </div>
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
             </div>
           </div>
         </div>

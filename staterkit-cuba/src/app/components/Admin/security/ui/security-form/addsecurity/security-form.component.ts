@@ -35,7 +35,11 @@ export class SecurityFormComponent implements OnInit {
      this.service.add(formValue).subscribe((res:any)=>{
        if (res.status == 1) {
          this.toster.success(res.message);
+<<<<<<< HEAD
          this.router.navigate(['SuperAdmin/security'])
+=======
+         this.router.navigate(['admin/security'])
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
        } else {
          this.toster.error(res.message);
        }

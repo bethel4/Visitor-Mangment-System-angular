@@ -22,6 +22,7 @@ export class SecurityComponent implements OnInit {
   pageSize = 3;
 
   cols = [
+<<<<<<< HEAD
     { name: 'visitor', label: 'Visitor' },
     // { name: 'address', label:'Address'},
     // { name: 'reason', label:'Reason'},
@@ -31,6 +32,18 @@ export class SecurityComponent implements OnInit {
     { name: 'timeout', label: 'Timeout' },
     { name: 'approval_status', label: 'ApprovalStatus' },
     { name: 'approved_time', label: 'Approval Time' },
+=======
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    { name:'contact_number', label: 'Mobile'},
+    {name:'customer_name',label: 'Customer Name'},
+    { name: 'timein', label:'Timein'},
+    { name: 'timeout' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    { name: 'approved_time', label:'Approval Time'},
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -69,7 +82,11 @@ export class SecurityComponent implements OnInit {
           datas.push({
             id: data.data[i].id,
             visitor: data.data[i].visitor,
+<<<<<<< HEAD
             contact_number: data.data[i].contact_number,
+=======
+             contact_number:data.data[i].contact_number,
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
             approval_status: data.data[i].approval_status,
             customer_name: data.data[i].customer_name,
             address: data.data[i].address,
@@ -89,6 +106,7 @@ export class SecurityComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getRequest();
+<<<<<<< HEAD
     this.interval = setInterval(() => {
       this.getRequest();
     }, 5000);
@@ -116,11 +134,24 @@ export class SecurityComponent implements OnInit {
 
 
   onCheckInAlert(event) {
+=======
+    this.interval = setInterval(() => { this.getRequest(); }, 5000);
+   
+   }
+   ngOnDestroy() {
+     if (this.interval) {
+       clearInterval(this.interval);
+     }
+   }
+  onCheckOut(event: any): void {
+    console.log(event);
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
     var date = moment().format('YYYY-MM-DD HH:mm:ss');
     const selectedId = event.id;
     let data = {
       id: selectedId,
       time: date,
+<<<<<<< HEAD
       status: 1,
     };
 
@@ -162,5 +193,43 @@ export class SecurityComponent implements OnInit {
       }
     });
   
+=======
+      status:0
+    };
+    
+    this.service.updateTime(data).subscribe(result => {
+      if(result.status){
+        this.getRequest();
+        this.toster.success(result.message);
+      }else{
+        this.toster.error(result.message);
+      }
+    });
+   
+  }
+  onCheckIn(event: any): void {
+    console.log(event);
+    var date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const selectedId = event.id;
+    let data = {
+      id: selectedId,
+      time: date,
+      status:1
+    };
+    
+    this.service.updateTime(data).subscribe(result => {
+      if(result.status){
+        this.getRequest();
+        this.toster.success(result.message);
+      }else{
+        this.toster.error(result.message);
+      }
+    });
+   
+  }
+  onView(row){
+    console.log(row);
+    this.router.navigate(['security/visitor_detail',row.id])
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   }
 }

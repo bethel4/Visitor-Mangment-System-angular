@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container-fluid" style="padding-top: 50px;">
   <div class="row">
 
@@ -86,6 +87,29 @@
           <h3 class="pt-3"
             style=" color:#B9B9C3;font-family:Montserrat, Helvetica, Arial;font-size: 1rem;font-weight: 400;">Showing 1
             to {{data.length}} of {{data.length}} enteries</h3>
+=======
+<app-breadcrumb ></app-breadcrumb>
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5> Today Vsitior</h5>
+                </div>
+                <div class="card-body custom-datatable">
+                    <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" />
+                        <app-table
+                        [user_data]="data"
+                        [columns]="cols"
+                        (checkout)="onCheckOut($event)"
+                        (checkin)="onCheckIn($event)"
+                        (view)="onView($event)"
+                        >
+                        </app-table>
+                </div>
+            </div>
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
         </div>
       </div>
     </div>

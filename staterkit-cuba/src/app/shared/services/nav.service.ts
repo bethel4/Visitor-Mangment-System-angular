@@ -137,6 +137,7 @@ export class NavService implements OnDestroy {
 	},
 			{ 
 				title: 'security', icon: 'users', type: 'sub', active: false, children: [
+					{ path: 'security', title: 'Dahboard', type: 'link' },
 					{ path: 'security/visitors', title: 'MyVisitors', type: 'link' },
 					{ path: 'security/addRquest', title: 'Add New Request' , type: 'link' },
 					
@@ -158,7 +159,12 @@ export class NavService implements OnDestroy {
 		{ path: 'customer', title: ' Dashboard' ,icon:'home', type: 'link' },
 		{ 
 			title: 'Customer', icon: 'users', type: 'sub', active: false, children: [
+<<<<<<< HEAD
 				{ path: 'customer/visitors', title: 'visitors', type: 'link' },
+=======
+				{ path: 'customer', title: 'Dahboard', type: 'link' },
+				{ path: 'customer/visitors', title: 'Visitors', type: 'link' },
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 				{ path: 'customer/addvisitor', title: 'Add Visitor' , type: 'link' },
 				{ path: 'customer/report', title: 'My Report' , type: 'link' },
 				

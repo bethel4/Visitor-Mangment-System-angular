@@ -6,8 +6,12 @@ import { full } from "./shared/routes/full.routes";
 import { content } from "./shared/routes/routes";
 import { AuthGuard } from './auth/service/auth-guard';
 import { LoginComponent } from './auth/component/login/login.component';
+<<<<<<< HEAD
 import { ResetPasswordComponent } from './auth/component/reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './auth/component/forget-password/forget-password.component';
+=======
+import {AppComponent } from './app.component'
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 const routes: Routes = [
   {
     path: '',
@@ -32,9 +36,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: content
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'login',
   }
 ];
 

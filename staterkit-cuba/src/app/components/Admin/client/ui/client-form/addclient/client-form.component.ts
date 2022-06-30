@@ -69,7 +69,11 @@ export class ClientFormComponent implements OnInit {
     this.service.add(data).subscribe((res: any) => {
       if (res.status == 1) {
         this.toster.success(res.message);
+<<<<<<< HEAD
         this.router.navigate(['SuperAdmin/clients'])
+=======
+        this.router.navigate(['admin/clients'])
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
       } else {
         this.toster.error(res.message);
       }

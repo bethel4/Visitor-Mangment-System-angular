@@ -3,6 +3,7 @@
      
    
         <div class="col-sm-12">
+<<<<<<< HEAD
             <div class="card shadow-lg  bg-body rounded" >
             
                 <div class="card-body pt-2 ">
@@ -67,6 +68,18 @@
   </select>
 </div>
                   </div>
+=======
+            <div class="card">
+                <div class="card-body custom-datatable">
+                    <input type="text" class="filter-ngx form-control" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" />
+                        <app-table
+                        [user_data]="data"
+                        [columns]="columns"
+                        >
+                        </app-table>
+                </div>
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
             </div>
         </div>
     </div>

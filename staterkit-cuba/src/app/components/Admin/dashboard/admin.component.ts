@@ -21,8 +21,12 @@ export class AdminComponent implements OnInit {
   public lat_m1: number = 20.593683;
   public lng_m1: number = 78.962883;
   public zoom_m1: number = 4;
+<<<<<<< HEAD
   constructor(private service: AdminService,private query:SessionQuery) {}
   role= this.query.isRole()
+=======
+  constructor(private service: AdminService) {}
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   data = [];
   value=[]
   sum:number = 0;
@@ -219,10 +223,16 @@ data:[ 0, this.valueWeeks[1], this.valueWeeks[0]]
       colors: [primary, secondary, teriary],
   };
 
+<<<<<<< HEAD
 
     })
   }
 
 
 
+=======
+    })
+  }
+
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 }

@@ -5,9 +5,12 @@ import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 declare var require
 const Swal = require('sweetalert2')
 
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -50,11 +53,21 @@ export class CustomerComponent implements OnInit {
     this.table.offset = 0;
   }
   columns = [
+<<<<<<< HEAD
     { name: 'visitor', label:'Visitor'},
     // { name:'contact_number',label:'Mobile'},
     // { name: 'address', label:'Address'},
     // { name: 'reason', label:'Reason'},
     { name:'security_name',label:'Security'},
+=======
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+     {name:'customer_name',label:'Customer Name'},
+    { name:'security_name',label:'Security Name'},
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
     { name: 'time_in', label:'Timein'},
     { name: 'time_out' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
@@ -140,6 +153,7 @@ export class CustomerComponent implements OnInit {
     console.log(row.id);
     this.router.navigate(['customer/visitor_detail',row.id])
   }
+<<<<<<< HEAD
 
   onRequest(user:any) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -178,4 +192,6 @@ export class CustomerComponent implements OnInit {
       }
     })
   }
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 }

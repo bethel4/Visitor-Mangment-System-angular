@@ -22,15 +22,27 @@ export class SecurityComponent implements OnInit {
   temp = [];
 
   cols = [
+<<<<<<< HEAD
     { name: 'name', label: 'Name' },
     { name: 'address', label: 'Adress' },
     { name: 'contact_number', label: 'Mobile' },
     { name: 'client_name', label: ' Name' },
+=======
+    { name: 'id', label: 'S.NO' },
+    { name: 'name', label: 'Name' },
+    { name: 'email', label: 'Email' },
+    { name: 'address', label: 'Adress' },
+    { name: 'contact_number', label: 'Mobile' },
+    { name: 'clientName', label: 'Client Name' },
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
     { name: 'created', label: 'Created' },
     { name: 'status', label: 'Status' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+<<<<<<< HEAD
   collectionSize: any;
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 
   constructor(
     private service: SecurityService,
@@ -81,6 +93,10 @@ export class SecurityComponent implements OnInit {
           name: data.data[i].name,
           contact_number:data.data[i].contact_number,
           status: status,
+<<<<<<< HEAD
+=======
+          clientName:data.data[i].client_name,
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
           address: data.data[i].address,
           email:data.data[i].email,
           created:data.data[i].created,

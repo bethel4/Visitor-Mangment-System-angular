@@ -2,6 +2,7 @@ import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { SessionQuery } from 'src/app/auth/state/session.query';
 import { Column } from './model/column.model';
+<<<<<<< HEAD
 const COUNTRIES: any[] = [
   {
     name: 'Russia',
@@ -82,12 +83,15 @@ const COUNTRIES: any[] = [
     population: 1409517397
   }
 ];
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
+<<<<<<< HEAD
 
 export class TableComponent implements OnInit {
   @Input() user_data: any;
@@ -98,10 +102,23 @@ export class TableComponent implements OnInit {
   @Output() ondelete = new EventEmitter<any>();
   @Output() view = new EventEmitter<any>();
   
+=======
+export class TableComponent implements OnInit {
+  @Input() user_data: any;
+  @Input() columns: Column[];
+  @Output() onedit = new EventEmitter<any>();
+  @Output() ondelete = new EventEmitter<any>();
+  @Output() onapprove = new EventEmitter<any>();
+  @Output() onreject = new EventEmitter<any>();
+  @Output() checkout = new EventEmitter<any>();
+  @Output() checkin = new EventEmitter<any>();
+  @Output() view = new EventEmitter<any>();
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   hide = false;
   buttonHide = true;
   checkhide=false;
   check=true;
+<<<<<<< HEAD
   views: boolean= true;
   constructor(private query: SessionQuery) {}
   page = 1;
@@ -117,14 +134,49 @@ export class TableComponent implements OnInit {
 
 
   ngOnInit(): void {
+=======
+  constructor(private query: SessionQuery) {}
+
+  ngOnInit(): void {
+    if (this.columns[4].name == 'reason') {
+      this.hide = true;
+    }
+    if (this.query.isRole() == 'Customer') {
+      this.buttonHide = false;
+      this.hide = true;
+    }
+    if(this.query.isRole()=='Security'){
+      this.check= false
+      this.hide = true;
+    }
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   }
 
   onEdit(item: any) {
     this.onedit.emit(item);
   }
+<<<<<<< HEAD
   onDelete(item: any) {
     this.ondelete.emit(item);
   }
+=======
+  onApprove(data: any) {
+    this.onapprove.emit(data);
+  }
+  onReject(data: any) {
+   
+    this.onreject.emit(data);
+  }
+  onDelete(item: any) {
+    this.ondelete.emit(item);
+  }
+  onCheckOut(item: any) {
+    this.checkout.emit(item);
+  }
+  onCheckIn(item: any) {
+    this.checkin.emit(item);
+  }
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   onView(item: any) {
     this.view.emit(item);
   }

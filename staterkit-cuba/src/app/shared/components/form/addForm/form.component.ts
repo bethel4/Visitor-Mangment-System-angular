@@ -51,7 +51,11 @@ export class FormComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(
+<<<<<<< HEAD
             /^\(?([0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+=======
+            /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
           ),
         ],
       ],
@@ -59,7 +63,11 @@ export class FormComponent implements OnInit {
       address: [, [Validators.required]],
       status: '1',
       email: [, [Validators.required, Validators.pattern(this.PAT_EMAIL)]],
+<<<<<<< HEAD
      // password: [, [Validators.required, Validators.minLength(6)]],
+=======
+      password: [, [Validators.required, Validators.minLength(6)]],
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
       appointment_date: [, [Validators.required]],
       entry_status: [, [Validators.required]],
       visitor_role: [, Validators.required],
@@ -91,10 +99,13 @@ export class FormComponent implements OnInit {
         }
       });
     }
+<<<<<<< HEAD
     if (this.role == 'Client') {
       this.hide = false;
       
     }
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
     if (this.role == 'Customer' || this.role == 'Security') {
       this.hide = false;
       this.serviceCustomer.get().subscribe((data) => {
@@ -119,7 +130,11 @@ export class FormComponent implements OnInit {
         id: this.form.value.id,
         name: this.form.value.name,
         contact_number: this.form.value.contact_number,
+<<<<<<< HEAD
        // password: this.form.value.password,
+=======
+        password: this.form.value.password,
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
         address: this.form.value.address,
         email: this.form.value.email,
         status: this.form.value.status,
@@ -176,9 +191,14 @@ export class FormComponent implements OnInit {
   }
 
   onCancel() {
+<<<<<<< HEAD
     this.form.reset();
   }
 
+=======
+    this.formClose.emit();
+  }
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   changeWebsite(e: any) {
     e.target.value == 'delviery'
       ? (this.checkboxhide = true)

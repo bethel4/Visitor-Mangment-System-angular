@@ -30,8 +30,11 @@ import { MessageBoxComponent } from './components/header/elements/message-box/me
 import { MyAccountComponent } from './components/header/elements/my-account/my-account.component';
 import {FormComponent} from './components/form/addForm/form.component'
 import { FormComponentEdit } from './components/form/formedit/formEdit.component'
+<<<<<<< HEAD
 import {EditProfileComponent} from './components/Account/components/ui/edit-profile/edit-profile.component'
 import {ProfileComponent} from './components/Account/components/container/user-profile/user-profile.component'
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 import {VisitiorDetailsComponent} from './components/visitor-details/visitor-detail.component'
 // Directives
 import { DisableKeyPressDirective } from './directives/disable-key-press.directive';
@@ -67,9 +70,13 @@ import { NavService } from './services/nav.service';
     FormComponent,
     MyAccountComponent,
     TableComponent,
+<<<<<<< HEAD
     VisitiorDetailsComponent,
     ProfileComponent,
     EditProfileComponent
+=======
+    VisitiorDetailsComponent
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   ],
   imports: [
     CommonModule,
@@ -95,7 +102,10 @@ import { NavService } from './services/nav.service';
     TranslateModule,
     TableComponent,
     LoaderComponent,
+<<<<<<< HEAD
     ProfileComponent,
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
     FormComponentEdit,
     VisitiorDetailsComponent,
     NgxPrintModule,

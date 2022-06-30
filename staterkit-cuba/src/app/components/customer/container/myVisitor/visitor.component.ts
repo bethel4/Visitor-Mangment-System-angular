@@ -21,6 +21,7 @@ data:any
   page = 1;
   pageSize = 3;
   columns = [
+<<<<<<< HEAD
     { name: 'visitor', label:'Visitor'},
     // { name:'contact_number',label:'Mobile'},
     // { name: 'address', label:'Address'},
@@ -30,12 +31,27 @@ data:any
     { name: 'time_out' ,label:'Timeout'},
     { name: 'approval_status', label:'ApprovalStatus'},
     {name: 'approved_time', label:'ApprovalTime'}
+=======
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    { name:'security_name',label:'Security Name'},
+    { name: 'time_in', label:'Timein'},
+    { name: 'time_out' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    {name: 'approved_time', label:'Approval Time'}
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   ColumnMode = ColumnMode;
   interval: number;
+<<<<<<< HEAD
   collectionSize: any;
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 
   constructor(
     private service: VistiorService,
@@ -93,7 +109,10 @@ data:any
             approved_time: data.data[i].approved_time,
           });
         }
+<<<<<<< HEAD
         this.collectionSize= datas.length
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
         return this.data = datas;
       } else {
         return this.data = [];

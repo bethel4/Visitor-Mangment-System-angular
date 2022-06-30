@@ -11,9 +11,12 @@ import { SecurityFormComponent} from './security/ui/security-form/addsecurity/se
 import { CustomerFormEditComponent } from './customer/ui/customer-form/edit customer/customerEdit-form.component';
 import { SecurityFormEditComponent } from './security/ui/security-form/editsecurity/securityEdit-form.component';
 import {AdminComponent} from './dashboard/admin.component'
+<<<<<<< HEAD
 import { ProfileComponent } from 'src/app/shared/components/Account/components/container/user-profile/user-profile.component';
 import { EditProfileComponent } from 'src/app/shared/components/Account/components/ui/edit-profile/edit-profile.component';
 import { VisitiorProfileComponent } from '../security/container/visitor-detail/visitor-profile.component';
+=======
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
 const routes: Routes = [
   {
     path: '',

@@ -18,6 +18,7 @@ export class VisitorComponent implements OnInit {
   data: any;
   temp = [];
 
+<<<<<<< HEAD
   cols = [
     { name: 'name', label: 'Visitor' },
     { name: 'contact_number', label: 'Mobile' },
@@ -25,6 +26,20 @@ export class VisitorComponent implements OnInit {
     { name: 'reason', label: 'Reason' },
     { name: 'address', label: 'Address' },
     { name: 'status', label: 'ApprovalStatus' },
+=======
+  columns = [
+    { name: 'id', label:'S.NO'},
+    { name: 'visitor', label:'Visitor'},
+    { name:'contact_number',label:'Mobile'},
+    { name: 'address', label:'Address'},
+    { name: 'reason', label:'Reason'},
+    {name:'customer_name',label:'Customer Name'},
+    { name:'security_name',label:'Security Name'},
+    { name: 'Timein', label:'Timein'},
+    { name: 'Timeout' ,label:'Timeout'},
+    { name: 'approval_status', label:'ApprovalStatus'},
+    {name: 'ApprovalTime', label:'ApprovalTime'}
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -60,6 +75,7 @@ export class VisitorComponent implements OnInit {
   ngOnInit(): void {
     let datas = [];
     this.service.get().subscribe((data) => {
+<<<<<<< HEAD
       console.log(data.data);
       if (data.status === 1) {
         for (let i = 0; i < data.data.length; i++) {
@@ -79,6 +95,26 @@ export class VisitorComponent implements OnInit {
         }
         this.data = datas;
         this.collectionSize = this.data.length;
+=======
+    console.log(data.data)
+    if(data.status ===1){
+      
+      for (let i = 0; i < data.data.length; i++) {
+  
+     datas.push({
+          id: data.data[i].id,
+          visitor: data.data[i].visitor   ,
+          contact_number: data.data[i].contact_number,
+          address: data.data[i].address,
+          reason:data.data[i].reason,
+          customer_name:data.data[i].customer_name, 
+          security_name: data.data[i].security_name,
+          timein:data.data[i].created,
+         timeout: data.data[i].timeout,
+         approval_status:data.data[i].approval_status,
+          approvalTime: data.data[i].approval_time,
+        });
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
       }
     });
     console.log(this.data);

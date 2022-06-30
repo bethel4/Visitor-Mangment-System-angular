@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
-
+route:string;
   // For Horizontal Menu
   public margin: any = 0;
   public width: any = window.innerWidth;
@@ -55,7 +55,11 @@ export class SidebarComponent implements OnInit {
           });
         });
       }else if (this.query.isRole()=='Admin'||this.query.isRole()=='Super Admin') {
+<<<<<<< HEAD
         this.route='/SuperAdmin'
+=======
+        this.route='/admin'
+>>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
         this.navServices.items.subscribe(menuItems => {
           this.menuItems = menuItems;
         
