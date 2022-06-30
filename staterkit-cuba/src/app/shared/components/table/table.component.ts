@@ -96,10 +96,6 @@ export class TableComponent implements OnInit {
   @Output() onedit = new EventEmitter<any>();
   @Output() refreshcountries = new EventEmitter<any>();
   @Output() ondelete = new EventEmitter<any>();
-  @Output() onapprove = new EventEmitter<any>();
-  @Output() onreject = new EventEmitter<any>();
-  @Output() checkout = new EventEmitter<any>();
-  @Output() checkin = new EventEmitter<any>();
   @Output() view = new EventEmitter<any>();
   
   hide = false;
@@ -121,41 +117,13 @@ export class TableComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.user_data)
-    if (this.columns[2].name == 'reason') {
-      this.hide = true;
-      this.views = false;
-    }
-    if (this.query.isRole() == 'Customer') {
-      this.buttonHide = false;
-      this.hide = true;
-      this.views=false;
-    }
-    if(this.query.isRole()=='Security'){
-      this.check= false
-      this.hide = true;
-      this.views=false;
-    }
   }
 
   onEdit(item: any) {
     this.onedit.emit(item);
   }
-  onApprove(data: any) {
-    this.onapprove.emit(data);
-  }
-  onReject(data: any) {
-   
-    this.onreject.emit(data);
-  }
   onDelete(item: any) {
     this.ondelete.emit(item);
-  }
-  onCheckOut(item: any) {
-    this.checkout.emit(item);
-  }
-  onCheckIn(item: any) {
-    this.checkin.emit(item);
   }
   onView(item: any) {
     this.view.emit(item);

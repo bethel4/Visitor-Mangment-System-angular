@@ -7,6 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+declare var require
+const Swal = require('sweetalert2')
 
 @Component({
   selector: 'app-customer',
@@ -25,7 +27,7 @@ export class CustomerComponent implements OnInit {
     { name: 'name', label: 'Name' },
     { name: 'address', label: 'Adress' },
     { name: 'contact_number', label: 'Mobile' },
-    { name: 'clientName', label: 'Client Name' },
+    { name: 'client_name', label: 'Client Name' },
     { name: 'created', label: 'Created' },
     { name: 'status', label: 'Status' },
   ];
@@ -79,7 +81,7 @@ export class CustomerComponent implements OnInit {
             address: data.data[i].address,
             created: data.data[i].created,
             email:data.data[i].email,
-            clientName: data.data[i].client_name,
+            client_name: data.data[i].client_name,
           });
         }
       this.data = datas;
@@ -100,7 +102,7 @@ export class CustomerComponent implements OnInit {
     const selectedId = event.id;
     this.service.delete(selectedId).subscribe((res) => {
       if (res.status) {
-        this.toaster.success(res.message);
+        //this.toaster.success(res.message);
         this.onGet();
       } else {
         this.toaster.error(res.message);
@@ -110,5 +112,25 @@ export class CustomerComponent implements OnInit {
   onSelect(row) {
     console.log(row.id);
     this.router.navigate(['SuperAdmin/editcustomer', row.id]);
+  }
+  onDeleteAlert(user:any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to deactivet!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.value) {
+        this.onDelete(user)
+        Swal.fire(
+          'Deactivte!',
+          'Account has been deactivate.',
+          'success'
+        )
+      }
+    })
   }
 }

@@ -19,19 +19,8 @@ export class VisitorsComponent implements OnInit {
   data: any;
   temp = [];
   page = 1;
-  pageSize = 3;
-  cols = [
-    { name: 'visitor', label: 'Visitor' },
-    //{ name: 'email', label:'Email'},
-    //{ name: 'address', label:'Address'},
-    //{ name: 'reason', label:'Reason'},
-    // { name:'contact_number', label: 'Mobile'},
-    { name: 'customer_name', label: 'Customer' },
-    { name: 'timein', label: 'Timein' },
-    { name: 'timeout', label: 'Timeout' },
-    { name: 'approval_status', label: 'ApprovalStatus' },
-    { name: 'approval_time', label: 'Approval Time' },
-  ];
+  pageSize = 6;
+
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   ColumnMode = ColumnMode;
@@ -69,7 +58,7 @@ export class VisitorsComponent implements OnInit {
             timein: data.data[i].time_in,
             timeout: data.data[i].time_out,
             reason: data.data[i].reason,
-            approval_time: data.data[i].approval_time,
+            approved_time: data.data[i].approved_time,
           });
         }
         this.data = datas;

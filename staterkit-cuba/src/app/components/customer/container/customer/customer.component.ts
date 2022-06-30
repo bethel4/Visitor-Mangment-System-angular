@@ -5,11 +5,15 @@ import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+declare var require
+const Swal = require('sweetalert2')
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
 })
+
 export class CustomerComponent implements OnInit {
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
   ColumnMode = ColumnMode;
@@ -135,5 +139,43 @@ export class CustomerComponent implements OnInit {
   onView(row){
     console.log(row.id);
     this.router.navigate(['customer/visitor_detail',row.id])
+  }
+
+  onRequest(user:any) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false,
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Visitor Request',
+      text: "Do you want to approve or reject!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Approve',
+      cancelButtonText: 'Reject',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+         this.onApprove(user)
+        swalWithBootstrapButtons.fire(
+          'Approved!',
+          'Request Succesfuly Approved.',
+          'success'
+        )
+      } else if (
+        // Read more about handling dismissals
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        this.onReject(user)
+        swalWithBootstrapButtons.fire(
+          'Rejected',
+          'Request Succesfuly Rejected :)',
+          'error'
+        )
+      }
+    })
   }
 }

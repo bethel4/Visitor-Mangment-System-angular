@@ -22,7 +22,10 @@ import { Observable } from 'rxjs';
       canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
           console.log(this.query.isRole())
           if (this.query.isRole()==='Super Admin'||this.query.isRole()==='Admin') {
-             console.log(this.query.isRole())
+          //   if (this.query.isLoggedIn) {
+          //     this.router.navigate(['/SuperAdmin']);
+             
+          // }
               return true;
             }
             this.router.navigate(['/login']);

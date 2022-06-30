@@ -6,6 +6,8 @@ import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+declare var require
+const Swal = require('sweetalert2')
 
 @Component({
   selector: 'app-client',
@@ -97,7 +99,7 @@ export class ClientComponent implements OnInit {
     const selectedId = event.id;
     this.service.delete(selectedId).subscribe(res=>{
       if(res.status){
-        this.toaster.success(res.message);
+        //this.toaster.success(res.message);
         this.onGet()
       }else{
         this.toaster.error(res.message);
@@ -105,7 +107,7 @@ export class ClientComponent implements OnInit {
     });
     
   }
-  onSelect(row) {
+  onEdit(row) {
     console.log(row);
     this.router.navigate(['SuperAdmin/editclient', row.id]);
   }
@@ -113,5 +115,27 @@ export class ClientComponent implements OnInit {
     console.log(this.data)
     this.data.map((data, i) => ({id: i + 1, ...data}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
+ 
+  onDeleteAlert(user:any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to deactivet!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes it!'
+    }).then((result) => {
+      if (result.value) {
+        this.onDelete(user)
+        Swal.fire(
+          'Deactivte!',
+          'Account has been deactivate.',
+          'success'
+        )
+      }
+    })
   }
 }

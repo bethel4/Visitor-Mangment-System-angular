@@ -7,10 +7,11 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SessionQuery } from '../state/session.query';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor {
-  constructor(private query: SessionQuery) {}
+  constructor(private query: SessionQuery, private router: Router) {}
 
   getHeader() {
     const token = this.query.accessToken;
@@ -27,7 +28,6 @@ export class AuthInterceptor {
     if (req.url.endsWith('/login')) {
       return next.handle(req);
     }
-
     const header = this.getHeader();
     const newReq = req.clone({ headers: header });
     return next.handle(newReq);

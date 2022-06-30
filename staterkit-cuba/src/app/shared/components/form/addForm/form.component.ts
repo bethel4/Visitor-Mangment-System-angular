@@ -91,6 +91,10 @@ export class FormComponent implements OnInit {
         }
       });
     }
+    if (this.role == 'Client') {
+      this.hide = false;
+      
+    }
     if (this.role == 'Customer' || this.role == 'Security') {
       this.hide = false;
       this.serviceCustomer.get().subscribe((data) => {
@@ -172,8 +176,9 @@ export class FormComponent implements OnInit {
   }
 
   onCancel() {
-    this.formClose.emit();
+    this.form.reset();
   }
+
   changeWebsite(e: any) {
     e.target.value == 'delviery'
       ? (this.checkboxhide = true)

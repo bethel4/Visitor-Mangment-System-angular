@@ -19,13 +19,12 @@ export class VisitorComponent implements OnInit {
   temp = [];
 
   cols = [
-    { name: 'visitor', label: 'Visitor' },
+    { name: 'name', label: 'Visitor' },
     { name: 'contact_number', label: 'Mobile' },
+    { name: 'created', label: 'Created' },
     { name: 'reason', label: 'Reason' },
-    { name: 'Timein', label: 'Timein' },
-    { name: 'Timeout', label: 'Timeout' },
-    { name: 'approval_status', label: 'ApprovalStatus' },
-    { name: 'approved_time', label: 'ApprovalTime' },
+    { name: 'address', label: 'Address' },
+    { name: 'status', label: 'ApprovalStatus' },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -64,18 +63,18 @@ export class VisitorComponent implements OnInit {
       console.log(data.data);
       if (data.status === 1) {
         for (let i = 0; i < data.data.length; i++) {
+        
           datas.push({
             id: data.data[i].id,
-            visitor: data.data[i].visitor,
+            name: data.data[i].visitor,
             contact_number: data.data[i].contact_number,
             address: data.data[i].address,
             reason: data.data[i].reason,
             customer_name: data.data[i].customer_name,
-            security_name: data.data[i].security_name,
-            timein: data.data[i].created,
-            timeout: data.data[i].timeout,
-            approval_status: data.data[i].approval_status,
-            approved_time: data.data[i].approved_time,
+            client_name: data.data[i].client_name,
+            created: data.data[i].created,
+            status: data.data[i].approval_status,
+            
           });
         }
         this.data = datas;

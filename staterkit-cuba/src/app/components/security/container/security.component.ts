@@ -7,6 +7,8 @@ import { VisitorQuery } from '../../Admin/visitor/state/visitore.query';
 import { VistiorService } from '../../Admin/visitor/state/vistior.service';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
+declare var require
+const Swal = require('sweetalert2')
 
 @Component({
   selector: 'app-security',
@@ -18,6 +20,7 @@ export class SecurityComponent implements OnInit {
   data: any;
   page = 1;
   pageSize = 3;
+
   cols = [
     { name: 'visitor', label: 'Visitor' },
     // { name: 'address', label:'Address'},
@@ -79,6 +82,8 @@ export class SecurityComponent implements OnInit {
         }
         this.data = datas;
         this.collectionSize = datas.length;
+      }else{
+        this.data= [];
       }
     });
   }
@@ -102,27 +107,15 @@ export class SecurityComponent implements OnInit {
       clearInterval(this.interval);
     }
   }
-  onCheckOut(event: any): void {
-    console.log(event);
-    var date = moment().format('YYYY-MM-DD HH:mm:ss');
-    const selectedId = event.id;
-    let data = {
-      id: selectedId,
-      time: date,
-      status: 0,
-    };
 
-    this.service.updateTime(data).subscribe((result) => {
-      if (result.status) {
-        this.getRequest();
-        this.toster.success(result.message);
-      } else {
-        this.toster.error(result.message);
-      }
-    });
+
+  onView(row) {
+    console.log(row);
+    this.router.navigate(['security/visitor_detail', row.id]);
   }
-  onCheckIn(event: any): void {
-    console.log(event);
+
+
+  onCheckInAlert(event) {
     var date = moment().format('YYYY-MM-DD HH:mm:ss');
     const selectedId = event.id;
     let data = {
@@ -134,14 +127,40 @@ export class SecurityComponent implements OnInit {
     this.service.updateTime(data).subscribe((result) => {
       if (result.status) {
         this.getRequest();
-        this.toster.success(result.message);
+        Swal.fire(
+          result.message,
+         
+        )
       } else {
-        this.toster.error(result.message);
+        Swal.fire(
+          result.message,
+         
+        )
       }
     });
+ 
   }
-  onView(row) {
-    console.log(row);
-    this.router.navigate(['security/visitor_detail', row.id]);
+  onCheckoutAlert(user:any) {
+    var date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const selectedId = user.id;
+    let data = {
+      id: selectedId,
+      time: date,
+      status: 0,
+    };
+
+    this.service.updateTime(data).subscribe((result) => {
+      if (result.status) {
+        this.getRequest();
+        Swal.fire(
+          result.message,
+        )
+      } else {
+        Swal.fire(
+          result.message,
+        )
+      }
+    });
+  
   }
 }

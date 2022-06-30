@@ -1,113 +1,62 @@
-<!-- 
+<h3 class="pt-3" style=" color:#B9B9C3;font-family:Montserrat, Helvetica, Arial;font-size: 1rem;font-weight: 400;"></h3>
+<table class="table table-striped table-bordered " style="width: 100%">
 
-    <table class="table table-striped table-bordered">
-      <thead style="background-color:#e9ecef; width: 1px;">
-        <tr>
-          <th style="white-space: nowrap;width:4px; table-layout:fixed">S.No</th>
-          <th style="white-space: nowrap;width:4px; table-layout:fixed" *ngFor="let column of columns" >{{ column.label }}</th>
-          <th style="white-space: nowrap;width:4px;text-align:center" [hidden]="hide">Actions</th>
-          <th style="white-space: nowrap;width:4px;text-align:center" [hidden]="buttonHide">Actions</th>
-          <th style="white-space: nowrap;width:4px;text-align:center" [hidden]="check">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of user_data|slice: (page-1) * pageSize : page * pageSize  index as i" >
-        <td scope="row">{{ i + 1 }}</td>
-        <td style="white-space: nowrap;width:1px"*ngFor="let column of columns"style="table-layout:fixed" >{{ user[ column.name] }}</td>
-        <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="hide">
-          <a  ngbTooltip = "edit"> <i class="fa fa-edit" style="color:#7366ff;" (click)="onEdit(user)"></i></a>
-          <a ngbTooltip = "delete"><i class="fa fa-times"style="color:#7366ff;  padding-left:20px" (click)="onDelete(user)"></i></a>
-              
-        </td>
-       
-        <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="buttonHide">
-          <a ngbTooltip = "approve"> <i class="fa fa-thumbs-o-up" [hidden]="user.time_in!=null" style="color:#7366ff;" (click)="onApprove(user)"></i></a>
-          <a ngbTooltip ="reject" ><i class="fa fa-thumbs-o-down" style="color:#7366ff;  padding-left:20px"  [hidden]="user.time_in!=null"  (click)="onReject(user)"></i></a>
-          <a ngbTooltip="view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(user)"></i></a>
-        </td>
-        <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="check">
-          <a ngbTooltip ="checkout" > <i class="fa fa-aruser-right" [hidden]="user.timein==null" style="color:#7366ff;" (click)="onCheckOut(user)"></i></a>
-          <a ngbTooltip ="checkin" > <i class="fa fa-aruser-left" style="color:#7366ff; padding-left:20px" (click)="onCheckIn(user)"></i></a>
-          <a ngbTooltip = "view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(user)"></i></a>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    
-    <div class="d-flex justify-content-between p-2">
-      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
-      </ngb-pagination>
-    
-      <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="4">4 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
-      </select>
-    </div> -->
+  <thead style="background-color:#F3F2F7; width: 1px;">
+    <tr >
+      <th >S.No</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Contact Number</th>
+      <th>Clint Name</th>
+      <th>Created</th>
+      <th>Status</th>
+      <th>Action</th>
+      <th>View</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of user_data|slice: (page-1) * pageSize : page * pageSize  index as i">
+      <td scope="row">{{ i + 1 }}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.contact_number}}</td>
+      <td>{{user.client_name}}</td>
+      <td>{{user.created}}</td>
+      <td *ngIf="user.status=='Active'">
+        <div>
+          <p class="p txt-primary">{{user.status}}</p>
+        </div>
+      </td>
+      <td *ngIf="user.status=='Inactive'">
+        <div>
+          <p class=" txt-danger">{{user.status}}</p>
+        </div>
+      </td>
+      <td> <button ngbTooltip="edit " class="btn btn-success btn-xs" type="button" (click)="onEdit(user)"
+          placement="top">edit
+        </button> &nbsp;
+        <button [disabled]="user.status=='Inactive'" ngbTooltip="delete " class="btn btn-danger btn-xs" type="button"
+          (click)="onDelete(user)" placement="top">delete
+        </button>
+      </td>
 
-
-    <h3 class="pt-3" style=" color:#B9B9C3;font-family:Montserrat', Helvetica, Arial;font-size: 1rem;font-weight: 400;">Showing 1 to {{user_data.length}} of {{user_data.length}} enteries</h3>
-    <table class="table table-striped table-bordered table-responsive">
-     
-      <thead style="background-color:#F3F2F7; width: 1px;">
-        <tr>
-          <th >S.No</th>
-          <th  *ngFor="let column of columns" >{{ column.label }}</th>
-          <th >Actions</th>
-          <th  [hidden]="buttonHide">Actions</th>
-          <th  [hidden]="check">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of user_data|slice: (page-1) * pageSize : page * pageSize  index as i" >
-        <td scope="row">{{ i + 1 }}</td>
-        <td *ngFor="let column of columns"style=" width:530px" >{{ user[ column.name] }}</td>
-        <td  [hidden]="hide" style="width:350px">
-          <button ngbTooltip = "edit" class="btn btn-primary btn-xs" type="button" placement="top"  (click)="onEdit(user)">Edit
-            </button>&nbsp;
-            <button ngbTooltip = "delete " class="btn btn-danger btn-xs" type="button" (click)="onDelete(user)" placement="top">Delete
-              </button>
-              
-        </td>
-       <td [hidden]="views">
-        <button ngbTooltip = "view " class="btn btn-success btn-xs" type="button" (click)="onView(user)" placement="top">View
+      <td>
+        <button ngbTooltip="view " class="btn btn-secondary btn-xs" type="button" (click)="onView(user)"
+          placement="top">View
         </button>&nbsp;
-       </td>
-        <td  [hidden]="buttonHide" style="width:210px">
-          <button ngbTooltip = "view " class="btn btn-success btn-xs" type="button" (click)="onView(user)" placement="top">View
-          </button>&nbsp;
-          <button ngbTooltip = "approve" class="btn btn-primary btn-xs" type="button" placement="top" [hidden]="user.time_in!=null" (click)="onApprove(user)">Approve
-          </button>&nbsp;
-          <button ngbTooltip = "reject " class="btn btn-danger btn-xs" type="button" (click)="onReject(user)"[hidden]="user.time_in!=null" placement="top">Reject
-            </button>
-          
-          <!-- <a ngbTooltip = "approve"> <i class="fa fa-thumbs-o-up" [hidden]="user.time_in!=null" style="color:#7366ff;" (click)="onApprove(user)"></i></a>
-          <a ngbTooltip ="reject" ><i class="fa fa-thumbs-o-down" style="color:#7366ff;  padding-left:20px"  [hidden]="user.time_in!=null"  (click)="onReject(user)"></i></a>
-          <a ngbTooltip="view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(user)"></i></a> -->
-        </td>
-        <td  [hidden]="check" style="width:210px">
-          <button class="btn btn-danger btn-xs" (click)="onCheckOut(user)"  [hidden]="user.timeout!=null"  type="button" placement="top" ngbTooltip="checkout">checkout
-          </button>&nbsp;
-          <button class="btn btn-primary btn-xs" (click)="onCheckIn(user)"  [hidden]="user.timein!=null"type="button" placement="top" ngbTooltip="checkin">checkin
-           </button>
-           &nbsp;
-           <button ngbTooltip = "view " class="btn btn-success btn-xs" type="button" (click)="onView(user)" placement="top">View
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    
-    <div class="d-flex justify-content-between p-2">
-      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
-      </ngb-pagination>
-    
-      <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="3">3 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
-      </select>
-    </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+    (pageChange)="refreshCountries()">
+  </ngb-pagination>
 
-    
+  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="3">3 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>

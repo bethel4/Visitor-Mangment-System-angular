@@ -1,0 +1,23 @@
+<div class="container-fluid" style="padding-top: 50px;">
+    <div class="row">
+     
+   
+        <div class="col-sm-12">
+            <div class="card shadow-lg  bg-body rounded" >
+            
+                <div class="card-body pt-2 ">
+                    <input type="text" class="filter-ngx form-control mb-3" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" style="float: right; width: 300px;" />
+                        <app-table
+                        [user_data]="data"
+                        [columns]="cols"
+                        [collectionSize]="collectionSize"
+                        (refreshcountries)=refreshCountries()
+                        (view)="onView($event)"
+                       >
+                        </app-table>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

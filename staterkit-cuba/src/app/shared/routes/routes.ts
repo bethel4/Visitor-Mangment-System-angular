@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {AuthRoleVisitorGuard} from '../../auth/service/auth-guard-visitor'
 import {AuthRoleSuperAdminGuard} from '../../auth/service/auth-child-guard'
 import {AuthRoleCustomerGuard} from '../../auth/service/auth-guard-customer'
+import {AuthRoleClientGuard} from '../../auth/service/auth-guard-client'
 export const content: Routes = [
   {
     path: 'security',
@@ -18,5 +19,9 @@ export const content: Routes = [
   {
     path: 'customer',
     loadChildren: () => import('../../components/customer/customer.module').then(m => m.CustomerModule),canActivateChild: [AuthRoleCustomerGuard]
+  },
+  {
+    path: 'client',
+    loadChildren: () => import('../../components/client/client.module').then(m => m.ClientModule),canActivateChild: [AuthRoleClientGuard]
   }
 ];

@@ -142,7 +142,7 @@ export class NavService implements OnDestroy {
 					
 				]		
 			},
-		
+			
 			{ 
 				title: 'Account', type: 'sub', active: false, children: [
 					{ path: 'security/user', title: 'View Account', type: 'link' },
@@ -179,6 +179,37 @@ export class NavService implements OnDestroy {
 		
 	
 ];
+MENUITEMSCLIENT: Menu[] = [
+	{ path: 'client', title: ' Dashboard' ,icon:'home', type: 'link' },
+	{ 
+		title: 'Customer', icon: 'users', type: 'sub', active: false, children: [
+			{ path: 'client/customers', title: 'Customer', type: 'link' },
+			{ path: 'client/addcustomer', title: 'Add New Customer' , type: 'link' },
+			
+		]		
+	},
+	{ 
+		title: 'security', icon: 'users', type: 'sub', active: false, children: [
+			{ path: 'client/security', title: 'Security', type: 'link' },
+			{ path: 'client/addsecurity', title: 'Add New Security' , type: 'link' },
+		
+			
+		]		
+	},
+	{ 
+		title: 'Account', type: 'sub', active: false, children: [
+			{ path: 'client/user', title: 'View Account', type: 'link' },
+			
+			{ path: 'client/editprofile', title: 'Edit Account', type: 'link' },
+		]		
+	},
+
+		
+	
+	
+	
+
+];
 
 	MEGAMENUITEMS: Menu[] = [
 	
@@ -212,13 +243,11 @@ export class NavService implements OnDestroy {
 	];
 
 	LEVELMENUITEMS: Menu[] = [
-		{ path: 'javascript:void(0);', title: 'Forgot Password', type: 'extLink' },
-				{ path: 'javascript:void(0);', title: 'Reset Password', type: 'extLink' },
 		{
 			title: 'Users', icon: 'users', type: 'sub', active: false, children: [
 			
-				{ path: 'javascript:void(0);', title: 'User Profile', icon: 'users', type: 'extLink' },
-				{ path: 'javascript:void(0);', title: 'Edit Profile', icon: 'users', type: 'extLink' },
+				{ path: 'security/user', title: 'User Profile', icon: 'users', type: 'link' },
+				{ path: 'javascript:void(0);', title: 'Edit Profile', icon: 'users', type: 'link' },
 			]
 		},
 		];
@@ -227,6 +256,7 @@ export class NavService implements OnDestroy {
 	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
 	itemsecurity = new BehaviorSubject<Menu[]>(this.MENUITEMSSECURIY);
 	itemCustomer = new BehaviorSubject<Menu[]>(this.MENUITEMSCUSTOMER);
+	itemClient= new BehaviorSubject<Menu[]>(this.MENUITEMSCLIENT)
 	megaItems = new BehaviorSubject<Menu[]>(this.MEGAMENUITEMS);
 	levelmenuitems = new BehaviorSubject<Menu[]>(this.LEVELMENUITEMS);
 
