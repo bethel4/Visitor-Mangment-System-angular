@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h3 class="pt-3" style=" color:#B9B9C3;font-family:Montserrat, Helvetica, Arial;font-size: 1rem;font-weight: 400;"></h3>
 <table class="table table-striped table-bordered " style="width: 100%">
 
@@ -61,35 +60,3 @@
     <option [ngValue]="6">6 items per page</option>
   </select>
 </div>
-=======
-
-<table class="table table-striped table-bordered " >
-  <thead style="background-color:#e9ecef; width: 1px;">
-    <tr>
-      <th style="white-space: nowrap;width:4px; table-layout:fixed" *ngFor="let column of columns" >{{ column.label }}</th>
-      <th style="white-space: nowrap;width:4px;text-align:center" [hidden]="hide">Actions</th>
-      <th style="white-space: nowrap;width:4px;text-align:center" [hidden]="buttonHide">Actions</th>
-      <th style="white-space: nowrap;width:4px;text-align:center" [hidden]="check">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of user_data ">
-      <td style="white-space: nowrap;width:1px"*ngFor="let column of columns"style="table-layout:fixed" >{{ row[ column.name] }}</td>
-      <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="hide">
-        <a  ngbTooltip = "edit"> <i class="fa fa-edit" style="color:#7366ff;" (click)="onEdit(row)"></i></a>
-        <a ngbTooltip = "delete"><i class="fa fa-times"style="color:#7366ff;  padding-left:20px" (click)="onDelete(row)"></i></a>
-            
-      </td>
-     
-      <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="buttonHide">
-        <a ngbTooltip = "approve"> <i class="fa fa-thumbs-o-up" [hidden]="row.time_in!=null" style="color:#7366ff;" (click)="onApprove(row)"></i></a>
-        <a ngbTooltip ="reject" ><i class="fa fa-thumbs-o-down" style="color:#7366ff;  padding-left:20px"  [hidden]="row.time_in!=null"  (click)="onReject(row)"></i></a>
-        <a ngbTooltip="view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(row)"></i></a>
-      </td>
-      <td style="white-space: nowrap;width:0.5px;text-align:center" [hidden]="check">
-        <a ngbTooltip ="checkout" > <i class="fa fa-arrow-right" [hidden]="row.timein==null" style="color:#7366ff;" (click)="onCheckOut(row)"></i></a>
-        <a ngbTooltip ="checkin" > <i class="fa fa-arrow-left" style="color:#7366ff; padding-left:20px" (click)="onCheckIn(row)"></i></a>
-        <a ngbTooltip = "view"> <i class="fa fa-eye" style="color:#7366ff; padding-left:20px" (click)="onView(row)"></i></a>
-      </td>
-    </tr>
->>>>>>> 891d2e9fcc27142aebe4451a7860101024eab55c
