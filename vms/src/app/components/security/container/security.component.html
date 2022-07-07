@@ -1,0 +1,93 @@
+<div class="container-fluid" style="padding-top: 50px;">
+  <div class="row">
+
+    <div class="pb-3" style="width: 170px; padding-top: 30px; padding-left: 15px;">
+      <a routerLink="/security/addRquest"> <button class="btn btn-primary btn-block" type="button"><span>Add
+            New</span>
+        </button></a>
+    </div>
+    <div class="col-sm-12">
+      <div class="card shadow-lg  bg-body rounded">
+        <div class="card-body pt-2 ">
+          <input type="text" class="filter-ngx form-control mb-3" placeholder='Type to filter the name column...'
+            (keyup)="updateFilter($event)" style="float: right; width: 300px;" />
+          <h3 class="pt-3"
+            style=" color:#B9B9C3;font-family:Montserrat, Helvetica, Arial;font-size: 1rem;font-weight: 400;">Today
+            Visitors</h3>
+          <table class="table table-striped table-bordered " style="width: 100%">
+
+            <thead style="background-color:#F3F2F7; width: 1px;">
+              <tr>
+                <th>S.No</th>
+                <th>Visitor</th>
+                <th>Customer Name</th>
+                <th>Timein</th>
+                <th>Timeout</th>
+                <th>Approval Status</th>
+                <th>Approval Time</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of data|slice: (page-1) * pageSize : page * pageSize  index as i">
+                <td scope="row">{{ i + 1 }}</td>
+                <td>{{user.visitor}}</td>
+                <td>{{user.customer_name}}</td>
+                <td *ngIf="user.timein!=null">{{user.timein}}</td>
+                <td *ngIf="user.timein==null"> <button ngbTooltip="time in " class="btn btn-success btn-xs"
+                    type="button" (click)="onCheckInAlert(user)" placement="top">Enter
+
+                  </button>
+                </td>
+                <td *ngIf="user.timeout!=null">{{user.timeout}}</td>
+                <td *ngIf="user.timeout==null"> <button ngbTooltip="time in " class="btn btn-danger btn-xs"
+                    type="button" (click)="onCheckoutAlert(user)" placement="top">Exit
+
+                  </button>
+                </td>
+                <td *ngIf="user.approval_status=='waiting'">
+                  <div>
+                    <p class="p txt-primary">{{user.approval_status}}</p>
+                  </div>
+                </td>
+                <td *ngIf="user.approval_status=='approved'">
+                  <div>
+                    <p class=" txt-success">{{user.approval_status}}</p>
+                  </div>
+                </td>
+                <td *ngIf="user.approval_status=='rejected'">
+                  <div>
+                    <p class=" txt-danger">{{user.approval_status}}</p>
+                  </div>
+                </td>
+                <td>{{user.approved_time}}</td>
+
+
+                <td>
+                  <button ngbTooltip="view " class="btn btn-primary btn-xs" type="button" (click)="onView(user)"
+                    placement="top">View
+                  </button>&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+              (pageChange)="refreshCountries()">
+            </ngb-pagination>
+
+            <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+              <option [ngValue]="2">2 items per page</option>
+              <option [ngValue]="3">3 items per page</option>
+              <option [ngValue]="6">6 items per page</option>
+            </select>
+          </div>
+          <h3 class="pt-3"
+            style=" color:#B9B9C3;font-family:Montserrat, Helvetica, Arial;font-size: 1rem;font-weight: 400;">Showing 1
+            to {{data.length}} of {{data.length}} enteries</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

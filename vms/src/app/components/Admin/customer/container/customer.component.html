@@ -1,0 +1,28 @@
+<app-breadcrumb ></app-breadcrumb>
+<div class="container-fluid" style="padding-top: 50px;">
+    <div class="row">
+     
+      <div class="pb-3" style="width: 170px; padding-top: 30px; padding-left: 15px;">
+        <a routerLink="/SuperAdmin/addcustomer">  <button  class="btn btn-primary btn-block" 
+          type="button"><span>Add New</span>
+        </button></a>
+      </div>
+        <div class="col-sm-12">
+            <div class="card shadow-lg  bg-body rounded" style="width:1150px"> 
+            
+                <div class="card-body pt-2 ">
+                    <input type="text" class="filter-ngx form-control mb-3" placeholder='Type to filter the name column...'
+                        (keyup)="updateFilter($event)" style="float: right; width: 300px;" />
+                        <app-table
+                        [user_data]="data"
+                        [columns]="cols"
+                        [collectionSize]="collectionSize"
+                        (refreshcountries)=refreshCountries()
+                        (onedit)="onSelect($event)"
+                        (ondelete)="onDeleteAlert($event)">
+                        </app-table>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
